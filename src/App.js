@@ -1,26 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-function App() {
+import Splash from './components/Splash';
+import BooksHome from './components/BooksHome';
+import Auth from './components/Auth';
+
+import { SPLASH, AUTH, BOOKSHOME } from './constants/routes';
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path={SPLASH} component={Splash} />
+        <Route exact path={AUTH} component={Auth} />
+        <Route exact path={BOOKSHOME} component={BooksHome} />
+      </Switch>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
