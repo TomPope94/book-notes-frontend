@@ -6,23 +6,21 @@ import {
   LOGIN_FAIL,
   LOGOUT,
   CLEAR_PROFILE
-} from './types';
-import { Auth } from 'aws-amplify';
+} from "./types";
+import { Auth } from "aws-amplify";
 
-// export const loadUser = () => async dispatch => {
-//   if (localStorage.accessToken) {
-//     try {
-//       dispatch({
-//         type: USER_LOADED,
-//         payload: localStorage.accessToken
-//       });
-//     } catch (err) {
-//       dispatch({
-//         type: AUTH_ERROR
-//       });
-//     }
-//   }
-// };
+export const loadUser = () => async dispatch => {
+  try {
+    await Auth.currentAuthenticatedUser();
+    dispatch({
+      type: USER_LOADED
+    });
+  } catch (error) {
+    dispatch({
+      type: AUTH_ERROR
+    });
+  }
+};
 
 export const registerUser = (email, password) => async dispatch => {
   try {
