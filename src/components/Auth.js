@@ -1,11 +1,11 @@
-import React, { useState, Fragment, useEffect } from 'react';
-import { Redirect, Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, { useState, Fragment } from "react";
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 
-import { BOOKSHOME } from '../constants/routes';
+import { BOOKSHOME } from "../constants/routes";
 
-import Login from './auth/Login';
-import Register from './auth/Register';
+import Login from "./auth/Login";
+import Register from "./auth/Register";
 
 const Auth = ({ isAuthenticated }) => {
   const [loginState, setLoginState] = useState(true);
@@ -18,7 +18,6 @@ const Auth = ({ isAuthenticated }) => {
     <Fragment>
       {loginState ? <Login /> : <Register />}
       <button onClick={() => setLoginState(!loginState)}>Change</button>
-      <Link to={BOOKSHOME}>Books</Link>
     </Fragment>
   );
 };
