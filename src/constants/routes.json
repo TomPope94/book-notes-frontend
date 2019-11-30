@@ -1,5 +1,12 @@
 {
   "SPLASH": "/",
+  "SALES": "/product",
   "AUTH": "/auth",
-  "BOOKSHOME": "/books"
+  "AUTH_FORGOT": "/auth/forgot",
+  "AUTH_SIGNED_UP": "/auth/signedup",
+  "AUTH_ONBOARDING": "/auth/welcome",
+  "BOOKS_HOME": "/books",
+  "BOOKS_HELP": "/books/help",
+  "BOOKS_DETAILS": "/books/details",
+  "BOOKS_ADD": "/books/add"
 }

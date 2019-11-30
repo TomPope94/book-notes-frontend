@@ -58,7 +58,7 @@ export const login = (email, password) => async dispatch => {
 // Logout/Clear Profile
 export const logout = () => async dispatch => {
   try {
-    await Auth.signOut();
+    await Auth.signOut({ global: true });
 
     dispatch({ type: LOGOUT });
   } catch (err) {
