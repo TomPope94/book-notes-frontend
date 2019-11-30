@@ -12,12 +12,12 @@ import { SPLASH, AUTH, BOOKSHOME } from 'constants/routes';
 import { Provider } from 'react-redux';
 import store from 'store';
 import Nav from 'components/nav/Nav';
-// import { loadUser } from './actions/auth';
+import { loadUser } from './actions/auth';
 
 const App = () => {
-  // useEffect(() => {
-  //   store.dispatch(loadUser());
-  // }, []);
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
 
   return (
     <Provider store={store}>

@@ -5,17 +5,13 @@ import { AUTH } from '../../constants/routes';
 
 const PrivateRoute = ({
   component: Component,
-  auth: { isAuthenticated, loading },
+  auth: { isAuthenticated },
   ...rest
 }) => (
   <Route
     {...rest}
     render={props =>
-      !isAuthenticated && !loading ? (
-        <Redirect to={AUTH} />
-      ) : (
-        <Component {...props} />
-      )
+      !isAuthenticated ? <Redirect to={AUTH} /> : <Component {...props} />
     }
   />
 );

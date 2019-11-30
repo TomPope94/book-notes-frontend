@@ -9,20 +9,19 @@ import {
 } from './types';
 import { Auth } from 'aws-amplify';
 
-// export const loadUser = () => async dispatch => {
-//   if (localStorage.accessToken) {
-//     try {
-//       dispatch({
-//         type: USER_LOADED,
-//         payload: localStorage.accessToken
-//       });
-//     } catch (err) {
-//       dispatch({
-//         type: AUTH_ERROR
-//       });
-//     }
-//   }
-// };
+export const loadUser = () => async dispatch => {
+  if (Auth.currentUserInfo) {
+    try {
+      dispatch({
+        type: USER_LOADED
+      });
+    } catch (err) {
+      dispatch({
+        type: AUTH_ERROR
+      });
+    }
+  }
+};
 
 export const registerUser = (email, password) => async dispatch => {
   try {
