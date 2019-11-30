@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import { registerUser } from '../../actions/auth';
+import { registerUser } from 'actions/auth';
 
 const Register = ({ registerUser }) => {
   const [formData, setFormData] = useState({

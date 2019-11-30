@@ -6,7 +6,7 @@ import {
   LOGIN_FAIL,
   LOGOUT,
   CLEAR_PROFILE
-} from './types';
+} from 'actions/types';
 import { Auth } from 'aws-amplify';
 
 export const loadUser = () => async dispatch => {

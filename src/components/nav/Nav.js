@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { logout } from '../../actions/auth';
+import { logout } from 'actions/auth';
 
 const Nav = ({ isAuthenticated, logout }) => {
   return (

@@ -3,7 +3,7 @@ import {
   USER_LOADED,
   REGISTER_SUCCESS,
   LOGOUT
-} from '../actions/types';
+} from 'actions/types';
 
 const initialState = {
   isAuthenticated: false,

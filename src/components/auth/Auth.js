@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 
 import { BOOKSHOME } from 'constants/routes';
 
-import Login from './Login';
-import Register from './Register';
+import Login from 'components/auth/Login';
+import Register from 'components/auth/Register';
 
 const Auth = ({ isAuthenticated }) => {
   const [loginState, setLoginState] = useState(true);
