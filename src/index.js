@@ -21,7 +21,7 @@ Amplify.configure({
   API: {
     endpoints: [
       {
-        name: 'notes',
+        name: 'books',
         endpoint: config.apiGateway.URL,
         region: config.apiGateway.REGION
       }
