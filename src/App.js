@@ -5,7 +5,7 @@ import history from "./history";
 import PrivateRoute from "components/routing/PrivateRoute";
 import Splash from "components/splash/Splash";
 import SalesPage from "components/splash/SalesPage";
-import Auth from "components/auth/Auth";
+import AuthBroker from "components/auth/AuthBroker";
 import AuthForgot from "components/auth/AuthForgot";
 import SignedUp from "components/auth/SignedUp";
 import UserOnboarding from "components/auth/UserOnboarding";
@@ -41,11 +41,11 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router history={history}>
-        <Nav />
         <Switch>
+          <Route exact path={AUTH} component={AuthBroker} />
+          <Nav />
           <Route exact path={SPLASH} component={Splash} />
           <Route exact path={SALES} component={SalesPage} />
-          <Route exact path={AUTH} component={Auth} />
           <Route exact path={AUTH_FORGOT} component={AuthForgot} />
           <PrivateRoute exact path={AUTH_SIGNED_UP} component={SignedUp} />
           <PrivateRoute

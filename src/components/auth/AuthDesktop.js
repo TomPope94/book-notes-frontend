@@ -8,8 +8,9 @@ import { BOOKS_HOME } from "constants/routes";
 import Login from "components/auth/Login";
 import Register from "components/auth/Register";
 
-const Auth = ({ isAuthenticated }) => {
+const AuthDesktop = ({ isAuthenticated }) => {
   const [loginState, setLoginState] = useState(true);
+
   const styles = {
     pageContainer: {
       height: "100vh",
@@ -188,4 +189,4 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps)(Auth);
+export default connect(mapStateToProps)(AuthDesktop);

@@ -12,6 +12,7 @@ import FormButton from "components/elements/FormButton";
 const styles = {
   formContainer: {
     height: "100%",
+    width: "100%",
     background: "#f38b66",
     display: "flex",
     alignItems: "center",
