@@ -1,14 +1,23 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { logout } from '../../actions/auth';
+import { logout } from 'actions/auth';
+
+const styles = {
+  navBar: {
+    width: '100vw',
+    height: 50,
+    background: '#f38b66',
+    boxShadow: '0 1px 10px #222641'
+  }
+};
 
 const Nav = ({ isAuthenticated, logout }) => {
   return (
-    <Fragment>
+    <div style={styles.navBar}>
       {isAuthenticated ? (
         <button onClick={() => logout()}>Logout</button>
       ) : null}
-    </Fragment>
+    </div>
   );
 };
 
