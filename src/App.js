@@ -41,9 +41,9 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router history={history}>
+        <Nav />
         <Switch>
           <Route exact path={AUTH} component={AuthBroker} />
-          <Nav />
           <Route exact path={SPLASH} component={Splash} />
           <Route exact path={SALES} component={SalesPage} />
           <Route exact path={AUTH_FORGOT} component={AuthForgot} />

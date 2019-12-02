@@ -1,7 +1,14 @@
-import React from 'react';
+import React from "react";
+import { connect } from "react-redux";
 
-const BookDetails = () => {
-  return <h1>Book Details Page</h1>;
+const BookDetails = ({ selectedBook }) => {
+  const titleText = selectedBook ? selectedBook.bookTitle : "No book selected";
+
+  return <h1>{titleText}</h1>;
 };
 
-export default BookDetails;
+const mapStateToProps = state => ({
+  selectedBook: state.books.selectedBook
+});
+
+export default connect(mapStateToProps)(BookDetails);

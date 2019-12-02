@@ -2,8 +2,8 @@ import { API } from "aws-amplify";
 import {
   // SEARCH_SUCCESS,
   // SEARCH_FAIL,
-  GET_ALL_BOOKS
-  // GET_BOOK,
+  GET_ALL_BOOKS,
+  GET_BOOK
   // ADD_BOOK,
   // EDIT_BOOK,
   // DELETE_BOOK
@@ -22,6 +22,18 @@ export const addBook = formData => async dispatch => {
   try {
     await API.post("prod", "/books", {
       body: APIBody
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const getBook = bookId => async dispatch => {
+  try {
+    const res = await API.get("prod", `/books/${bookId}`);
+    dispatch({
+      type: GET_BOOK,
+      payload: res
     });
   } catch (err) {
     console.error(err);

@@ -14,7 +14,10 @@ const styles = {
     width: "100vw",
     height: "100vh",
     display: "flex",
-    position: "absolute"
+    position: "absolute",
+    top: 0,
+    left: 0,
+    background: "#fff"
   },
   swipeHelper: {
     position: "absolute",

@@ -1,8 +1,10 @@
 import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
-import { BOOKS_ADD } from "constants/routes";
+import { Link, useHistory } from "react-router-dom";
+import { connect } from "react-redux";
+import { BOOKS_ADD, BOOKS_DETAILS } from "constants/routes";
+import { getBook } from "actions/books";
 
-const Book = props => {
+const Book = ({ id, bookTitle, addBook, getBook }) => {
   const styles = {
     book: {
       boxShadow: "0 1px 3px #222641",
@@ -20,15 +22,30 @@ const Book = props => {
     }
   };
 
-  const bookType = props.addBook ? (
+  const history = useHistory();
+
+  const openBook = () => {
+    getBook(id);
+
+    history.push(BOOKS_DETAILS);
+  };
+
+  const bookType = addBook ? (
     <Link to={BOOKS_ADD}>
       <div style={{ ...styles.book, ...styles.addBook }} />
     </Link>
   ) : (
-    <div style={{ ...styles.book, ...styles.existingBook }} />
+    // <Link to={BOOKS_DETAILS}>
+    <div
+      style={{ ...styles.book, ...styles.existingBook }}
+      onClick={() => openBook()}
+    >
+      <p>{bookTitle}</p>
+    </div>
+    // </Link>
   );
 
   return <Fragment>{bookType}</Fragment>;
 };
 
-export default Book;
+export default connect(null, { getBook })(Book);

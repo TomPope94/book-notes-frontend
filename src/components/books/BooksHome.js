@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import uuid from "uuid";
 
 import { listBooks } from "actions/books";
 
@@ -22,7 +23,14 @@ const BooksHome = ({ listBooks, books }) => {
     listBooks();
   }, [listBooks]);
 
-  const bookRender = books.map(book => <Book addBook={false} />);
+  const bookRender = books.map(book => (
+    <Book
+      addBook={false}
+      id={book.bookId}
+      bookTitle={book.bookTitle}
+      key={uuid.v4()}
+    />
+  ));
 
   return (
     <div style={styles.library}>
