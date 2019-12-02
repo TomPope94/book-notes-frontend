@@ -2,7 +2,7 @@
   "SPLASH": "/",
   "SALES": "/product",
   "AUTH": "/auth",
-  "AUTH_FORGOT": "/auth/forgot",
+  "AUTH_FORGOT": "/auth/retrieve",
   "AUTH_SIGNED_UP": "/auth/signedup",
   "AUTH_ONBOARDING": "/auth/welcome",
   "BOOKS_HOME": "/books",

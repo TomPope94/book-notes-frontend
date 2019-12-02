@@ -9,7 +9,7 @@ const Book = props => {
       cursor: "pointer",
       height: 300,
       width: 200,
-      margin: 20
+      margin: 50
     },
     addBook: {
       border: "1px solid #f38b66",

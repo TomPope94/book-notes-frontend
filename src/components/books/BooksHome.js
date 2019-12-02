@@ -12,7 +12,8 @@ const styles = {
   },
   catalog: {
     display: "flex",
-    flexDirection: "row"
+    flexDirection: "row",
+    flexWrap: "wrap"
   }
 };
 
