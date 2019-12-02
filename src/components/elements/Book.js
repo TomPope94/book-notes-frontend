@@ -1,21 +1,22 @@
-import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
-import { BOOKS_ADD } from 'constants/routes';
+import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
+import { BOOKS_ADD } from "constants/routes";
 
 const Book = props => {
   const styles = {
     book: {
-      boxShadow: '0 1px 3px #222641',
-      cursor: 'pointer',
+      boxShadow: "0 1px 3px #222641",
+      cursor: "pointer",
       height: 300,
-      width: 200
+      width: 200,
+      margin: 20
     },
     addBook: {
-      border: '1px solid #f38b66',
-      background: '#fff'
+      border: "1px solid #f38b66",
+      background: "#fff"
     },
     existingBook: {
-      background: '#f38b66'
+      background: "#f38b66"
     }
   };
 

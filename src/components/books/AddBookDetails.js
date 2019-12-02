@@ -1,35 +1,94 @@
-import React from 'react';
+import React, { useState } from "react";
+import { connect } from "react-redux";
 
-import FormInput from 'components/elements/FormInput';
-import FormButton from 'components/elements/FormButton';
+import { addBook } from "actions/books";
+
+import FormInput from "components/elements/FormInput";
+import FormButton from "components/elements/FormButton";
 
 const styles = {
   title: {
-    fontSize: '1.5rem',
-    color: '#222641',
+    fontSize: "1.5rem",
+    color: "#222641",
     marginBottom: 20
   },
   formStyle: {
-    display: 'flex',
-    flexDirection: 'column'
+    display: "flex",
+    flexDirection: "column"
   }
 };
 
-const AddBookDetails = () => {
+const AddBookDetails = ({ addBook }) => {
+  const [formData, setFormData] = useState({
+    title: "",
+    author: "",
+    cover: "",
+    categories: "",
+    pageCount: "",
+    language: ""
+  });
+  const { title, author, cover, categories, pageCount, language } = formData;
+
+  const handleChange = e => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    addBook(formData);
+  };
+
   return (
     <div>
       <h2 style={styles.title}>Book Details:</h2>
-      <form style={styles.formStyle}>
-        <FormInput type="text" placeholder="Title" />
-        <FormInput type="text" placeholder="Author" />
-        <FormInput type="text" placeholder="Cover" />
-        <FormInput type="text" placeholder="Categories" />
-        <FormInput type="text" placeholder="Page Count" />
-        <FormInput type="text" placeholder="Language" />
+      <form style={styles.formStyle} onSubmit={e => handleSubmit(e)}>
+        <FormInput
+          type="text"
+          placeholder="Title"
+          name="title"
+          value={title}
+          onChange={e => handleChange(e)}
+        />
+        <FormInput
+          type="text"
+          placeholder="Author"
+          name="author"
+          value={author}
+          onChange={e => handleChange(e)}
+        />
+        <FormInput
+          type="text"
+          placeholder="Cover"
+          name="cover"
+          value={cover}
+          onChange={e => handleChange(e)}
+        />
+        <FormInput
+          type="text"
+          placeholder="Categories"
+          name="categories"
+          value={categories}
+          onChange={e => handleChange(e)}
+        />
+        <FormInput
+          type="text"
+          placeholder="Page Count"
+          name="pageCount"
+          value={pageCount}
+          onChange={e => handleChange(e)}
+        />
+        <FormInput
+          type="text"
+          placeholder="Language"
+          name="language"
+          value={language}
+          onChange={e => handleChange(e)}
+        />
         <FormButton type="submit">Add</FormButton>
       </form>
     </div>
   );
 };
 
-export default AddBookDetails;
+export default connect(null, { addBook })(AddBookDetails);

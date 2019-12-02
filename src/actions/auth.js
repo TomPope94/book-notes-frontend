@@ -4,26 +4,9 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-<<<<<<< HEAD
-  LOGOUT,
-  CLEAR_PROFILE
-} from "./types";
-import { Auth } from "aws-amplify";
-
-export const loadUser = () => async dispatch => {
-  try {
-    await Auth.currentAuthenticatedUser();
-    dispatch({
-      type: USER_LOADED
-    });
-  } catch (error) {
-    dispatch({
-      type: AUTH_ERROR
-    });
-=======
   LOGOUT
-} from 'actions/types';
-import { Auth } from 'aws-amplify';
+} from "actions/types";
+import { Auth } from "aws-amplify";
 
 export const loadUser = () => async dispatch => {
   if (Auth.currentUserInfo) {
@@ -36,7 +19,6 @@ export const loadUser = () => async dispatch => {
         type: AUTH_ERROR
       });
     }
->>>>>>> af1e751e0e6ac6850b74cf93b64649b94e69a66a
   }
 };
 

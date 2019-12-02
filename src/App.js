@@ -2,31 +2,18 @@ import React, { useEffect } from "react";
 import { Router, Route, Switch } from "react-router-dom";
 import history from "./history";
 
-<<<<<<< HEAD
-import PrivateRoute from "./components/routing/PrivateRoute";
-import Splash from "./components/Splash";
-import BooksHome from "./components/BooksHome";
-import Auth from "./components/Auth";
-
-import { SPLASH, AUTH, BOOKSHOME } from "./constants/routes";
-
-import { Provider } from "react-redux";
-import store from "./store";
-import Nav from "./components/nav/Nav";
-import { loadUser } from "./actions/auth";
-=======
-import PrivateRoute from 'components/routing/PrivateRoute';
-import Splash from 'components/splash/Splash';
-import SalesPage from 'components/splash/SalesPage';
-import Auth from 'components/auth/Auth';
-import AuthForgot from 'components/auth/AuthForgot';
-import SignedUp from 'components/auth/SignedUp';
-import UserOnboarding from 'components/auth/UserOnboarding';
-import BooksHome from 'components/books/BooksHome';
-import BooksHelp from 'components/books/BooksHelp';
-import BooksDetails from 'components/books/BookDetails';
-import AddBook from 'components/books/AddBook';
-import PageNotFound from 'components/other/PageNotFound';
+import PrivateRoute from "components/routing/PrivateRoute";
+import Splash from "components/splash/Splash";
+import SalesPage from "components/splash/SalesPage";
+import Auth from "components/auth/Auth";
+import AuthForgot from "components/auth/AuthForgot";
+import SignedUp from "components/auth/SignedUp";
+import UserOnboarding from "components/auth/UserOnboarding";
+import BooksHome from "components/books/BooksHome";
+import BooksHelp from "components/books/BooksHelp";
+import BooksDetails from "components/books/BookDetails";
+import AddBook from "components/books/AddBook";
+import PageNotFound from "components/other/PageNotFound";
 
 import {
   SPLASH,
@@ -39,13 +26,12 @@ import {
   BOOKS_HELP,
   BOOKS_DETAILS,
   BOOKS_ADD
-} from 'constants/routes';
+} from "constants/routes";
 
-import { Provider } from 'react-redux';
-import store from 'store';
-import Nav from 'components/nav/Nav';
-import { loadUser } from './actions/auth';
->>>>>>> af1e751e0e6ac6850b74cf93b64649b94e69a66a
+import { Provider } from "react-redux";
+import store from "store";
+import Nav from "components/nav/Nav";
+import { loadUser } from "./actions/auth";
 
 const App = () => {
   useEffect(() => {
