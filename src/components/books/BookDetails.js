@@ -9,6 +9,7 @@ import { BOOKS_HOME } from "constants/routes";
 import FormInput from "components/elements/FormInput";
 import BookDetailsProgress from "components/books/BookDetailsProgress";
 import BookDetailsComplete from "components/books/BookDetailsComplete";
+import BookDetailsNotes from "components/books/BookDetailsNotes";
 
 const styles = {
   pageContainer: {
@@ -64,7 +65,7 @@ const BookDetails = ({ selectedBook, deleteBook, editBook }) => {
     bookLanguage,
     coverArt
   } = bookData;
-  const [completionStatus, setCompletionStatus] = useState(false);
+  const [viewProgress, setViewProgress] = useState(true);
   useEffect(() => {
     if (selectedBook) {
       setBookData({
@@ -75,10 +76,6 @@ const BookDetails = ({ selectedBook, deleteBook, editBook }) => {
         bookLanguage: selectedBook.bookLanguage,
         coverArt: selectedBook.coverArt
       });
-
-      if (selectedBook.completionStatus) {
-        setCompletionStatus(true);
-      }
     }
   }, [selectedBook]);
 
@@ -95,6 +92,11 @@ const BookDetails = ({ selectedBook, deleteBook, editBook }) => {
 
   const handleChange = e => {
     setBookData({ ...bookData, [e.target.name]: e.target.value });
+  };
+  const handleBlur = async () => {
+    if (changeCheck) {
+      await editBook(selectedBook.bookId, bookData);
+    }
   };
 
   let changeCheck = false;
@@ -126,6 +128,7 @@ const BookDetails = ({ selectedBook, deleteBook, editBook }) => {
             value={bookTitle}
             name="bookTitle"
             onChange={e => handleChange(e)}
+            onBlur={() => handleBlur()}
             styling={{
               width: "100%",
               borderBottom: "3px solid #22264140",
@@ -139,6 +142,7 @@ const BookDetails = ({ selectedBook, deleteBook, editBook }) => {
               value={bookAuthor}
               name="bookAuthor"
               onChange={e => handleChange(e)}
+              onBlur={() => handleBlur()}
               styling={{
                 width: "90%",
                 borderBottom: "3px solid #22264140",
@@ -146,17 +150,11 @@ const BookDetails = ({ selectedBook, deleteBook, editBook }) => {
               }}
             />
           </div>
-          {changeCheck ? (
-            <button
-              onClick={async () => {
-                editBook(selectedBook.bookId, bookData);
-              }}
-            >
-              Edit
-            </button>
-          ) : null}
+          <button onClick={() => setViewProgress(!viewProgress)}>
+            Change View
+          </button>
+          {viewProgress ? <BookDetailsProgress /> : <BookDetailsNotes />}
           <button onClick={() => handleDelete()}>Delete Test</button>
-          {completionStatus ? <BookDetailsComplete /> : <BookDetailsProgress />}
         </div>
       </Fragment>
     );

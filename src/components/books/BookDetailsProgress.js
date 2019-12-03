@@ -1,7 +1,12 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 const BookDetailsProgress = () => {
-  return <h1>This book is still in progress</h1>;
+  return (
+    <Fragment>
+      <h1>Your Progress:</h1>
+      <button>Edit</button>
+    </Fragment>
+  );
 };
 
 export default BookDetailsProgress;
