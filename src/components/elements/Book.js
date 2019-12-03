@@ -37,6 +37,7 @@ const Book = ({ id, bookTitle, addBook, getBook }) => {
     anime({
       targets: e.target,
       scale: [1, 1.1],
+      boxShadow: ["0 2px 4px #222641", "0 5px 10px #222641"],
       duration: 250,
       easing: "cubicBezier(0.675, 0.000, 0.330, 1.000)",
       direction: animateDirection

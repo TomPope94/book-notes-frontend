@@ -1,13 +1,13 @@
-import { API } from 'aws-amplify';
+import { API } from "aws-amplify";
 import {
   // SEARCH_SUCCESS,
   // SEARCH_FAIL,
   GET_ALL_BOOKS,
   GET_BOOK,
   ADD_BOOK,
-  // EDIT_BOOK,
+  EDIT_BOOK,
   DELETE_BOOK
-} from 'actions/types';
+} from "actions/types";
 
 export const addBook = formData => async dispatch => {
   const APIBody = {
@@ -20,7 +20,7 @@ export const addBook = formData => async dispatch => {
   };
 
   try {
-    await API.post('prod', '/books', {
+    await API.post("prod", "/books", {
       body: APIBody
     });
 
@@ -35,7 +35,7 @@ export const addBook = formData => async dispatch => {
 
 export const getBook = bookId => async dispatch => {
   try {
-    const res = await API.get('prod', `/books/${bookId}`);
+    const res = await API.get("prod", `/books/${bookId}`);
     dispatch({
       type: GET_BOOK,
       payload: res
@@ -68,7 +68,7 @@ export const getBook = bookId => async dispatch => {
 
 export const listBooks = () => async dispatch => {
   try {
-    const res = await API.get('prod', '/books');
+    const res = await API.get("prod", "/books");
 
     dispatch({
       type: GET_ALL_BOOKS,
@@ -81,10 +81,24 @@ export const listBooks = () => async dispatch => {
 
 export const deleteBook = bookId => async dispatch => {
   try {
-    await API.del('prod', `/books/${bookId}`);
+    await API.del("prod", `/books/${bookId}`);
     dispatch({
       type: DELETE_BOOK,
       payload: bookId
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const editBook = (bookId, newData) => async dispatch => {
+  try {
+    await API.put("prod", `/books/${bookId}`, {
+      body: newData
+    });
+    dispatch({
+      type: EDIT_BOOK,
+      payload: newData
     });
   } catch (err) {
     console.error(err);

@@ -1,39 +1,86 @@
-import React, { useState, Fragment } from 'react';
-import { connect } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
+import React, { useState, Fragment, useEffect } from "react";
+import { connect } from "react-redux";
+import { Redirect, useHistory } from "react-router-dom";
 
-import { deleteBook } from 'actions/books';
+import { deleteBook, editBook } from "actions/books";
 
-import { BOOKS_HOME } from 'constants/routes';
+import { BOOKS_HOME } from "constants/routes";
+
+import FormInput from "components/elements/FormInput";
+import BookDetailsProgress from "components/books/BookDetailsProgress";
+import BookDetailsComplete from "components/books/BookDetailsComplete";
 
 const styles = {
   pageContainer: {
-    width: '100vw',
-    height: '100vh',
-    position: 'absolute',
+    width: "100vw",
+    height: "100vh",
+    position: "absolute",
     left: 0,
     top: 0,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    background: 'rgba(1,1,1,0.2)'
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    background: "rgba(1,1,1,0.2)"
   },
   contentContainer: {
-    width: '80%',
-    height: '80%',
-    paddingLeft: 35,
-    paddingRight: 35,
-    border: '3px solid #f38b66',
-    boxShadow: '0 2px 5px #222641',
-    background: '#fff',
-    pointerEvents: 'all',
-    display: 'flex',
-    flexDirection: 'row'
+    width: "80%",
+    height: "80%",
+    border: "3px solid #f38b66",
+    boxShadow: "0 2px 5px #222641",
+    background: "#fff",
+    pointerEvents: "all",
+    display: "flex",
+    flexDirection: "row",
+    paddingRight: 25
+  },
+  container: {
+    width: "50%",
+    height: "100%",
+    paddingTop: 25
+  },
+  byRow: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center"
   }
 };
 
-const BookDetails = ({ selectedBook, deleteBook }) => {
+const BookDetails = ({ selectedBook, deleteBook, editBook }) => {
   const [redirect, setRedirect] = useState(false);
+  const [bookData, setBookData] = useState({
+    bookTitle: "",
+    bookAuthor: "",
+    numPages: "",
+    categories: "",
+    bookLanguage: "",
+    coverArt: ""
+  });
+  const {
+    bookTitle,
+    bookAuthor,
+    numPages,
+    categories,
+    bookLanguage,
+    coverArt
+  } = bookData;
+  const [completionStatus, setCompletionStatus] = useState(false);
+  useEffect(() => {
+    if (selectedBook) {
+      setBookData({
+        bookTitle: selectedBook.bookTitle,
+        bookAuthor: selectedBook.bookAuthor,
+        numPages: selectedBook.numPages,
+        categories: selectedBook.categories,
+        bookLanguage: selectedBook.bookLanguage,
+        coverArt: selectedBook.coverArt
+      });
+
+      if (selectedBook.completionStatus) {
+        setCompletionStatus(true);
+      }
+    }
+  }, [selectedBook]);
 
   const history = useHistory();
 
@@ -46,31 +93,71 @@ const BookDetails = ({ selectedBook, deleteBook }) => {
     return <Redirect to={BOOKS_HOME} />;
   }
 
+  const handleChange = e => {
+    setBookData({ ...bookData, [e.target.name]: e.target.value });
+  };
+
+  let changeCheck = false;
+  if (selectedBook) {
+    const stateVals = Object.values(bookData);
+    const originalVals = Object.values(selectedBook);
+
+    if (!stateVals.every(v => originalVals.indexOf(v) !== -1)) {
+      changeCheck = true;
+    } else {
+      changeCheck = false;
+    }
+  }
+
   let toRender;
   if (!selectedBook) {
     toRender = (
       <Fragment>
-        <h1>{'No book selected'}</h1>
+        <h1>{"No book selected"}</h1>
       </Fragment>
     );
   } else {
-    const {
-      bookTitle,
-      bookAuthor,
-      numPages,
-      coverArt,
-      categories,
-      bookLanguage
-    } = selectedBook;
     toRender = (
       <Fragment>
-        <h1>{bookTitle}</h1>
-        <p>{bookAuthor}</p>
-        <p>{numPages}</p>
-        <p>{coverArt}</p>
-        <p>{categories}</p>
-        <p>{bookLanguage}</p>
-        <button onClick={() => handleDelete()}>Delete Test</button>
+        <div style={styles.container} />
+        <div style={styles.container}>
+          <FormInput
+            type="text"
+            value={bookTitle}
+            name="bookTitle"
+            onChange={e => handleChange(e)}
+            styling={{
+              width: "100%",
+              borderBottom: "3px solid #22264140",
+              marginBottom: "1rem"
+            }}
+          />
+          <div style={styles.byRow}>
+            <h2 style={{ width: "10%" }}>By:</h2>
+            <FormInput
+              type="text"
+              value={bookAuthor}
+              name="bookAuthor"
+              onChange={e => handleChange(e)}
+              styling={{
+                width: "90%",
+                borderBottom: "3px solid #22264140",
+                margin: 0
+              }}
+            />
+          </div>
+          {changeCheck ? (
+            <button
+              onClick={async () => {
+                editBook(selectedBook.bookId, bookData);
+              }}
+            >
+              Edit
+            </button>
+          ) : null}
+          <button onClick={() => handleDelete()}>Delete Test</button>
+          {completionStatus ? <BookDetailsComplete /> : <BookDetailsProgress />}
+        </div>
       </Fragment>
     );
   }
@@ -78,10 +165,10 @@ const BookDetails = ({ selectedBook, deleteBook }) => {
   return (
     <Fragment>
       <div
-        style={{ ...styles.pageContainer, cursor: 'pointer' }}
+        style={{ ...styles.pageContainer, cursor: "pointer" }}
         onClick={() => history.push(BOOKS_HOME)}
       />
-      <div style={{ ...styles.pageContainer, pointerEvents: 'none' }}>
+      <div style={{ ...styles.pageContainer, pointerEvents: "none" }}>
         <div style={styles.contentContainer}>{toRender}</div>
       </div>
     </Fragment>
@@ -92,4 +179,4 @@ const mapStateToProps = state => ({
   selectedBook: state.books.selectedBook
 });
 
-export default connect(mapStateToProps, { deleteBook })(BookDetails);
+export default connect(mapStateToProps, { deleteBook, editBook })(BookDetails);

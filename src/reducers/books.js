@@ -1,4 +1,10 @@
-import { GET_ALL_BOOKS, GET_BOOK, DELETE_BOOK, ADD_BOOK } from 'actions/types';
+import {
+  GET_ALL_BOOKS,
+  GET_BOOK,
+  DELETE_BOOK,
+  ADD_BOOK,
+  EDIT_BOOK
+} from "actions/types";
 
 const initialState = {
   books: [],
@@ -18,6 +24,7 @@ export default function(state = initialState, action) {
         books: payload
       };
     case GET_BOOK:
+    case EDIT_BOOK:
       return {
         ...state,
         selectedBook: payload

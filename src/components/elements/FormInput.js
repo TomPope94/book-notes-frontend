@@ -26,10 +26,13 @@ const FormInput = props => {
       border: "none",
       borderBottom: "3px solid #222641",
       fontSize: width >= 1000 ? "2rem" : "7vw",
-      marginBottom: 50
+      marginBottom: 50,
+      fontFamily: "baskervile"
     }
   };
-  return <input {...props} style={styles.inputStyle} />;
+  return (
+    <input {...props} style={{ ...styles.inputStyle, ...props.styling }} />
+  );
 };
 
 export default FormInput;
