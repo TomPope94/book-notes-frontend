@@ -9,16 +9,15 @@ import {
 import { Auth } from "aws-amplify";
 
 export const loadUser = () => async dispatch => {
-  if (Auth.currentUserInfo) {
-    try {
-      dispatch({
-        type: USER_LOADED
-      });
-    } catch (err) {
-      dispatch({
-        type: AUTH_ERROR
-      });
-    }
+  try {
+    await Auth.currentSession();
+    dispatch({
+      type: USER_LOADED
+    });
+  } catch (err) {
+    dispatch({
+      type: AUTH_ERROR
+    });
   }
 };
 

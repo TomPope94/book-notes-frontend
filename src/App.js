@@ -34,9 +34,9 @@ import Nav from "components/nav/Nav";
 import { loadUser } from "./actions/auth";
 
 const App = () => {
-  // useEffect(() => {
-  //   store.dispatch(loadUser());
-  // }, []);
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
 
   return (
     <Provider store={store}>
