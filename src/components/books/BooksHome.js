@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import uuid from "uuid";
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import uuid from 'uuid';
 
-import { listBooks } from "actions/books";
+import { listBooks } from 'actions/books';
 
-import Book from "components/elements/Book";
+import Book from 'components/elements/Book';
 
 const styles = {
   library: {
@@ -12,9 +12,9 @@ const styles = {
     paddingRight: 50
   },
   catalog: {
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap"
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap'
   }
 };
 
@@ -23,14 +23,16 @@ const BooksHome = ({ listBooks, books }) => {
     listBooks();
   }, [listBooks]);
 
-  const bookRender = books.map(book => (
-    <Book
-      addBook={false}
-      id={book.bookId}
-      bookTitle={book.bookTitle}
-      key={uuid.v4()}
-    />
-  ));
+  const bookRender = books
+    ? books.map(book => (
+        <Book
+          addBook={false}
+          id={book.bookId}
+          bookTitle={book.bookTitle}
+          key={uuid.v4()}
+        />
+      ))
+    : null;
 
   return (
     <div style={styles.library}>

@@ -1,31 +1,31 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
 
-import { addBook } from "actions/books";
+import { addBook } from 'actions/books';
 
-import FormInput from "components/elements/FormInput";
-import FormButton from "components/elements/FormButton";
+import FormInput from 'components/elements/FormInput';
+import FormButton from 'components/elements/FormButton';
 
 const styles = {
   title: {
-    fontSize: "1.5rem",
-    color: "#222641",
+    fontSize: '1.5rem',
+    color: '#222641',
     marginBottom: 20
   },
   formStyle: {
-    display: "flex",
-    flexDirection: "column"
+    display: 'flex',
+    flexDirection: 'column'
   }
 };
 
 const AddBookDetails = ({ addBook }) => {
   const [formData, setFormData] = useState({
-    title: "",
-    author: "",
-    cover: "",
-    categories: "",
-    pageCount: "",
-    language: ""
+    title: '',
+    author: '',
+    cover: '',
+    categories: '',
+    pageCount: '',
+    language: ''
   });
   const { title, author, cover, categories, pageCount, language } = formData;
 
@@ -72,7 +72,7 @@ const AddBookDetails = ({ addBook }) => {
           onChange={e => handleChange(e)}
         />
         <FormInput
-          type="text"
+          type="number"
           placeholder="Page Count"
           name="pageCount"
           value={pageCount}
