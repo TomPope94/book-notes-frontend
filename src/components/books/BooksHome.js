@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import uuid from 'uuid';
 
-import { listBooks } from 'actions/books';
+import { listBooks } from 'actions/books/books';
 
 import Book from 'components/elements/Book';
 
