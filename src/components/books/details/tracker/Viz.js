@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import DrawLine from 'components/books/tracker/DrawLine';
+import DrawLine from 'components/books/details/tracker/DrawLine';
 
 const Viz = props => {
   useEffect(() => {

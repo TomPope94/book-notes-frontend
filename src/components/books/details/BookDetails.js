@@ -7,9 +7,9 @@ import { deleteBook, editBook } from 'actions/books/books';
 import { BOOKS_HOME } from 'constants/routes';
 
 import FormInput from 'components/elements/FormInput';
-import BookDetailsTracker from 'components/books/tracker/BookDetailsTracker';
+import BookDetailsTracker from 'components/books/details/tracker/BookDetailsTracker';
 // import BookDetailsComplete from 'components/books/BookDetailsComplete';
-import BookDetailsNotes from 'components/books/BookDetailsNotes';
+import BookDetailsNotes from 'components/books/details/notes/BookDetailsNotes';
 
 const styles = {
   pageContainer: {
@@ -192,10 +192,7 @@ const BookDetails = ({ selectedBook, deleteBook, editBook }) => {
             <BookDetailsTracker />
           </div>
           <div style={styles.container}>
-            {/* <button onClick={() => setViewProgress(!viewProgress)}> */}
-            {/* Change View */}
-            {/* </button> */}
-            {/* {viewProgress ? <BookDetailsProgress /> : <BookDetailsNotes />} */}
+            <BookDetailsNotes />
             <button onClick={() => handleDelete()}>Delete Test</button>
           </div>
         </div>

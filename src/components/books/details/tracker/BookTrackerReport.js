@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import Viz from 'components/books/tracker/Viz';
+import Viz from 'components/books/details/tracker/Viz';
 
 const styles = {
   container: {

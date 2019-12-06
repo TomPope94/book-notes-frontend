@@ -3,8 +3,19 @@ import { connect } from 'react-redux';
 
 import { getDailyTracking } from 'actions/books/tracker';
 
-import AddProgressForm from 'components/books/tracker/AddProgressForm';
-import BookTrackerReport from 'components/books/tracker/BookTrackerReport';
+import AddProgressForm from 'components/books/details/tracker/AddProgressForm';
+import BookTrackerReport from 'components/books/details/tracker/BookTrackerReport';
+
+const styles = {
+  title: {
+    color: 'rgba(34, 38, 65, 0.75)',
+    fontWeight: 200
+  },
+  titleRow: {
+    display: 'flex',
+    alignItems: 'center'
+  }
+};
 
 const BookDetailsTracker = ({ getDailyTracking, selectedBook }) => {
   const [showReport, setShowReport] = useState(true);
@@ -15,8 +26,15 @@ const BookDetailsTracker = ({ getDailyTracking, selectedBook }) => {
 
   return (
     <Fragment>
-      <h1>Reading Tracker:</h1>
-      <button onClick={() => setShowReport(!showReport)}>Change</button>
+      <div style={styles.titleRow}>
+        <h1 style={styles.title}>Track your reading:</h1>
+        <button
+          onClick={() => setShowReport(!showReport)}
+          style={{ marginLeft: 20 }}
+        >
+          Add
+        </button>
+      </div>
       {showReport ? <BookTrackerReport /> : <AddProgressForm />}
     </Fragment>
   );
