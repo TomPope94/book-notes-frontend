@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
 
 const DrawLine = props => {
-  d3.select('.viz > *').remove();
+  d3.selectAll('.viz > *').remove();
   const margin = { top: 50, right: 50, bottom: 50, left: 50 },
     width = props.width, // Use the window's width
     height = props.height; // Use the window's height
@@ -123,16 +123,16 @@ const DrawLine = props => {
   const div = d3
     .select('.viz')
     .append('div')
-    .attr('position', 'absolute')
-    .attr('text-align', 'center')
-    .attr('width', '60px')
-    .attr('height', '28px')
-    .attr('padding', '2px')
-    .attr('font', '12px baskerville')
-    .attr('background', 'lightsteelblue')
-    .attr('border', '0px')
-    .attr('border-radius', '8px')
-    .attr('pointer-events', 'none')
+    .style('position', 'absolute')
+    .style('text-align', 'center')
+    .style('width', '60px')
+    .style('height', '28px')
+    .style('padding', '2px')
+    .style('font', '12px baskerville')
+    .style('background', 'lightsteelblue')
+    .style('border', '0px')
+    .style('border-radius', '8px')
+    .style('pointer-events', 'none')
     .style('opacity', 0);
 
   svg
@@ -185,9 +185,10 @@ const DrawLine = props => {
         .transition()
         .duration(200)
         .style('opacity', 0.9);
-      div.html(d.date + '<br/>' + d.numPages);
-      // .style('left', d3.event.pageX + 'px')
-      // .style('top', d3.event.pageY - 28 + 'px');
+      div
+        .html(d.date + '<br/>' + d.numPages)
+        .style('left', x(d.date) + 50 + 'px')
+        .style('top', y(d.numPages) + 150 + 'px');
     })
     .on('mouseout', function(d) {
       div

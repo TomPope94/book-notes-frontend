@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Viz from 'components/books/details/tracker/Viz';
+// import LineChart from 'components/books/details/tracker/LineChart';
 
 const styles = {
   container: {
@@ -42,6 +43,15 @@ const BookTrackerReport = () => {
   return (
     <div style={styles.container} ref={ref}>
       <Viz width={width} height={height} />
+      {/* <svg>
+        <LineChart
+          x={0}
+          y={0}
+          width={'250px'}
+          height={'250px'}
+          dataset={selectedBook.tracking}
+        />
+      </svg> */}
     </div>
   );
 };

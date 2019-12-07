@@ -21,8 +21,21 @@ const BookDetailsTracker = ({ getDailyTracking, selectedBook }) => {
   const [showReport, setShowReport] = useState(true);
 
   useEffect(() => {
-    getDailyTracking(selectedBook.bookId);
+    if (selectedBook) {
+      getDailyTracking(selectedBook.bookId);
+    }
   }, []);
+
+  let toRender;
+  if (selectedBook.tracking) {
+    toRender = (
+      <Fragment>
+        <BookTrackerReport />
+      </Fragment>
+    );
+  } else {
+    toRender = null;
+  }
 
   return (
     <Fragment>
@@ -35,7 +48,7 @@ const BookDetailsTracker = ({ getDailyTracking, selectedBook }) => {
           Add
         </button>
       </div>
-      {showReport ? <BookTrackerReport /> : <AddProgressForm />}
+      {showReport ? toRender : <AddProgressForm />}
     </Fragment>
   );
 };
