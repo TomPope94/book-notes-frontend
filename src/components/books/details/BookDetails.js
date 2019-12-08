@@ -50,7 +50,8 @@ const styles = {
   container: {
     width: '50%',
     height: '100%',
-    paddingTop: 25
+    paddingTop: 25,
+    position: 'relative'
   },
   coverContainer: {
     width: 200,
@@ -197,7 +198,7 @@ const BookDetails = ({ selectedBook, deleteBook, editBook }) => {
           </div>
         </div>
         <div style={styles.sectionsContainer}>
-          <div style={{ ...styles.container, paddingLeft: 25 }}>
+          <div style={{ ...styles.container }}>
             <TrackerContext.Provider
               value={{
                 state: progressReportState,

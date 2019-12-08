@@ -10,7 +10,8 @@ import BookTrackerReport from 'components/books/details/tracker/BookTrackerRepor
 const styles = {
   title: {
     color: 'rgba(34, 38, 65, 0.75)',
-    fontWeight: 200
+    fontWeight: 200,
+    paddingLeft: 25
   },
   titleRow: {
     display: 'flex',
@@ -48,16 +49,23 @@ const BookDetailsTracker = ({ getDailyTracking, selectedBook }) => {
       <div style={styles.titleRow}>
         <h1 style={styles.title}>Track your reading:</h1>
         <TrackerContext.Consumer>
-          {({ changeState, state }) => (
-            <button
-              onClick={() =>
-                changeState({ ...state, showForm: !state.showForm })
-              }
-              style={{ marginLeft: 20 }}
-            >
-              Add
-            </button>
-          )}
+          {({ changeState, state }) =>
+            state.showForm ? null : (
+              <button
+                onClick={() =>
+                  changeState({
+                    ...state,
+                    showForm: !state.showForm,
+                    dateSelected: '',
+                    numPages: 0
+                  })
+                }
+                style={{ marginLeft: 20 }}
+              >
+                +
+              </button>
+            )
+          }
         </TrackerContext.Consumer>
       </div>
       <TrackerContext.Consumer>
