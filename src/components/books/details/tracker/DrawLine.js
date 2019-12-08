@@ -13,7 +13,24 @@ const DrawLine = props => {
     height = props.height; // Use the window's height
 
   const parseTime = d3.timeParse('%Y%m%d');
-  const formatTime = d3.timeFormat('%b %d');
+  const formatTime = d3.timeFormat('%b %e');
+  const getDay = d3.timeFormat('%e');
+  const getDaySuffix = day => {
+    switch (day) {
+      case 1:
+      case 21:
+      case 31:
+        return 'st';
+      case 2:
+      case 22:
+        return 'nd';
+      case 3:
+      case 23:
+        return 'rd';
+      default:
+        return 'th';
+    }
+  };
 
   // set the ranges
   const x = d3.scaleTime().range([0, width]);
@@ -132,8 +149,8 @@ const DrawLine = props => {
     .append('div')
     .style('position', 'absolute')
     .style('text-align', 'center')
-    .style('width', '60px')
-    .style('height', '30px')
+    .style('width', '75px')
+    // .style('height', '30px')
     .style('padding', '2px')
     .style('font', '12px baskerville')
     .style('background', '#222641')
@@ -142,8 +159,7 @@ const DrawLine = props => {
     .style('border', '0px')
     .style('border-radius', '8px')
     .style('pointer-events', 'none')
-    .style('display', 'flex')
-    .style('justify-content', 'center')
+    .style('font-size', '1.25rem')
     .style('opacity', 0);
 
   svg
@@ -206,14 +222,18 @@ const DrawLine = props => {
     .attr('fill', 'transparent')
     .attr('opacity', 0)
     .on('mouseover', function(d) {
+      const day = parseInt(getDay(d.date));
+
       tooltip
         .transition()
         .duration(200)
         .style('opacity', 0.9);
       tooltip
-        .html(`${formatTime(d.date)}<br/>${d.numPages} pages`)
-        .style('left', `${x(d.date) + 20}px`)
-        .style('top', `${y(d.numPages) + 5}px`);
+        .html(
+          `${formatTime(d.date)}${getDaySuffix(day)}<br/>${d.numPages} pages`
+        )
+        .style('left', `${x(d.date) + 15}px`)
+        .style('top', `${y(d.numPages) - 10}px`);
     })
     .on('mouseout', function(d) {
       tooltip
