@@ -28,7 +28,9 @@ export const getDailyTracking = bookId => async dispatch => {
 };
 
 export const addTracking = (bookId, formData, fromPage) => async dispatch => {
-  const formattedDate = moment(formData.date, 'YYYY-MM-DD').format('YYYYMMDD');
+  const formattedDate = moment(formData.dateSelected, 'YYYY-MM-DD').format(
+    'YYYYMMDD'
+  );
 
   const numPages = parseInt(formData.numPages);
 

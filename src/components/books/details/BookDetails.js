@@ -5,6 +5,7 @@ import { Redirect, useHistory } from 'react-router-dom';
 import { deleteBook, editBook } from 'actions/books/books';
 
 import { BOOKS_HOME } from 'constants/routes';
+import { TrackerContext } from 'components/books/details/tracker/tracker-context';
 
 import FormInput from 'components/elements/FormInput';
 import BookDetailsTracker from 'components/books/details/tracker/BookDetailsTracker';
@@ -100,6 +101,14 @@ const BookDetails = ({ selectedBook, deleteBook, editBook }) => {
       });
     }
   }, [selectedBook]);
+  const [progressReportState, setProgressReportState] = useState({
+    showForm: false,
+    dateSelected: '',
+    numPages: 0
+  });
+  const changeProgressState = newState => {
+    setProgressReportState({ ...progressReportState, ...newState });
+  };
 
   const history = useHistory();
 
@@ -189,7 +198,14 @@ const BookDetails = ({ selectedBook, deleteBook, editBook }) => {
         </div>
         <div style={styles.sectionsContainer}>
           <div style={{ ...styles.container, paddingLeft: 25 }}>
-            <BookDetailsTracker />
+            <TrackerContext.Provider
+              value={{
+                state: progressReportState,
+                changeState: changeProgressState
+              }}
+            >
+              <BookDetailsTracker />
+            </TrackerContext.Provider>
           </div>
           <div style={styles.container}>
             <BookDetailsNotes />

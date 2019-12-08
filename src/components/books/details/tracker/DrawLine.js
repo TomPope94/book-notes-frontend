@@ -1,6 +1,6 @@
 import * as d3 from 'd3';
 
-const DrawLine = props => {
+const DrawLine = (props, changeState, state) => {
   d3.selectAll('.viz > *').remove();
   const marginValue = 50;
   const margin = {
@@ -14,6 +14,7 @@ const DrawLine = props => {
 
   const parseTime = d3.timeParse('%Y%m%d');
   const formatTime = d3.timeFormat('%b %e');
+  const datePickerValue = d3.timeFormat('%Y-%m-%d');
   const getDay = d3.timeFormat('%e');
   const getDaySuffix = day => {
     switch (day) {
@@ -226,13 +227,13 @@ const DrawLine = props => {
 
       tooltip
         .transition()
-        .duration(200)
+        .duration(500)
         .style('opacity', 0.9);
       tooltip
         .html(
           `${formatTime(d.date)}${getDaySuffix(day)}<br/>${d.numPages} pages`
         )
-        .style('left', `${x(d.date) + 15}px`)
+        .style('left', `${x(d.date) + 10}px`)
         .style('top', `${y(d.numPages) - 10}px`);
     })
     .on('mouseout', function(d) {
@@ -240,6 +241,14 @@ const DrawLine = props => {
         .transition()
         .duration(500)
         .style('opacity', 0);
+    })
+    .on('click', d => {
+      changeState({
+        ...state,
+        showForm: !state.showForm,
+        dateSelected: datePickerValue(d.date),
+        numPages: d.numPages
+      });
     });
 
   dots
