@@ -8,7 +8,7 @@ const Viz = props => {
       DrawLine(props);
     }
   }, [props]);
-  return <div className="viz" />;
+  return <div style={{ position: 'relative' }} className="viz" />;
 };
 
 const mapStateToProps = state => ({

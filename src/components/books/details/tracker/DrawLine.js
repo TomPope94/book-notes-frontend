@@ -2,11 +2,18 @@ import * as d3 from 'd3';
 
 const DrawLine = props => {
   d3.selectAll('.viz > *').remove();
-  const margin = { top: 50, right: 50, bottom: 50, left: 50 },
+  const marginValue = 50;
+  const margin = {
+      top: marginValue,
+      right: marginValue,
+      bottom: marginValue,
+      left: marginValue
+    },
     width = props.width, // Use the window's width
     height = props.height; // Use the window's height
 
   const parseTime = d3.timeParse('%Y%m%d');
+  const formatTime = d3.timeFormat('%b %d');
 
   // set the ranges
   const x = d3.scaleTime().range([0, width]);
@@ -120,19 +127,23 @@ const DrawLine = props => {
     .y(d => y(d.numPages))
     .curve(d3.curveMonotoneX);
 
-  const div = d3
+  const tooltip = d3
     .select('.viz')
     .append('div')
     .style('position', 'absolute')
     .style('text-align', 'center')
     .style('width', '60px')
-    .style('height', '28px')
+    .style('height', '30px')
     .style('padding', '2px')
     .style('font', '12px baskerville')
-    .style('background', 'lightsteelblue')
+    .style('background', '#222641')
+    .style('color', '#fff')
+    .style('box-shadow', '0 2px 5px grey')
     .style('border', '0px')
     .style('border-radius', '8px')
     .style('pointer-events', 'none')
+    .style('display', 'flex')
+    .style('justify-content', 'center')
     .style('opacity', 0);
 
   svg
@@ -179,19 +190,33 @@ const DrawLine = props => {
     .attr('stroke', '#222641')
     .attr('stroke-width', 1)
     .attr('fill', '#fff')
+    .attr('opacity', 0);
+
+  svg
+    .selectAll('dot')
+    .data(chartedData)
+    .enter()
+    .append('circle')
+    .attr('r', 30)
+    .attr('cx', d => x(d.date))
+    .attr('cy', d => y(d.numPages))
+    .attr('cursor', 'pointer')
+    .attr('stroke', 'transparent')
+    .attr('stroke-width', 1)
+    .attr('fill', 'transparent')
     .attr('opacity', 0)
     .on('mouseover', function(d) {
-      div
+      tooltip
         .transition()
         .duration(200)
         .style('opacity', 0.9);
-      div
-        .html(d.date + '<br/>' + d.numPages)
-        .style('left', x(d.date) + 50 + 'px')
-        .style('top', y(d.numPages) + 150 + 'px');
+      tooltip
+        .html(`${formatTime(d.date)}<br/>${d.numPages} pages`)
+        .style('left', `${x(d.date) + 20}px`)
+        .style('top', `${y(d.numPages) + 5}px`);
     })
     .on('mouseout', function(d) {
-      div
+      tooltip
         .transition()
         .duration(500)
         .style('opacity', 0);
@@ -201,9 +226,6 @@ const DrawLine = props => {
     .transition()
     .delay(500)
     .attr('opacity', 1);
-
-  // .attr('cy', d => y(d.numPages))
-  // .attr('r', 3);
 };
 
 export default DrawLine;
