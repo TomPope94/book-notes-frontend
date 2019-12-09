@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import { addBook } from 'actions/books';
+import { addBook } from 'actions/books/books';
 
 import FormInput from 'components/elements/FormInput';
 import FormButton from 'components/elements/FormButton';

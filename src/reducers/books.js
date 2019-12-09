@@ -3,8 +3,10 @@ import {
   GET_BOOK,
   DELETE_BOOK,
   ADD_BOOK,
-  EDIT_BOOK
-} from "actions/types";
+  EDIT_BOOK,
+  GET_DAILY_TRACKING,
+  ADD_DAILY_TRACKING
+} from 'actions/types';
 
 const initialState = {
   books: [],
@@ -27,12 +29,29 @@ export default function(state = initialState, action) {
     case EDIT_BOOK:
       return {
         ...state,
-        selectedBook: payload
+        selectedBook: { ...state.selectedBook, ...payload }
       };
     case DELETE_BOOK:
       return {
         ...state,
         books: state.books.filter(book => book.bookId !== payload)
+      };
+    case GET_DAILY_TRACKING:
+      return {
+        ...state,
+        selectedBook: { ...state.selectedBook, tracking: payload }
+      };
+    case ADD_DAILY_TRACKING:
+      const trackingData = state.selectedBook.tracking.filter(
+        day => day.date !== payload.date
+      );
+
+      return {
+        ...state,
+        selectedBook: {
+          ...state.selectedBook,
+          tracking: [...trackingData, payload]
+        }
       };
     default:
       return state;
