@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from "react";
 import { connect } from "react-redux";
 
-// import { searchBooks } from 'actions/books';
+import { searchBooks } from "actions/books";
 
 import AddBookSearchResults from "components/books/AddBookSearchResults";
 
@@ -20,7 +20,7 @@ const styles = {
   }
 };
 
-const AddBookSearch = () => {
+const AddBookSearch = ({ searchBooks }) => {
   const [searching, setSearching] = useState(true);
 
   const [formData, setFormData] = useState({
@@ -36,7 +36,7 @@ const AddBookSearch = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    // searchBooks(title, author);
+    searchBooks(title, author);
     setSearching(false);
   };
 
@@ -77,4 +77,4 @@ const AddBookSearch = () => {
   return <div>{toRender}</div>;
 };
 
-export default connect(null)(AddBookSearch);
+export default connect(null, { searchBooks })(AddBookSearch);

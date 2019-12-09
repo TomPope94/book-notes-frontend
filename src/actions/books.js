@@ -45,26 +45,26 @@ export const getBook = bookId => async dispatch => {
   }
 };
 
-// export const searchBooks = (title, author) => async dispatch => {
-//   const titleFormat = title;
-//   const authorFormat = author;
+export const searchBooks = (title, author) => async dispatch => {
+  const titleFormat = title;
+  const authorFormat = author;
 
-//   const searchBody = {
-//     bookTitle: titleFormat,
-//     bookAuthor: authorFormat
-//   };
+  const searchBody = {
+    bookTitle: titleFormat,
+    bookAuthor: authorFormat
+  };
 
-//   try {
-//     const res = await API.get("prod", "/books/search", {
-//       body: searchBody
-//     });
+  try {
+    const res = await API.get("prod", "/books/search", {
+      body: searchBody
+    });
 
-//     debugger;
-//   } catch (err) {
-//     debugger;
-//     console.error(err);
-//   }
-// };
+    debugger;
+  } catch (err) {
+    debugger;
+    console.error(err);
+  }
+};
 
 export const listBooks = () => async dispatch => {
   try {
