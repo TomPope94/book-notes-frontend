@@ -6,11 +6,13 @@ import {
   EDIT_BOOK,
   GET_DAILY_TRACKING,
   ADD_DAILY_TRACKING
-} from 'actions/types';
+} from "actions/types";
 
 const initialState = {
   books: [],
-  selectedBook: null
+  selectedBook: null,
+  loading: true,
+  error: {}
 };
 export default function(state = initialState, action) {
   const { type, payload } = action;
@@ -18,28 +20,33 @@ export default function(state = initialState, action) {
     case ADD_BOOK:
       return {
         ...state,
-        books: { ...state.books, payload }
+        books: { ...state.books, payload },
+        loading: false
       };
     case GET_ALL_BOOKS:
       return {
         ...state,
-        books: payload
+        books: payload,
+        loading: false
       };
     case GET_BOOK:
     case EDIT_BOOK:
       return {
         ...state,
-        selectedBook: { ...state.selectedBook, ...payload }
+        selectedBook: { ...state.selectedBook, ...payload },
+        loading: false
       };
     case DELETE_BOOK:
       return {
         ...state,
-        books: state.books.filter(book => book.bookId !== payload)
+        books: state.books.filter(book => book.bookId !== payload),
+        loading: false
       };
     case GET_DAILY_TRACKING:
       return {
         ...state,
-        selectedBook: { ...state.selectedBook, tracking: payload }
+        selectedBook: { ...state.selectedBook, tracking: payload },
+        loading: false
       };
     case ADD_DAILY_TRACKING:
       const trackingData = state.selectedBook.tracking.filter(
@@ -51,7 +58,8 @@ export default function(state = initialState, action) {
         selectedBook: {
           ...state.selectedBook,
           tracking: [...trackingData, payload]
-        }
+        },
+        loading: false
       };
     default:
       return state;

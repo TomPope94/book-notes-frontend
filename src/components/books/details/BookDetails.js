@@ -9,8 +9,8 @@ import { TrackerContext } from "components/books/details/tracker/tracker-context
 
 import FormInput from "components/elements/FormInput";
 import BookDetailsTracker from "components/books/details/tracker/BookDetailsTracker";
-// import BookDetailsComplete from 'components/books/BookDetailsComplete';
 import BookDetailsNotes from "components/books/details/notes/BookDetailsNotes";
+import Loader from "components/elements/Loader";
 
 const styles = {
   pageContainer: {
@@ -71,7 +71,7 @@ const styles = {
   }
 };
 
-const BookDetails = ({ selectedBook, deleteBook, editBook }) => {
+const BookDetails = ({ selectedBook, loading, deleteBook, editBook }) => {
   const [redirect, setRedirect] = useState(false);
   const [bookData, setBookData] = useState({
     bookTitle: "",
@@ -224,14 +224,17 @@ const BookDetails = ({ selectedBook, deleteBook, editBook }) => {
         onClick={() => history.push(BOOKS_HOME)}
       />
       <div style={{ ...styles.pageContainer, pointerEvents: "none" }}>
-        <div style={styles.contentContainer}>{toRender}</div>
+        <div style={styles.contentContainer}>
+          {loading ? <Loader /> : toRender}
+        </div>
       </div>
     </Fragment>
   );
 };
 
 const mapStateToProps = state => ({
-  selectedBook: state.books.selectedBook
+  selectedBook: state.books.selectedBook,
+  loading: state.books.loading
 });
 
 export default connect(mapStateToProps, { deleteBook, editBook })(BookDetails);
