@@ -210,7 +210,7 @@ const BookDetails = ({ selectedBook, deleteBook, editBook }) => {
           </div>
           <div style={styles.container}>
             <BookDetailsNotes />
-            <button onClick={() => handleDelete()}>Delete Test</button>
+            {/* <button onClick={() => handleDelete()}>Delete Test</button> */}
           </div>
         </div>
       </Fragment>

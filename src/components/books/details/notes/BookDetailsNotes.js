@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+
+import MarkdownEditor from 'components/books/details/notes/MarkdownEditor';
 
 const styles = {
   title: {
@@ -8,7 +10,12 @@ const styles = {
 };
 
 const BookDetailsNotes = () => {
-  return <h1 style={styles.title}>See your notes:</h1>;
+  return (
+    <Fragment>
+      <h1 style={styles.title}>Make your notes:</h1>
+      <MarkdownEditor />
+    </Fragment>
+  );
 };
 
 export default BookDetailsNotes;
