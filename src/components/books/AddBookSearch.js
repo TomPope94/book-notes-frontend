@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from "react";
 import { connect } from "react-redux";
 
-import { searchBooks } from "actions/books";
+import { searchBooks } from "actions/books/books";
 
 import AddBookSearchResults from "components/books/AddBookSearchResults";
 

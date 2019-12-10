@@ -1,85 +1,85 @@
-import React, { useState, Fragment, useEffect } from 'react';
-import { connect } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
+import React, { useState, Fragment, useEffect } from "react";
+import { connect } from "react-redux";
+import { Redirect, useHistory } from "react-router-dom";
 
-import { deleteBook, editBook } from 'actions/books/books';
+import { deleteBook, editBook } from "actions/books/books";
 
-import { BOOKS_HOME } from 'constants/routes';
-import { TrackerContext } from 'components/books/details/tracker/tracker-context';
+import { BOOKS_HOME } from "constants/routes";
+import { TrackerContext } from "components/books/details/tracker/tracker-context";
 
-import FormInput from 'components/elements/FormInput';
-import BookDetailsTracker from 'components/books/details/tracker/BookDetailsTracker';
+import FormInput from "components/elements/FormInput";
+import BookDetailsTracker from "components/books/details/tracker/BookDetailsTracker";
 // import BookDetailsComplete from 'components/books/BookDetailsComplete';
-import BookDetailsNotes from 'components/books/details/notes/BookDetailsNotes';
+import BookDetailsNotes from "components/books/details/notes/BookDetailsNotes";
 
 const styles = {
   pageContainer: {
-    width: '100vw',
-    height: '100vh',
-    position: 'absolute',
+    width: "100vw",
+    height: "100vh",
+    position: "absolute",
     left: 0,
     top: 0,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    background: 'rgba(1,1,1,0.2)'
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    background: "rgba(1,1,1,0.2)"
   },
   contentContainer: {
-    width: '90%',
-    height: '75%',
-    borderTop: '20px solid #f38b66',
-    boxShadow: '0 2px 5px #222641',
-    background: '#fff',
-    pointerEvents: 'all',
-    display: 'flex',
-    flexDirection: 'column',
+    width: "90%",
+    height: "75%",
+    borderTop: "20px solid #f38b66",
+    boxShadow: "0 2px 5px #222641",
+    background: "#fff",
+    pointerEvents: "all",
+    display: "flex",
+    flexDirection: "column",
     paddingRight: 25,
-    position: 'absolute',
+    position: "absolute",
     bottom: 50,
     borderRadius: 10
   },
   titleContainer: {
-    width: '50%',
+    width: "50%",
     marginLeft: 270
   },
   sectionsContainer: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row'
+    width: "100%",
+    display: "flex",
+    flexDirection: "row"
   },
   container: {
-    width: '50%',
-    height: '100%',
+    width: "50%",
+    height: "100%",
     paddingTop: 25,
-    position: 'relative'
+    position: "relative"
   },
   coverContainer: {
     width: 200,
     height: 200,
-    borderRadius: '50%',
-    background: '#fff',
-    border: '2px solid rgb(243,139,102)',
-    position: 'absolute',
+    borderRadius: "50%",
+    background: "#fff",
+    border: "2px solid rgb(243,139,102)",
+    position: "absolute",
     top: -120,
     left: 50
   },
   byRow: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center'
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center"
   }
 };
 
 const BookDetails = ({ selectedBook, deleteBook, editBook }) => {
   const [redirect, setRedirect] = useState(false);
   const [bookData, setBookData] = useState({
-    bookTitle: '',
-    bookAuthor: '',
-    numPages: '',
-    categories: '',
-    bookLanguage: '',
-    coverArt: ''
+    bookTitle: "",
+    bookAuthor: "",
+    numPages: "",
+    categories: "",
+    bookLanguage: "",
+    coverArt: ""
   });
   const {
     bookTitle,
@@ -104,7 +104,7 @@ const BookDetails = ({ selectedBook, deleteBook, editBook }) => {
   }, [selectedBook]);
   const [progressReportState, setProgressReportState] = useState({
     showForm: false,
-    dateSelected: '',
+    dateSelected: "",
     numPages: 0
   });
   const changeProgressState = newState => {
@@ -147,7 +147,7 @@ const BookDetails = ({ selectedBook, deleteBook, editBook }) => {
   if (!selectedBook) {
     toRender = (
       <Fragment>
-        <h1>{'No book selected'}</h1>
+        <h1>{"No book selected"}</h1>
       </Fragment>
     );
   } else {
@@ -162,21 +162,21 @@ const BookDetails = ({ selectedBook, deleteBook, editBook }) => {
             onChange={e => handleChange(e)}
             onBlur={() => handleBlur()}
             styling={{
-              width: '100%',
-              marginTop: '0.5rem',
-              marginBottom: '0.5rem',
-              borderBottom: 'none',
-              fontSize: '2.5rem',
-              color: 'rgba(34,38,65,0.75)'
+              width: "100%",
+              marginTop: "0.5rem",
+              marginBottom: "0.5rem",
+              borderBottom: "none",
+              fontSize: "2.5rem",
+              color: "rgba(34,38,65,0.75)"
             }}
           />
           <div style={styles.byRow}>
             <h2
               style={{
-                fontSize: '1.5rem',
+                fontSize: "1.5rem",
                 margin: 0,
-                margin: '0px 1rem 0px 100px',
-                color: 'rgba(34,38,65,0.75)'
+                margin: "0px 1rem 0px 100px",
+                color: "rgba(34,38,65,0.75)"
               }}
             >
               By:
@@ -188,11 +188,11 @@ const BookDetails = ({ selectedBook, deleteBook, editBook }) => {
               onChange={e => handleChange(e)}
               onBlur={() => handleBlur()}
               styling={{
-                width: '90%',
+                width: "90%",
                 margin: 0,
-                borderBottom: 'none',
-                fontSize: '1.5rem',
-                color: 'rgba(34,38,65,0.75)'
+                borderBottom: "none",
+                fontSize: "1.5rem",
+                color: "rgba(34,38,65,0.75)"
               }}
             />
           </div>
@@ -220,10 +220,10 @@ const BookDetails = ({ selectedBook, deleteBook, editBook }) => {
   return (
     <Fragment>
       <div
-        style={{ ...styles.pageContainer, cursor: 'pointer' }}
+        style={{ ...styles.pageContainer, cursor: "pointer" }}
         onClick={() => history.push(BOOKS_HOME)}
       />
-      <div style={{ ...styles.pageContainer, pointerEvents: 'none' }}>
+      <div style={{ ...styles.pageContainer, pointerEvents: "none" }}>
         <div style={styles.contentContainer}>{toRender}</div>
       </div>
     </Fragment>
