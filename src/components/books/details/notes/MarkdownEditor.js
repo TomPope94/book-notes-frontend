@@ -1,28 +1,28 @@
-import React, { useState, useCallback, useMemo } from "react";
-import { Slate, Editable, useSlate, withReact } from "slate-react";
-import { Editor, Range, Point, createEditor } from "slate";
-import { withHistory } from "slate-history";
-import { Button, Icon, Toolbar } from "components/elements/TextToolbar";
+import React, { useState, useCallback, useMemo } from 'react';
+import { Slate, Editable, useSlate, withReact } from 'slate-react';
+import { Editor, Range, Point, createEditor } from 'slate';
+import { withHistory } from 'slate-history';
+import { Button, Icon, Toolbar } from 'components/elements/TextToolbar';
 
 const SHORTCUTS = {
-  "*": "list-item",
-  "-": "list-item",
-  "+": "list-item",
-  ">": "block-quote",
-  "#": "heading-one",
-  "##": "heading-two",
-  "###": "heading-three",
-  "####": "heading-four",
-  "#####": "heading-five",
-  "######": "heading-six"
+  '*': 'list-item',
+  '-': 'list-item',
+  '+': 'list-item',
+  '>': 'block-quote',
+  '#': 'heading-one',
+  '##': 'heading-two',
+  '###': 'heading-three',
+  '####': 'heading-four',
+  '#####': 'heading-five',
+  '######': 'heading-six'
 };
-const TEXT_FORMATS = ["bold", "italic", "underlined", "code"];
-const LIST_FORMATS = ["numbered-list", "bulleted-list"];
+const TEXT_FORMATS = ['bold', 'italic', 'underlined', 'code'];
+const LIST_FORMATS = ['numbered-list', 'bulleted-list'];
 const BLOCK_FORMATS = [
   ...LIST_FORMATS,
-  "heading-one",
-  "heading-two",
-  "block-quote"
+  'heading-one',
+  'heading-two',
+  'block-quote'
 ];
 const FormatButton = ({ format, icon }) => {
   const editor = useSlate();
@@ -31,7 +31,7 @@ const FormatButton = ({ format, icon }) => {
       active={isFormatActive(editor, format)}
       onMouseDown={event => {
         event.preventDefault();
-        editor.exec({ type: "toggle_format", format });
+        editor.exec({ type: 'toggle_format', format });
       }}
     >
       <Icon>{icon}</Icon>
@@ -42,7 +42,7 @@ const isFormatActive = (editor, format) => {
   if (TEXT_FORMATS.includes(format)) {
     const [match] = Editor.nodes(editor, {
       match: { [format]: true },
-      mode: "all"
+      mode: 'all'
     });
 
     return !!match;
@@ -51,7 +51,7 @@ const isFormatActive = (editor, format) => {
   if (BLOCK_FORMATS.includes(format)) {
     const [match] = Editor.nodes(editor, {
       match: { type: format },
-      mode: "all"
+      mode: 'all'
     });
 
     return !!match;
@@ -64,6 +64,7 @@ const MarkdownEditor = () => {
   const [value, setValue] = useState(initialValue);
   const [selection, setSelection] = useState(null);
   const renderElement = useCallback(props => <Element {...props} />, []);
+  const renderLeaf = useCallback(props => <Leaf {...props} />, []);
   const editor = useMemo(
     () => withShortcuts(withReact(withHistory(createEditor()))),
     []
@@ -92,6 +93,7 @@ const MarkdownEditor = () => {
       <Editable
         renderElement={renderElement}
         placeholder="Write some markdown..."
+        renderLeaf={renderLeaf}
         spellCheck
         autoFocus
       />
@@ -106,13 +108,13 @@ const withShortcuts = editor => {
     const { selection } = editor;
 
     if (
-      command.type === "insert_text" &&
-      command.text === " " &&
+      command.type === 'insert_text' &&
+      command.text === ' ' &&
       selection &&
       Range.isCollapsed(selection)
     ) {
       const { anchor } = selection;
-      const [block] = Editor.nodes(editor, { match: "block" });
+      const [block] = Editor.nodes(editor, { match: 'block' });
       const path = block ? block[1] : [];
       const start = Editor.start(editor, path);
       const range = { anchor, focus: start };
@@ -122,11 +124,11 @@ const withShortcuts = editor => {
       if (type) {
         Editor.select(editor, range);
         Editor.delete(editor);
-        Editor.setNodes(editor, { type }, { match: "block" });
+        Editor.setNodes(editor, { type }, { match: 'block' });
 
-        if (type === "list-item") {
-          const list = { type: "bulleted-list", children: [] };
-          Editor.wrapNodes(editor, list, { match: { type: "list-item" } });
+        if (type === 'list-item') {
+          const list = { type: 'bulleted-list', children: [] };
+          Editor.wrapNodes(editor, list, { match: { type: 'list-item' } });
         }
 
         return;
@@ -134,24 +136,24 @@ const withShortcuts = editor => {
     }
 
     if (
-      command.type === "delete_backward" &&
+      command.type === 'delete_backward' &&
       selection &&
       Range.isCollapsed(selection)
     ) {
-      const [match] = Editor.nodes(editor, { match: "block" });
+      const [match] = Editor.nodes(editor, { match: 'block' });
 
       if (match) {
         const [block, path] = match;
         const start = Editor.start(editor, path);
 
         if (
-          block.type !== "paragraph" &&
+          block.type !== 'paragraph' &&
           Point.equals(selection.anchor, start)
         ) {
-          Editor.setNodes(editor, { type: "paragraph" });
+          Editor.setNodes(editor, { type: 'paragraph' });
 
-          if (block.type === "list-item") {
-            Editor.unwrapNodes(editor, { match: { type: "bulleted-list" } });
+          if (block.type === 'list-item') {
+            Editor.unwrapNodes(editor, { match: { type: 'bulleted-list' } });
           }
 
           return;
@@ -167,32 +169,50 @@ const withShortcuts = editor => {
 
 const Element = ({ attributes, children, element }) => {
   switch (element.type) {
-    case "block-quote":
+    case 'block-quote':
       return <blockquote {...attributes}>{children}</blockquote>;
-    case "bulleted-list":
+    case 'bulleted-list':
       return <ul {...attributes}>{children}</ul>;
-    case "heading-one":
+    case 'heading-one':
       return <h1 {...attributes}>{children}</h1>;
-    case "heading-two":
+    case 'heading-two':
       return <h2 {...attributes}>{children}</h2>;
-    case "heading-three":
+    case 'heading-three':
       return <h3 {...attributes}>{children}</h3>;
-    case "heading-four":
+    case 'heading-four':
       return <h4 {...attributes}>{children}</h4>;
-    case "heading-five":
+    case 'heading-five':
       return <h5 {...attributes}>{children}</h5>;
-    case "heading-six":
+    case 'heading-six':
       return <h6 {...attributes}>{children}</h6>;
-    case "list-item":
+    case 'list-item':
       return <li {...attributes}>{children}</li>;
     default:
       return <p {...attributes}>{children}</p>;
   }
 };
+const Leaf = ({ attributes, children, leaf }) => {
+  if (leaf.bold) {
+    children = <strong>{children}</strong>;
+  }
 
+  if (leaf.code) {
+    children = <code>{children}</code>;
+  }
+
+  if (leaf.italic) {
+    children = <em>{children}</em>;
+  }
+
+  if (leaf.underlined) {
+    children = <u>{children}</u>;
+  }
+
+  return <span {...attributes}>{children}</span>;
+};
 const initialValue = [
   {
-    type: "paragraph",
+    type: 'paragraph',
     children: [
       {
         text:
@@ -201,11 +221,11 @@ const initialValue = [
     ]
   },
   {
-    type: "block-quote",
-    children: [{ text: "A wise quote." }]
+    type: 'block-quote',
+    children: [{ text: 'A wise quote.' }]
   },
   {
-    type: "paragraph",
+    type: 'paragraph',
     children: [
       {
         text:
@@ -214,11 +234,11 @@ const initialValue = [
     ]
   },
   {
-    type: "heading-two",
-    children: [{ text: "Try it out!" }]
+    type: 'heading-two',
+    children: [{ text: 'Try it out!' }]
   },
   {
-    type: "paragraph",
+    type: 'paragraph',
     children: [
       {
         text:

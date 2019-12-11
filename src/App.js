@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
 import history from './history';
 
+import Nav from 'components/nav/Nav';
 import PrivateRoute from 'components/routing/PrivateRoute';
 import Splash from 'components/splash/Splash';
 import SalesPage from 'components/splash/SalesPage';
@@ -13,6 +14,8 @@ import BooksHome from 'components/books/BooksHome';
 import BooksHelp from 'components/books/BooksHelp';
 import BooksDetails from 'components/books/details/BookDetails';
 import AddBook from 'components/books/AddBook';
+import Account from 'components/account/Account';
+import Billing from 'components/account/billing/Billing';
 import PageNotFound from 'components/other/PageNotFound';
 
 import {
@@ -25,12 +28,13 @@ import {
   BOOKS_HOME,
   BOOKS_HELP,
   BOOKS_DETAILS,
-  BOOKS_ADD
+  BOOKS_ADD,
+  ACCOUNT_HOME,
+  ACCOUNT_BILLING
 } from 'constants/routes';
 
 import { Provider } from 'react-redux';
 import store from 'store';
-import Nav from 'components/nav/Nav';
 import { loadUser } from './actions/auth';
 
 const App = () => {
@@ -57,6 +61,8 @@ const App = () => {
           <PrivateRoute exact path={BOOKS_HELP} component={BooksHelp} />
           <PrivateRoute exact path={BOOKS_DETAILS} component={BooksDetails} />
           <PrivateRoute exact path={BOOKS_ADD} component={AddBook} />
+          <PrivateRoute exact path={ACCOUNT_HOME} component={Account} />
+          <PrivateRoute exact path={ACCOUNT_BILLING} component={Billing} />
           <Route component={PageNotFound} />
         </Switch>
       </Router>

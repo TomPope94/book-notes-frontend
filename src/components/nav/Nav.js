@@ -25,7 +25,16 @@ const styles = {
     top: 0,
     marginTop: 50,
     transformOrigin: 'top',
-    transform: 'scaleY(0)'
+    transform: 'scaleY(0)',
+    zIndex: 3
+  },
+  hiddenClick: {
+    height: '100vh',
+    width: '100vw',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    zIndex: 2
   }
 };
 
@@ -50,16 +59,21 @@ const Nav = ({ isAuthenticated }) => {
   };
 
   return (
-    <div style={styles.navBar}>
-      {isAuthenticated ? (
-        <Fragment>
-          <button onClick={() => handleClick()}>User</button>
-          <div style={styles.dropDownBox} className="userDropDown">
-            <UserDropdown />
-          </div>
-        </Fragment>
+    <Fragment>
+      {userDropdown ? (
+        <div style={styles.hiddenClick} onClick={() => handleClick()} />
       ) : null}
-    </div>
+      <div style={styles.navBar}>
+        {isAuthenticated ? (
+          <Fragment>
+            <button onClick={() => handleClick()}>User</button>
+            <div style={styles.dropDownBox} className="userDropDown">
+              <UserDropdown />
+            </div>
+          </Fragment>
+        ) : null}
+      </div>
+    </Fragment>
   );
 };
 

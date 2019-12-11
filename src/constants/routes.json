@@ -8,5 +8,7 @@
   "BOOKS_HOME": "/books",
   "BOOKS_HELP": "/books/help",
   "BOOKS_DETAILS": "/books/details",
-  "BOOKS_ADD": "/books/add"
+  "BOOKS_ADD": "/books/add",
+  "ACCOUNT_HOME": "/account",
+  "ACCOUNT_BILLING": "/account/billing"
 }

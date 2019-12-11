@@ -1,74 +1,58 @@
-import React from "react";
-import { cx, css } from "emotion";
+import React from 'react';
+import { cx, css } from 'emotion';
 
-export const Menu = React.forwardRef(({ className, ...props }, ref) => (
-  <div
-    {...props}
-    ref={ref}
-    className={cx(
-      className,
-      css`
-        & > * {
-          display: inline-block;
-        }
-        & > * + * {
-          margin-left: 15px;
-        }
-      `
-    )}
-  />
-));
+export const Menu = React.forwardRef(({ className, ...props }, ref) => {
+  const styles = {
+    menu: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      marginLeft: 15
+    }
+  };
 
-export const Toolbar = React.forwardRef(({ className, ...props }, ref) => (
-  <Menu
-    {...props}
-    ref={ref}
-    className={cx(
-      className,
-      css`
-        position: relative;
-        padding: 1px 18px 17px;
-        margin: 0 -20px;
-        border-bottom: 2px solid #eee;
-        margin-bottom: 20px;
-      `
-    )}
-  />
-));
+  return <div {...props} ref={ref} style={styles.menu} />;
+});
+
+export const Toolbar = React.forwardRef(({ className, ...props }, ref) => {
+  const styles = {
+    menuStyle: {
+      position: 'relative',
+      padding: '1px 18px 17px',
+      margin: '0 -20px',
+      borderBottom: '2px solid #eee',
+      marginBottom: 20
+    }
+  };
+
+  return <Menu {...props} ref={ref} style={styles.menuStyle} />;
+});
 
 export const Button = React.forwardRef(
-  ({ className, active, reversed, ...props }, ref) => (
-    <span
-      {...props}
-      ref={ref}
-      className={cx(
-        className,
-        css`
-          cursor: pointer;
-          color: ${reversed
-            ? active
-              ? "white"
-              : "#aaa"
-            : active
-            ? "black"
-            : "#ccc"};
-        `
-      )}
-    />
-  )
+  ({ className, active, reversed, ...props }, ref) => {
+    const styles = {
+      span: {
+        cursor: 'pointer',
+        color: reversed
+          ? active
+            ? 'white'
+            : '#aaa'
+          : active
+          ? 'black'
+          : '#ccc'
+      }
+    };
+
+    return <span {...props} ref={ref} style={styles.span} />;
+  }
 );
 
-export const Icon = React.forwardRef(({ className, ...props }, ref) => (
-  <span
-    {...props}
-    ref={ref}
-    className={cx(
-      "material-icons",
-      className,
-      css`
-        font-size: 18px;
-        vertical-align: text-bottom;
-      `
-    )}
-  />
-));
+export const Icon = React.forwardRef(({ className, ...props }, ref) => {
+  const styles = {
+    span: {
+      fontSize: 18,
+      verticalAlign: 'text-bottom'
+    }
+  };
+
+  return <span {...props} ref={ref} style={styles.span} />;
+});
