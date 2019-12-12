@@ -1,19 +1,41 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { logout } from 'actions/auth';
-import { ACCOUNT_HOME } from 'constants/routes';
+import { ACCOUNT_HOME, PROFILE_HOME, USER_ACTIVITY } from 'constants/routes';
+
+const styles = {
+  linksContainer: {
+    marginLeft: 20,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'flex-start'
+  },
+  linkStyling: {
+    marginBottom: 15,
+    fontSize: '1.5rem',
+    textDecoration: 'none',
+    color: '#fff'
+  }
+};
 
 const UserDropdown = ({ logout }) => {
-  const history = useHistory();
   return (
-    <Fragment>
+    <div style={styles.linksContainer}>
       <h1>Username</h1>
-      <h4 onClick={() => history.push(ACCOUNT_HOME)}>Account</h4>
-      <h4>Profile</h4>
+      <Link style={styles.linkStyling} to={ACCOUNT_HOME}>
+        Account
+      </Link>
+      <Link style={styles.linkStyling} to={PROFILE_HOME}>
+        Profile
+      </Link>
+      <Link style={styles.linkStyling} to={USER_ACTIVITY}>
+        Activity
+      </Link>
       <button onClick={() => logout()}>Logout</button>
-    </Fragment>
+    </div>
   );
 };
 

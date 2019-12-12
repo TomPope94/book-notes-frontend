@@ -9,6 +9,10 @@
   "BOOKS_HELP": "/books/help",
   "BOOKS_DETAILS": "/books/details",
   "BOOKS_ADD": "/books/add",
-  "ACCOUNT_HOME": "/account",
-  "ACCOUNT_BILLING": "/account/billing"
+  "ACCOUNT_HOME": "/user/account",
+  "ACCOUNT_BILLING": "/user/account/billing",
+  "PROFILE_HOME": "/user/profile",
+  "USER_ACTIVITY": "/user/activity",
+  "TRACKING": "/tracking",
+  "SEARCH": "/search"
 }

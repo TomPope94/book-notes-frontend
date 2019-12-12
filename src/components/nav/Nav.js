@@ -1,8 +1,10 @@
 import React, { useState, Fragment } from 'react';
 import anime from 'animejs';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { logout } from 'actions/auth';
+import { AUTH, BOOKS_HOME, TRACKING, SEARCH } from 'constants/routes';
 
 import UserDropdown from 'components/nav/UserDropdown';
 
@@ -14,8 +16,15 @@ const styles = {
     boxShadow: '0 1px 10px #222641',
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
     position: 'relative'
+  },
+  navLinks: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '50%',
+    justifyContent: 'space-between'
   },
   dropDownBox: {
     height: 400,
@@ -23,6 +32,7 @@ const styles = {
     background: '#f38b66',
     position: 'absolute',
     top: 0,
+    right: 0,
     marginTop: 50,
     transformOrigin: 'top',
     transform: 'scaleY(0)',
@@ -35,6 +45,11 @@ const styles = {
     top: 0,
     left: 0,
     zIndex: 2
+  },
+  linkStyling: {
+    fontSize: '1.5rem',
+    textDecoration: 'none',
+    color: '#fff'
   }
 };
 
@@ -65,13 +80,29 @@ const Nav = ({ isAuthenticated }) => {
       ) : null}
       <div style={styles.navBar}>
         {isAuthenticated ? (
-          <Fragment>
+          <div style={styles.navLinks}>
+            <h2>Logo</h2>
+            <Link to={BOOKS_HOME} style={styles.linkStyling}>
+              Library
+            </Link>
+            <Link to={SEARCH} style={styles.linkStyling}>
+              Search
+            </Link>
+            <Link to={TRACKING} style={styles.linkStyling}>
+              Tracking
+            </Link>
+          </div>
+        ) : null}
+        {isAuthenticated ? (
+          <div>
             <button onClick={() => handleClick()}>User</button>
             <div style={styles.dropDownBox} className="userDropDown">
               <UserDropdown />
             </div>
-          </Fragment>
-        ) : null}
+          </div>
+        ) : (
+          <Link to={AUTH}>Login</Link>
+        )}
       </div>
     </Fragment>
   );

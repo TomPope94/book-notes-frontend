@@ -14,8 +14,12 @@ import BooksHome from 'components/books/BooksHome';
 import BooksHelp from 'components/books/BooksHelp';
 import BooksDetails from 'components/books/details/BookDetails';
 import AddBook from 'components/books/AddBook';
-import Account from 'components/account/Account';
-import Billing from 'components/account/billing/Billing';
+import Account from 'components/user/account/Account';
+import Billing from 'components/user/account/billing/Billing';
+import Profile from 'components/user/profile/Profile';
+import Activity from 'components/user/activity/Activity';
+import Search from 'components/search/Search';
+import Tracking from 'components/tracking/Tracking';
 import PageNotFound from 'components/other/PageNotFound';
 
 import {
@@ -30,7 +34,11 @@ import {
   BOOKS_DETAILS,
   BOOKS_ADD,
   ACCOUNT_HOME,
-  ACCOUNT_BILLING
+  ACCOUNT_BILLING,
+  PROFILE_HOME,
+  USER_ACTIVITY,
+  SEARCH,
+  TRACKING
 } from 'constants/routes';
 
 import { Provider } from 'react-redux';
@@ -63,6 +71,10 @@ const App = () => {
           <PrivateRoute exact path={BOOKS_ADD} component={AddBook} />
           <PrivateRoute exact path={ACCOUNT_HOME} component={Account} />
           <PrivateRoute exact path={ACCOUNT_BILLING} component={Billing} />
+          <PrivateRoute exact path={PROFILE_HOME} component={Profile} />
+          <PrivateRoute exact path={USER_ACTIVITY} component={Activity} />
+          <PrivateRoute exact path={SEARCH} component={Search} />
+          <PrivateRoute exact path={TRACKING} component={Tracking} />
           <Route component={PageNotFound} />
         </Switch>
       </Router>
