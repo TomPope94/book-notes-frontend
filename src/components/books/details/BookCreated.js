@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import anime from 'animejs';
 
+import Calendar from 'components/elements/images/Calendar';
+
 import { editBook } from 'actions/books/books';
 
 const styles = {
@@ -29,12 +31,13 @@ const styles = {
     height: '100%',
     display: 'flex',
     justifyContent: 'center',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    position: 'relative'
   },
   cardText: {
     fontSize: '1.5rem',
     color: 'rgba(34, 38, 65, 0.75)',
-    marginTop: 50,
+    marginTop: 75,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -49,6 +52,13 @@ const styles = {
     height: 3,
     width: '100%',
     transform: 'scaleX(0.25)'
+  },
+  calendarImage: {
+    position: 'absolute',
+    top: -50,
+    height: '100%',
+    width: '100%',
+    marginLeft: 50
   }
 };
 
@@ -88,7 +98,9 @@ const BookCreated = ({ selectedBook, editBook }) => {
               <span style={styles.textEmphasis}>Plan</span> a start date.
             </div>
             <span style={styles.textUnderline} id="planUnderline" />
-            <h2>Calendar image goes here</h2>
+          </div>
+          <div style={styles.calendarImage}>
+            <Calendar/>
           </div>
         </div>
         <div
