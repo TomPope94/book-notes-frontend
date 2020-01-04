@@ -18,8 +18,9 @@ import Account from 'components/user/account/Account';
 import Billing from 'components/user/account/billing/Billing';
 import Profile from 'components/user/profile/Profile';
 import Activity from 'components/user/activity/Activity';
-import Search from 'components/search/Search';
+import Search from 'components/planning/search/Search';
 import Tracking from 'components/tracking/Tracking';
+import PlanHome from 'components/planning/PlanHome';
 import PageNotFound from 'components/other/PageNotFound';
 
 import {
@@ -38,6 +39,7 @@ import {
   PROFILE_HOME,
   USER_ACTIVITY,
   SEARCH,
+  PLANNING,
   TRACKING
 } from 'constants/routes';
 
@@ -74,6 +76,7 @@ const App = () => {
           <PrivateRoute exact path={PROFILE_HOME} component={Profile} />
           <PrivateRoute exact path={USER_ACTIVITY} component={Activity} />
           <PrivateRoute exact path={SEARCH} component={Search} />
+          <PrivateRoute exact path={PLANNING} component={PlanHome} />
           <PrivateRoute exact path={TRACKING} component={Tracking} />
           <Route component={PageNotFound} />
         </Switch>
