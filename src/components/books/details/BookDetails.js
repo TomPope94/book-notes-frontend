@@ -5,11 +5,11 @@ import { Redirect, useHistory } from 'react-router-dom';
 import { deleteBook, editBook } from 'actions/books/books';
 
 import { BOOKS_HOME } from 'constants/routes';
-import { TrackerContext } from 'components/books/details/tracker/tracker-context';
 
+import BookReading from 'components/books/details/BookReading';
+import BookCreated from 'components/books/details/BookCreated';
+import BookPlanned from 'components/books/details/BookPlanned';
 import FormInput from 'components/elements/FormInput';
-import BookDetailsTracker from 'components/books/details/tracker/BookDetailsTracker';
-import BookDetailsNotes from 'components/books/details/notes/BookDetailsNotes';
 import Loader from 'components/elements/Loader';
 
 const styles = {
@@ -33,7 +33,6 @@ const styles = {
     pointerEvents: 'all',
     display: 'flex',
     flexDirection: 'column',
-    paddingRight: 25,
     position: 'absolute',
     bottom: 50,
     borderRadius: 10
@@ -42,17 +41,7 @@ const styles = {
     width: '50%',
     marginLeft: 270
   },
-  sectionsContainer: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row'
-  },
-  container: {
-    width: '50%',
-    height: '100%',
-    paddingTop: 25,
-    position: 'relative'
-  },
+
   coverContainer: {
     width: 200,
     height: 200,
@@ -79,7 +68,8 @@ const BookDetails = ({ selectedBook, loading, deleteBook, editBook }) => {
     numPages: '',
     categories: '',
     bookLanguage: '',
-    coverArt: ''
+    coverArt: '',
+    bookState: ''
   });
   const {
     bookTitle,
@@ -87,7 +77,8 @@ const BookDetails = ({ selectedBook, loading, deleteBook, editBook }) => {
     numPages,
     categories,
     bookLanguage,
-    coverArt
+    coverArt,
+    bookState
   } = bookData;
   const [viewProgress, setViewProgress] = useState(true);
   useEffect(() => {
@@ -98,18 +89,11 @@ const BookDetails = ({ selectedBook, loading, deleteBook, editBook }) => {
         numPages: selectedBook.numPages,
         categories: selectedBook.categories,
         bookLanguage: selectedBook.bookLanguage,
-        coverArt: selectedBook.coverArt
+        coverArt: selectedBook.coverArt,
+        bookState: selectedBook.bookState
       });
     }
   }, [selectedBook]);
-  const [progressReportState, setProgressReportState] = useState({
-    showForm: false,
-    dateSelected: '',
-    numPages: 0
-  });
-  const changeProgressState = newState => {
-    setProgressReportState({ ...progressReportState, ...newState });
-  };
 
   const history = useHistory();
 
@@ -141,6 +125,31 @@ const BookDetails = ({ selectedBook, loading, deleteBook, editBook }) => {
     } else {
       changeCheck = false;
     }
+  }
+
+  let bookStateRender;
+  if (!selectedBook || loading) {
+    bookStateRender = null;
+  } else if (selectedBook.bookState === 'Created') {
+    bookStateRender = <BookCreated />;
+  } else if (selectedBook.bookState === 'Planned') {
+    bookStateRender = <BookPlanned />;
+  } else if (selectedBook.bookState === 'Reading') {
+    bookStateRender = <BookReading />;
+  } else if (selectedBook.bookState === 'Completed') {
+    bookStateRender = (
+      <Fragment>
+        <h1>Read but needs notes</h1>
+      </Fragment>
+    );
+  } else if (selectedBook.bookState === 'Notated') {
+    bookStateRender = (
+      <Fragment>
+        <h1>All finished</h1>
+      </Fragment>
+    );
+  } else {
+    bookStateRender = null;
   }
 
   let toRender;
@@ -197,22 +206,7 @@ const BookDetails = ({ selectedBook, loading, deleteBook, editBook }) => {
             />
           </div>
         </div>
-        <div style={styles.sectionsContainer}>
-          <div style={{ ...styles.container }}>
-            <TrackerContext.Provider
-              value={{
-                state: progressReportState,
-                changeState: changeProgressState
-              }}
-            >
-              <BookDetailsTracker />
-            </TrackerContext.Provider>
-          </div>
-          <div style={styles.container}>
-            <BookDetailsNotes />
-            {/* <button onClick={() => handleDelete()}>Delete Test</button> */}
-          </div>
-        </div>
+        {bookStateRender}
       </Fragment>
     );
   }

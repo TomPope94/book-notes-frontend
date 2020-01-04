@@ -86,10 +86,10 @@ const Nav = ({ isAuthenticated }) => {
               Library
             </Link>
             <Link to={PLANNING} style={styles.linkStyling}>
-            PLANNING
+              Plan
             </Link>
             <Link to={TRACKING} style={styles.linkStyling}>
-              Tracking
+              Track
             </Link>
           </div>
         ) : null}
