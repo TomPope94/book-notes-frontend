@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { logout } from 'actions/auth';
-import { AUTH, BOOKS_HOME, TRACKING, SEARCH } from 'constants/routes';
+import { AUTH, BOOKS_HOME, TRACKING, PLANNING } from 'constants/routes';
 
 import UserDropdown from 'components/nav/UserDropdown';
 
@@ -85,8 +85,8 @@ const Nav = ({ isAuthenticated }) => {
             <Link to={BOOKS_HOME} style={styles.linkStyling}>
               Library
             </Link>
-            <Link to={SEARCH} style={styles.linkStyling}>
-              Search
+            <Link to={PLANNING} style={styles.linkStyling}>
+            PLANNING
             </Link>
             <Link to={TRACKING} style={styles.linkStyling}>
               Tracking
