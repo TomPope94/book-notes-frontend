@@ -1,38 +1,48 @@
-import React from 'react';
-import moment from 'moment';
-import CalendarRow from 'components/books/details/planning/CalendarRow';
-import CalendarTitleRow from 'components/books/details/planning/CalendarTitleRow';
+import React, { useContext } from "react";
+import moment from "moment";
+import uuid from "uuid";
+
+import { DayPickedContext } from "components/books/details/planning/dayPicked-context";
+
+import CalendarRow from "components/books/details/planning/CalendarRow";
+import CalendarTitleRow from "components/books/details/planning/CalendarTitleRow";
 
 const styles = {
   calendar: {
-    flexGrow: 1,
-    width: '50%',
-    display: 'flex',
-    flexDirection: 'column'
+    height: "100%",
+    width: "60%",
+    display: "flex",
+    flexDirection: "column"
   }
 };
 
-const PlanCalendar = ({ monthChosen }) => {
+const PlanCalendar = () => {
+  const pickedContext = useContext(DayPickedContext);
+  const monthChosen = pickedContext.state.monthChosen;
+
   const calcDays = monthChosen =>
     moment(monthChosen)
-      .add(1, 'months')
-      .subtract(1, 'days')
+      .add(1, "months")
+      .subtract(1, "days")
       .date();
 
   const calcRows = monthChosen => {
     const numDays = calcDays(monthChosen);
-    let rowCount = 1;
+    let rowCount;
+    if (moment(monthChosen).day() === 1) {
+      rowCount = 0;
+    } else {
+      rowCount = 1;
+    }
 
-    for (let i = 1; i <= numDays; i++) {
+    for (let i = 0; i < numDays; i++) {
       const dateDay = moment(monthChosen)
-        .add(i, 'days')
+        .add(i, "days")
         .day();
-
       if (dateDay === 1) {
         rowCount += 1;
       }
     }
-
     return rowCount;
   };
   const numRows = calcRows(monthChosen);
@@ -57,7 +67,7 @@ const PlanCalendar = ({ monthChosen }) => {
       let dates;
       let rowPos;
       if (i === 1) {
-        rowPos = 'first';
+        rowPos = "first";
         if (startDay === 0) {
           dates = numsBetween(1, 1);
           prevLastDay = 1;
@@ -66,14 +76,21 @@ const PlanCalendar = ({ monthChosen }) => {
           prevLastDay = 8 - startDay;
         }
       } else if (i === numRows) {
-        rowPos = 'last';
+        rowPos = "last";
         dates = numsBetween(prevLastDay + 1, numDays);
       } else {
-        rowPos = 'middle';
+        rowPos = "middle";
         dates = numsBetween(prevLastDay + 1, prevLastDay + 7);
         prevLastDay = prevLastDay + 7;
       }
-      rows.push(<CalendarRow dates={dates} pos={rowPos} />);
+      rows.push(
+        <CalendarRow
+          key={uuid.v4()}
+          dates={dates}
+          monthChosen={monthChosen}
+          pos={rowPos}
+        />
+      );
     }
 
     return rows;

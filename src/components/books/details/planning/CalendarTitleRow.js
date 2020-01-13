@@ -1,22 +1,31 @@
-import React, { Fragment } from 'react';
+import React, { Fragment } from "react";
+import uuid from "uuid";
 
 const styles = {
   titlesContainer: {
-    display: 'flex'
+    display: "flex"
   },
   daysTitle: {
-    border: '1px solid grey',
-    height: 50,
-    width: '14.286%'
+    border: "1px solid #fff",
+    width: "14.286%",
+    display: "flex",
+    justifyContent: "center",
+    background: "#f38b66",
+    color: "#fff",
+    fontSize: "1.25rem"
   }
 };
 
 const CalendarTitleRow = () => {
-  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
   let renderedDays = [];
   for (let i = 0; i < days.length; i++) {
-    renderedDays.push(<div style={styles.daysTitle}>{days[i]}</div>);
+    renderedDays.push(
+      <div key={uuid.v4()} style={styles.daysTitle}>
+        {days[i]}
+      </div>
+    );
   }
 
   return <div style={styles.titlesContainer}>{renderedDays}</div>;

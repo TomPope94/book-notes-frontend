@@ -1,10 +1,10 @@
-import React, { useRef, useEffect, useState } from 'react';
-import Viz from 'components/books/details/tracker/Viz';
+import React, { useRef, useEffect, useState } from "react";
+import Viz from "components/books/details/tracker/Viz";
 
 const styles = {
   container: {
-    height: '50%',
-    width: '80%'
+    height: "50%",
+    width: "80%"
   }
 };
 
@@ -20,9 +20,9 @@ const BookTrackerReport = () => {
       resetRefDimension();
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     return _ => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   });
   useEffect(() => {
@@ -42,15 +42,6 @@ const BookTrackerReport = () => {
   return (
     <div style={styles.container} ref={ref}>
       <Viz width={width} height={height} />
-      {/* <svg>
-        <LineChart
-          x={0}
-          y={0}
-          width={'250px'}
-          height={'250px'}
-          dataset={selectedBook.tracking}
-        />
-      </svg> */}
     </div>
   );
 };

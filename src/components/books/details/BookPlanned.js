@@ -1,23 +1,34 @@
-import React, { Fragment, useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-import moment from 'moment';
+import React, { Fragment, useState, useEffect } from "react";
+import { connect } from "react-redux";
+import moment from "moment";
 
-import PlanCalendar from 'components/books/details/planning/PlanCalendar';
-import MonthPicker from 'components/books/details/planning/MonthPicker';
+import { DayPickedContext } from "components/books/details/planning/dayPicked-context";
+
+import PlanCalendar from "components/books/details/planning/PlanCalendar";
+import MonthPicker from "components/books/details/planning/MonthPicker";
+import PlanDetails from "components/books/details/planning/PlanDetails";
 
 const styles = {
   plannedContent: {
     flexGrow: 1,
-    display: 'flex',
-    flexDirection: 'column'
+    display: "flex",
+    flexDirection: "column"
+  },
+  calendarContainer: {
+    width: "100%",
+    height: "100%",
+    display: "flex"
   }
 };
 
 const BookPlanned = ({ selectedBook, loading }) => {
-  const [plannedDate, setPlannedDate] = useState('');
-  const [monthChosen, setMonthChosen] = useState(
-    moment(new Date()).format('MMM-YYYY')
-  );
+  const [plannedDate, setPlannedDate] = useState("");
+  const [dateSelected, setDateSelected] = useState({
+    dayPicked: moment(new Date()).date(),
+    boxChosen: "",
+    monthChosen: moment(new Date()).format("MMM-YYYY"),
+    dateChosen: moment().format("Do MMM YYYY")
+  });
 
   useEffect(() => {
     if (selectedBook.datePlanned) {
@@ -25,8 +36,8 @@ const BookPlanned = ({ selectedBook, loading }) => {
     }
   }, [selectedBook]);
 
-  const changeMonthState = newMonth => {
-    setMonthChosen(newMonth);
+  const changeDateSelectedState = newState => {
+    setDateSelected({ ...dateSelected, ...newState });
   };
 
   let plannedRender;
@@ -41,8 +52,20 @@ const BookPlanned = ({ selectedBook, loading }) => {
   } else {
     plannedRender = (
       <Fragment>
-        <MonthPicker changeMonth={newMonth => changeMonthState(newMonth)} />
-        <PlanCalendar monthChosen={monthChosen} />
+        <DayPickedContext.Provider
+          value={{
+            state: dateSelected,
+            changeState: changeDateSelectedState
+          }}
+        >
+          <MonthPicker />
+          <div style={styles.calendarContainer}>
+            <PlanDetails />
+            <PlanCalendar
+              changeDate={newDate => changeDateSelectedState(newDate)}
+            />
+          </div>
+        </DayPickedContext.Provider>
       </Fragment>
     );
   }
