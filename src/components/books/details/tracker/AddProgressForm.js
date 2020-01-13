@@ -1,38 +1,38 @@
-import React, { useState, Fragment, useContext } from 'react';
-import { connect } from 'react-redux';
+import React, { useState, Fragment, useContext } from "react";
+import { connect } from "react-redux";
 
-import { TrackerContext } from 'components/books/details/tracker/tracker-context';
+import { TrackerContext } from "components/books/details/tracker/tracker-context";
 
-import { addTracking } from 'actions/books/tracker';
+import { addTracking } from "actions/books/tracker";
 
 const styles = {
   navContainer: {
-    background: 'rgba(0,0,0,0.25)',
-    position: 'absolute',
-    cursor: 'pointer'
+    background: "rgba(0,0,0,0.25)",
+    position: "absolute",
+    cursor: "pointer"
   },
   formContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '100%',
-    width: '100%'
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "100%",
+    width: "100%"
   },
   formStyle: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
     padding: 20,
     borderRadius: 10,
-    background: '#fff',
-    boxShadow: '0px 2px 5px grey',
-    pointerEvents: 'all'
+    background: "#fff",
+    boxShadow: "0px 2px 5px grey",
+    pointerEvents: "all"
   },
   inputContainer: {
-    display: 'flex',
-    flexDirection: 'column'
+    display: "flex",
+    flexDirection: "column"
   }
 };
 
@@ -45,11 +45,7 @@ const AddProgressForm = ({ addTracking, selectedBook }) => {
   };
   const handleSubmit = async e => {
     e.preventDefault();
-    await addTracking(
-      selectedBook.bookId,
-      state,
-      selectedBook.bookProgression.pagesRead
-    );
+    await addTracking(selectedBook.bookId, state, 22);
     changeState({ ...state, showForm: false });
   };
 
@@ -62,9 +58,9 @@ const AddProgressForm = ({ addTracking, selectedBook }) => {
       <div
         style={{
           ...styles.formContainer,
-          background: 'transparent',
-          pointerEvents: 'none',
-          position: 'absolute',
+          background: "transparent",
+          pointerEvents: "none",
+          position: "absolute",
           zIndex: 3
         }}
       >
@@ -73,7 +69,7 @@ const AddProgressForm = ({ addTracking, selectedBook }) => {
             <input
               type="date"
               name="date"
-              value={state.dateSelected}
+              value={state.date}
               onChange={e => handleChange(e)}
             />
             <input

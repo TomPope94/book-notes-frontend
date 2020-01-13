@@ -1,27 +1,29 @@
-import React, { useEffect } from 'react';
-import { Router, Route, Switch } from 'react-router-dom';
-import history from './history';
+import React, { useEffect } from "react";
+import { Router, Route, Switch } from "react-router-dom";
+import history from "./history";
 
-import Nav from 'components/nav/Nav';
-import PrivateRoute from 'components/routing/PrivateRoute';
-import Splash from 'components/splash/Splash';
-import SalesPage from 'components/splash/SalesPage';
-import AuthBroker from 'components/auth/AuthBroker';
-import AuthForgot from 'components/auth/AuthForgot';
-import SignedUp from 'components/auth/SignedUp';
-import UserOnboarding from 'components/auth/UserOnboarding';
-import BooksHome from 'components/books/BooksHome';
-import BooksHelp from 'components/books/BooksHelp';
-import BooksDetails from 'components/books/details/BookDetails';
-import AddBook from 'components/books/AddBook';
-import Account from 'components/user/account/Account';
-import Billing from 'components/user/account/billing/Billing';
-import Profile from 'components/user/profile/Profile';
-import Activity from 'components/user/activity/Activity';
-import Search from 'components/planning/search/Search';
-import Tracking from 'components/tracking/Tracking';
-import PlanHome from 'components/planning/PlanHome';
-import PageNotFound from 'components/other/PageNotFound';
+import Nav from "components/nav/Nav";
+import PrivateRoute from "components/routing/PrivateRoute";
+import Splash from "components/splash/Splash";
+import SalesPage from "components/splash/SalesPage";
+import AuthBroker from "components/auth/AuthBroker";
+import AuthForgot from "components/auth/AuthForgot";
+import SignedUp from "components/auth/SignedUp";
+import UserOnboarding from "components/auth/UserOnboarding";
+import BooksHome from "components/books/BooksHome";
+import BooksHelp from "components/books/BooksHelp";
+import BooksDetails from "components/books/details/BookDetails";
+import AddBook from "components/books/AddBook";
+import Account from "components/user/account/Account";
+import Billing from "components/user/account/billing/Billing";
+import Profile from "components/user/profile/Profile";
+import Activity from "components/user/activity/Activity";
+import Search from "components/planning/search/Search";
+import Tracking from "components/tracking/Tracking";
+import PlanHome from "components/planning/PlanHome";
+import PageNotFound from "components/other/PageNotFound";
+import Help from "components/other/Help";
+import Recall from "components/recall/Recall";
 
 import {
   SPLASH,
@@ -40,12 +42,14 @@ import {
   USER_ACTIVITY,
   SEARCH,
   PLANNING,
-  TRACKING
-} from 'constants/routes';
+  TRACKING,
+  RECALL,
+  HELP
+} from "constants/routes";
 
-import { Provider } from 'react-redux';
-import store from 'store';
-import { loadUser } from './actions/auth';
+import { Provider } from "react-redux";
+import store from "store";
+import { loadUser } from "./actions/auth";
 
 const App = () => {
   useEffect(() => {
@@ -60,6 +64,7 @@ const App = () => {
           <Route exact path={AUTH} component={AuthBroker} />
           <Route exact path={SPLASH} component={Splash} />
           <Route exact path={SALES} component={SalesPage} />
+          <Route exact path={HELP} component={Help} />
           <Route exact path={AUTH_FORGOT} component={AuthForgot} />
           <PrivateRoute exact path={AUTH_SIGNED_UP} component={SignedUp} />
           <PrivateRoute
@@ -78,6 +83,7 @@ const App = () => {
           <PrivateRoute exact path={SEARCH} component={Search} />
           <PrivateRoute exact path={PLANNING} component={PlanHome} />
           <PrivateRoute exact path={TRACKING} component={Tracking} />
+          <PrivateRoute exact path={RECALL} component={Recall} />
           <Route component={PageNotFound} />
         </Switch>
       </Router>

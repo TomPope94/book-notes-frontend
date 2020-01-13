@@ -7,7 +7,7 @@ const styles = {
   contentContainer: {
     display: "flex",
     justifyContent: "center",
-    width: "100%",
+    width: "60%",
     marginTop: 50
   },
   dateContainer: {

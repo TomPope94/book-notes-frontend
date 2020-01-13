@@ -18,6 +18,13 @@ const styles = {
     width: "100%",
     height: "100%",
     display: "flex"
+  },
+  monthPickerRow: {
+    width: "100%",
+    display: "flex"
+  },
+  monthPickerBuffer: {
+    width: "40%"
   }
 };
 
@@ -54,7 +61,10 @@ const BookPlanned = ({ selectedBook, loading }) => {
           changeState: changeDateSelectedState
         }}
       >
-        <MonthPicker />
+        <div style={styles.monthPickerRow}>
+          <div style={styles.monthPickerBuffer}></div>
+          <MonthPicker />
+        </div>
         <div style={styles.calendarContainer}>
           <PlanDetails />
           <PlanCalendar

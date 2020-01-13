@@ -27,7 +27,7 @@ const DayBox = ({ id, date, monthChosen, dayPicked, setDay }) => {
 
   const styles = {
     box: {
-      border: "1px solid rgba(243, 139, 102, 0.5)",
+      // border: "0.05px solid rgba(243, 139, 102, 0.5)",
       flexGrow: 1,
       width: "14.286%",
       cursor: typeof date === "number" ? "pointer" : "auto",

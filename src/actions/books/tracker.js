@@ -1,10 +1,10 @@
-import { API } from 'aws-amplify';
-import { GET_DAILY_TRACKING, ADD_DAILY_TRACKING } from 'actions/types';
-import moment from 'moment';
+import { API } from "aws-amplify";
+import { GET_DAILY_TRACKING, ADD_DAILY_TRACKING } from "actions/types";
+import moment from "moment";
 
 export const getDailyTracking = bookId => async dispatch => {
   try {
-    const res = await API.get('prod', `/books/progress/track/${bookId}`);
+    const res = await API.get("prod", `/books/progress/track/${bookId}`);
 
     let cleanResult;
     if (res.length > 0) {
@@ -28,9 +28,7 @@ export const getDailyTracking = bookId => async dispatch => {
 };
 
 export const addTracking = (bookId, formData, fromPage) => async dispatch => {
-  const formattedDate = moment(formData.dateSelected, 'YYYY-MM-DD').format(
-    'YYYYMMDD'
-  );
+  const formattedDate = moment(formData.date, "YYYY-MM-DD").format("YYYYMMDD");
 
   const numPages = parseInt(formData.numPages);
 
@@ -39,10 +37,10 @@ export const addTracking = (bookId, formData, fromPage) => async dispatch => {
     numPages: numPages,
     fromPage: fromPage,
     toPage: fromPage + numPages,
-    observable: 'reading'
+    observable: "reading"
   };
   try {
-    const res = await API.post('prod', `/books/progress/track/${bookId}`, {
+    const res = await API.post("prod", `/books/progress/track/${bookId}`, {
       body: APIBody
     });
 

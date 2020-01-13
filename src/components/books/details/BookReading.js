@@ -1,27 +1,27 @@
-import React, { Fragment, useState } from 'react';
-import BookDetailsTracker from 'components/books/details/tracker/BookDetailsTracker';
-import BookDetailsNotes from 'components/books/details/notes/BookDetailsNotes';
+import React, { Fragment, useState } from "react";
+import BookDetailsTracker from "components/books/details/tracker/BookDetailsTracker";
+import BookDetailsNotes from "components/books/details/notes/BookDetailsNotes";
 
-import { TrackerContext } from 'components/books/details/tracker/tracker-context';
+import { TrackerContext } from "components/books/details/tracker/tracker-context";
 
 const styles = {
   sectionsContainer: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row'
+    width: "100%",
+    display: "flex",
+    flexDirection: "row"
   },
   container: {
-    width: '50%',
-    height: '100%',
+    width: "50%",
+    height: "100%",
     paddingTop: 25,
-    position: 'relative'
+    position: "relative"
   }
 };
 
 const BookReading = () => {
   const [progressReportState, setProgressReportState] = useState({
     showForm: false,
-    dateSelected: '',
+    date: "",
     numPages: 0
   });
   const changeProgressState = newState => {

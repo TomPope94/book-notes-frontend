@@ -15,5 +15,7 @@
   "USER_ACTIVITY": "/user/activity",
   "TRACKING": "/tracking",
   "PLANNING": "/planning",
-  "SEARCH": "/planning/search"
+  "SEARCH": "/planning/search",
+  "RECALL": "/recall",
+  "HELP": "/help"
 }
