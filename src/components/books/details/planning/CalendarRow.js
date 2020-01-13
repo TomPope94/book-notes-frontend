@@ -36,7 +36,7 @@ const CalendarRow = ({ dates, pos, monthChosen }) => {
   for (let i = 0; i < dates.length; i++) {
     days.push(
       <DayBox
-        id={dates[i]}
+        id={`${dates[i]}-${monthChosen}`}
         key={uuid.v4()}
         date={dates[i]}
         dayPicked={dayPicked}

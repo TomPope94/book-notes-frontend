@@ -22,17 +22,22 @@ const styles = {
 };
 
 const BookPlanned = ({ selectedBook, loading }) => {
-  const [plannedDate, setPlannedDate] = useState("");
   const [dateSelected, setDateSelected] = useState({
     dayPicked: moment(new Date()).date(),
     boxChosen: "",
     monthChosen: moment(new Date()).format("MMM-YYYY"),
-    dateChosen: moment().format("Do MMM YYYY")
+    dateChosen: moment().format("Do MMM YYYY"),
+    plannedDate: false
   });
 
   useEffect(() => {
     if (selectedBook.datePlanned) {
-      setPlannedDate(selectedBook.datePlanned);
+      setDateSelected({
+        ...dateSelected,
+        plannedDate: selectedBook.datePlanned,
+        dateChosen: selectedBook.datePlanned,
+        dayPicked: moment(selectedBook.datePlanned).date()
+      });
     }
   }, [selectedBook]);
 
@@ -40,37 +45,25 @@ const BookPlanned = ({ selectedBook, loading }) => {
     setDateSelected({ ...dateSelected, ...newState });
   };
 
-  let plannedRender;
-  if (!selectedBook || loading) {
-    plannedRender = null;
-  } else if (selectedBook.datePlanned) {
-    plannedRender = (
-      <Fragment>
-        <h1>You have planned to start this book on:</h1>
-      </Fragment>
-    );
-  } else {
-    plannedRender = (
-      <Fragment>
-        <DayPickedContext.Provider
-          value={{
-            state: dateSelected,
-            changeState: changeDateSelectedState
-          }}
-        >
-          <MonthPicker />
-          <div style={styles.calendarContainer}>
-            <PlanDetails />
-            <PlanCalendar
-              changeDate={newDate => changeDateSelectedState(newDate)}
-            />
-          </div>
-        </DayPickedContext.Provider>
-      </Fragment>
-    );
-  }
-
-  return <div style={styles.plannedContent}>{plannedRender}</div>;
+  return (
+    <div style={styles.plannedContent}>
+      {" "}
+      <DayPickedContext.Provider
+        value={{
+          state: dateSelected,
+          changeState: changeDateSelectedState
+        }}
+      >
+        <MonthPicker />
+        <div style={styles.calendarContainer}>
+          <PlanDetails />
+          <PlanCalendar
+            changeDate={newDate => changeDateSelectedState(newDate)}
+          />
+        </div>
+      </DayPickedContext.Provider>
+    </div>
+  );
 };
 
 const mapStateToProps = state => ({

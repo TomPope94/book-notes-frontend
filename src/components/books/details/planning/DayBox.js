@@ -6,7 +6,7 @@ import { DayPickedContext } from "components/books/details/planning/dayPicked-co
 const DayBox = ({ id, date, monthChosen, dayPicked, setDay }) => {
   const [hover, setHover] = useState(false);
   let pickedContext = useContext(DayPickedContext);
-  const { dateChosen, boxChosen } = pickedContext.state;
+  const { boxChosen } = pickedContext.state;
 
   let backgroundVar;
   if (hover && typeof date === "number") {
@@ -31,6 +31,7 @@ const DayBox = ({ id, date, monthChosen, dayPicked, setDay }) => {
       flexGrow: 1,
       width: "14.286%",
       cursor: typeof date === "number" ? "pointer" : "auto",
+      pointerEvents: typeof date !== "number" ? "none" : "auto",
       background: backgroundVar,
       display: "flex",
       padding: 10,
@@ -60,7 +61,6 @@ const DayBox = ({ id, date, monthChosen, dayPicked, setDay }) => {
       onClick={() => handleClick()}
     >
       {date}
-      {/* {chosen ? <h4>Chosen</h4> : null} */}
     </div>
   );
 };

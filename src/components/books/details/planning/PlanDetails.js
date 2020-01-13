@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from "react";
-import moment from "moment";
 
 import { DayPickedContext } from "components/books/details/planning/dayPicked-context";
 
@@ -12,11 +11,16 @@ const styles = {
 
 const PlanDetails = () => {
   const pickedContext = useContext(DayPickedContext);
-  const { dayPicked, monthChosen, dateChosen } = pickedContext.state;
+  const {
+    dayPicked,
+    monthChosen,
+    dateChosen,
+    plannedDate
+  } = pickedContext.state;
 
   return (
     <div style={styles.detailsContainter}>
-      <h1>{dateChosen}</h1>
+      <h1>{!plannedDate ? "Pick a date!" : dateChosen}</h1>
     </div>
   );
 };
