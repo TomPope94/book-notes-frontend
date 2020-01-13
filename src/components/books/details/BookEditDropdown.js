@@ -1,9 +1,21 @@
 import React from "react";
 
+const styles = {
+  dropdownContainer: {
+    background: "rgba(243, 139, 102, 0.25)",
+    width: "100%",
+    height: "100%",
+    paddingTop: 1
+  }
+};
+
 const BookEditDropdown = () => {
   return (
-    <div>
-      <h1>This is a dropdown</h1>
+    <div style={styles.dropdownContainer}>
+      <p>Change State</p>
+      <p>Delete</p>
+      <p>Edit Cover</p>
+      <p>Edit # Pages</p>
     </div>
   );
 };

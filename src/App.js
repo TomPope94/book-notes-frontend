@@ -24,6 +24,7 @@ import PlanHome from "components/planning/PlanHome";
 import PageNotFound from "components/other/PageNotFound";
 import Help from "components/other/Help";
 import Recall from "components/recall/Recall";
+import Footer from "components/nav/Footer";
 
 import {
   SPLASH,
@@ -86,6 +87,7 @@ const App = () => {
           <PrivateRoute exact path={RECALL} component={Recall} />
           <Route component={PageNotFound} />
         </Switch>
+        <Footer />
       </Router>
     </Provider>
   );

@@ -1,6 +1,7 @@
 import React, { useState, Fragment, useEffect } from "react";
 import { connect } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
+import anime from "animejs";
 
 import { deleteBook, editBook } from "actions/books/books";
 
@@ -11,6 +12,7 @@ import BookCreated from "components/books/details/BookCreated";
 import BookPlanned from "components/books/details/BookPlanned";
 import FormInput from "components/elements/FormInput";
 import Loader from "components/elements/Loader";
+import BookEditDropdown from "components/books/details/BookEditDropdown";
 
 const styles = {
   pageContainer: {
@@ -46,12 +48,17 @@ const styles = {
     width: "50%",
     marginLeft: 270
   },
+  dropDownWholeContainer: {
+    position: "relative"
+  },
   dotsContainer: {
     display: "flex",
     flexDirection: "column",
     marginRight: 10,
     marginTop: 10,
-    cursor: "pointer"
+    cursor: "pointer",
+    position: "relative",
+    zIndex: 2
   },
   editDot: {
     width: 5,
@@ -75,6 +82,25 @@ const styles = {
     display: "flex",
     flexDirection: "row",
     alignItems: "center"
+  },
+  editDropdown: {
+    width: 150,
+    height: 150,
+    opacity: 0,
+    position: "absolute",
+    pointerEvents: "none",
+    top: 0,
+    right: 0,
+    zIndex: 3
+  },
+  hiddenClick: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    opacity: 0,
+    zIndex: 2,
+    height: "100vh",
+    width: "100vw"
   }
 };
 
@@ -112,8 +138,26 @@ const BookDetails = ({ selectedBook, loading, deleteBook, editBook }) => {
       });
     }
   }, [selectedBook]);
+  const [dropdown, setDropdown] = useState(false);
 
   const history = useHistory();
+
+  const animateDropDown = direction => {
+    const animateDirection = direction ? "reverse" : "normal";
+
+    anime({
+      targets: ".editDropdown",
+      opacity: [0, 1],
+      easing: "linear",
+      direction: animateDirection,
+      duration: 250
+    });
+  };
+  const handleClick = async () => {
+    await animateDropDown(dropdown);
+
+    setDropdown(!dropdown);
+  };
 
   const handleDelete = async () => {
     await deleteBook(selectedBook.bookId);
@@ -225,10 +269,15 @@ const BookDetails = ({ selectedBook, loading, deleteBook, editBook }) => {
               />
             </div>
           </div>
-          <div style={styles.dotsContainer}>
-            <div style={styles.editDot}></div>
-            <div style={styles.editDot}></div>
-            <div style={styles.editDot}></div>
+          <div style={styles.dropDownWholeContainer}>
+            <div style={styles.dotsContainer} onClick={() => handleClick()}>
+              <div style={styles.editDot}></div>
+              <div style={styles.editDot}></div>
+              <div style={styles.editDot}></div>
+            </div>
+            <div style={styles.editDropdown} className="editDropdown">
+              <BookEditDropdown />
+            </div>
           </div>
         </div>
         {bookStateRender}
@@ -238,6 +287,9 @@ const BookDetails = ({ selectedBook, loading, deleteBook, editBook }) => {
 
   return (
     <Fragment>
+      {dropdown ? (
+        <div style={styles.hiddenClick} onClick={() => handleClick()}></div>
+      ) : null}
       <div
         style={{ ...styles.pageContainer, cursor: "pointer" }}
         onClick={() => history.push(BOOKS_HOME)}
