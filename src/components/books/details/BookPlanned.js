@@ -54,7 +54,6 @@ const BookPlanned = ({ selectedBook, loading }) => {
 
   return (
     <div style={styles.plannedContent}>
-      {" "}
       <DayPickedContext.Provider
         value={{
           state: dateSelected,

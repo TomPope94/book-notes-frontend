@@ -17,55 +17,55 @@ const styles = {
 };
 
 const Calendar = () => {
-  const animation = () => {
-    anime
-      .timeline({
-        autoplay: true,
-        easing: "linear",
-        duration: 600
-      })
-      .add({
-        targets: "#cloudMid",
-        scale: [0, 1],
-        duration: 250
-      })
-      .add(
-        {
-          targets: "#cloudLeft",
-          scale: [0, 1],
-          duration: 500
-        },
-        0
-      )
-      .add(
-        {
-          targets: "#cloudRight",
-          scale: [0, 1],
-          duration: 450
-        },
-        0
-      )
-      .add(
-        {
-          targets: "#calendar",
-          opacity: [0, 1],
-          duration: 300
-        },
-        300
-      )
-      .add(
-        {
-          targets: "#birds",
-          scale: [0, 1],
-          duration: 400
-        },
-        200
-      );
-  };
+  // const animation = () => {
+  //   anime
+  //     .timeline({
+  //       autoplay: true,
+  //       easing: "linear",
+  //       duration: 600
+  //     })
+  //     .add({
+  //       targets: "#cloudMid",
+  //       scale: [0, 1],
+  //       duration: 250
+  //     })
+  //     .add(
+  //       {
+  //         targets: "#cloudLeft",
+  //         scale: [0, 1],
+  //         duration: 500
+  //       },
+  //       0
+  //     )
+  //     .add(
+  //       {
+  //         targets: "#cloudRight",
+  //         scale: [0, 1],
+  //         duration: 450
+  //       },
+  //       0
+  //     )
+  //     .add(
+  //       {
+  //         targets: "#calendar",
+  //         opacity: [0, 1],
+  //         duration: 300
+  //       },
+  //       300
+  //     )
+  //     .add(
+  //       {
+  //         targets: "#birds",
+  //         scale: [0, 1],
+  //         duration: 400
+  //       },
+  //       200
+  //     );
+  // };
 
-  useEffect(() => {
-    animation();
-  }, []);
+  // useEffect(() => {
+  //   animation();
+  // }, []);
 
   return (
     <svg
@@ -75,7 +75,7 @@ const Calendar = () => {
       height="1327.5"
       viewBox="0 0 1673.5 1327.5"
     >
-      <g id="clouds">
+      {/* <g id="clouds">
         <path
           id="cloudRight"
           style={styles.scaleElements}
@@ -94,8 +94,8 @@ const Calendar = () => {
           fill="#ffc7ad"
           d="M.01 188.5c.14-13.29 12.25-24 27.17-24a29.92 29.92 0 0111.68 2.35c3.28-9.44 13-16.73 25.2-18.66a38.55 38.55 0 01-.29-4.83c0-24.93 22.65-45.15 50.58-45.15h1c4.23-18.42 21-32.76 42-35.55.9-25.34 25.72-45.65 56.2-45.65 31.06 0 56.23 21.08 56.23 47.08 0 1.28-.06 2.54-.18 3.79 8.31 6.72 13.56 16.41 13.63 27.2a45.83 45.83 0 0114-2.17c22.89 0 41.44 16.56 41.44 37 0 .81 0 1.62-.09 2.41h.31c13.34 0 24.62 7.05 28.44 16.77a29.67 29.67 0 0120-7.31c14.71 0 26.64 9.61 26.64 21.45a17.55 17.55 0 01-.77 5.13h.77c15.16 0 27.44 8.88 27.44 19.82l-46.74.12-394.4.2"
         ></path>
-      </g>
-      <g id="calendar" style={styles.calendar}>
+      </g> */}
+      <g id="calendar">
         <path fill="#ffebe1" d="M0 837H1064V1327H0z"></path>
         <path
           fill="#ffd7c4"
@@ -191,7 +191,7 @@ const Calendar = () => {
           d="M833 772a99 99 0 1199-99M265 771a99 99 0 1199-99"
         ></path>
       </g>
-      <g id="birds" style={styles.scaleElements}>
+      {/* <g id="birds" style={styles.scaleElements}>
         <path
           fill="none"
           stroke="#ffd7c4"
@@ -225,7 +225,7 @@ const Calendar = () => {
           fill="#ffac86"
           d="M1411.5 675.02L1340.81 726.47 1340.67 726.35 1340.61 726.5 1248.19 704.43 1251.53 695.9 1337.75 716.49 1403.72 668.5 1411.5 675.02z"
         ></path>
-      </g>
+      </g> */}
     </svg>
   );
 };
