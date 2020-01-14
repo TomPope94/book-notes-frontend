@@ -1,55 +1,78 @@
-import React, { useState, useContext } from "react";
-import moment from "moment";
+import React, { useState, useContext, useEffect } from 'react';
+import moment from 'moment';
+import { connect } from 'react-redux';
 
-import { DayPickedContext } from "components/books/details/planning/dayPicked-context";
+import { DayPickedContext } from 'components/books/details/planning/dayPicked-context';
+import { updatePlannedDate } from 'actions/books/books';
 
-const DayBox = ({ id, date, monthChosen, dayPicked, setDay }) => {
+const DayBox = ({
+  id,
+  date,
+  monthChosen,
+  setDay,
+  updatePlannedDate,
+  selectedBook
+}) => {
   const [hover, setHover] = useState(false);
+  const [plannedDate, setPlannedDate] = useState(false);
   let pickedContext = useContext(DayPickedContext);
   const { boxChosen } = pickedContext.state;
+  useEffect(() => {
+    if (selectedBook.datePlanned) {
+      const dateChosen = moment(
+        `${moment(monthChosen).format('YYYY-MM')}-${date}`
+      ).format('YYYYMMDD');
+
+      if (selectedBook.datePlanned.toString() === dateChosen.toString()) {
+        setPlannedDate(true);
+      }
+    }
+  }, []);
 
   let backgroundVar;
-  if (hover && typeof date === "number") {
-    backgroundVar = "#f38b66";
-  } else if (boxChosen === id) {
-    backgroundVar = "rgba(243,139,102, 0.5)";
+  if (hover && typeof date === 'number') {
+    backgroundVar = '#f38b66';
+  } else if (boxChosen === id || plannedDate) {
+    backgroundVar = 'rgba(243,139,102, 0.5)';
   } else if (
     date === moment().date() &&
     moment().month() === moment(monthChosen).month() &&
     moment().year() === moment(monthChosen).year()
   ) {
-    backgroundVar = "rgba(243, 139, 102, 0.25)";
-  } else if (typeof date !== "number") {
-    backgroundVar = "rgba(243, 139, 102, 0.1)";
+    backgroundVar = 'rgba(243, 139, 102, 0.25)';
+  } else if (typeof date !== 'number') {
+    backgroundVar = 'rgba(243, 139, 102, 0.1)';
   } else {
-    backgroundVar = "#fff";
+    backgroundVar = '#fff';
   }
 
   const styles = {
     box: {
-      // border: "0.05px solid rgba(243, 139, 102, 0.5)",
       flexGrow: 1,
-      width: "14.286%",
-      cursor: typeof date === "number" ? "pointer" : "auto",
-      pointerEvents: typeof date !== "number" ? "none" : "auto",
+      width: '14.286%',
+      cursor: typeof date === 'number' ? 'pointer' : 'auto',
+      pointerEvents: typeof date !== 'number' ? 'none' : 'auto',
       background: backgroundVar,
-      display: "flex",
+      display: 'flex',
       padding: 10,
-      fontSize: "1.25rem",
-      color: "#004757"
+      fontSize: '1.25rem',
+      color: '#004757'
     }
   };
 
   const handleClick = () => {
+    const dateChosen = moment(
+      `${moment(monthChosen).format('YYYY-MM')}-${date}`
+    ).format('YYYYMMDD');
+
     pickedContext.changeState({
       ...pickedContext.state,
       dayPicked: date,
       boxChosen: id,
-      dateChosen: moment(
-        `${moment(monthChosen).format("YYYY-MM")}-${date}`
-      ).format("Do MMM YYYY")
+      dateChosen: dateChosen
     });
 
+    updatePlannedDate(selectedBook.bookId, dateChosen);
     setDay(date);
   };
 
@@ -65,4 +88,8 @@ const DayBox = ({ id, date, monthChosen, dayPicked, setDay }) => {
   );
 };
 
-export default DayBox;
+const mapStateToProps = state => ({
+  selectedBook: state.books.selectedBook
+});
+
+export default connect(mapStateToProps, { updatePlannedDate })(DayBox);

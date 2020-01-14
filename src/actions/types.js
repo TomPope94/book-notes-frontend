@@ -13,7 +13,7 @@ export const GET_BOOK = 'GET_BOOK';
 export const ADD_BOOK = 'ADD_BOOK';
 export const EDIT_BOOK = 'EDIT_BOOK';
 export const DELETE_BOOK = 'DELETE_BOOK';
-export const EDIT_PLANNED_BOOK = 'EDIT_PLANNED_BOOK';
+export const EDIT_PLANNED_DATE = 'EDIT_PLANNED_DATE';
 
 export const GET_DAILY_TRACKING = 'GET_DAILY_TRACKING';
 export const ADD_DAILY_TRACKING = 'ADD_DAILY_TRACKING';

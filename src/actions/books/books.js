@@ -110,17 +110,17 @@ export const editBook = (bookId, newData) => async dispatch => {
 
 export const updatePlannedDate = (bookId, newDate) => async dispatch => {
   try {
-    const formattedDate = moment(newDate, 'Do MMM YYYY').format('YYYYMMDD');
-
-    await API.put('prod', `/books/${bookId}`, {
+    await API.put('prod', `/books/planned-date/${bookId}`, {
       body: {
-        datePlanned: formattedDate
+        datePlanned: newDate
       }
     });
 
     dispatch({
       type: EDIT_PLANNED_DATE,
-      payload: newDate
+      payload: {
+        datePlanned: newDate
+      }
     });
   } catch (err) {
     console.error(err);

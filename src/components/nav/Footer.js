@@ -1,11 +1,15 @@
-import React from "react";
+import React from 'react';
+
+const styles = {
+  footerContainer: {
+    width: '100vw',
+    minHeight: '20vh',
+    background: 'rgb(243, 139, 102)'
+  }
+};
 
 const Footer = () => {
-  return (
-    <div>
-      <h1>This is the footer!</h1>
-    </div>
-  );
+  return <div style={styles.footerContainer}></div>;
 };
 
 export default Footer;

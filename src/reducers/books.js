@@ -5,8 +5,9 @@ import {
   ADD_BOOK,
   EDIT_BOOK,
   GET_DAILY_TRACKING,
-  ADD_DAILY_TRACKING
-} from "actions/types";
+  ADD_DAILY_TRACKING,
+  EDIT_PLANNED_DATE
+} from 'actions/types';
 
 const initialState = {
   books: [],
@@ -31,6 +32,7 @@ export default function(state = initialState, action) {
       };
     case GET_BOOK:
     case EDIT_BOOK:
+    case EDIT_PLANNED_DATE:
       return {
         ...state,
         selectedBook: { ...state.selectedBook, ...payload },
