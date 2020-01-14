@@ -6,8 +6,10 @@ import {
   GET_BOOK,
   ADD_BOOK,
   EDIT_BOOK,
-  DELETE_BOOK
+  DELETE_BOOK,
+  EDIT_PLANNED_DATE
 } from 'actions/types';
+import moment from 'moment';
 
 export const addBook = formData => async dispatch => {
   const APIBody = {
@@ -100,6 +102,25 @@ export const editBook = (bookId, newData) => async dispatch => {
     dispatch({
       type: EDIT_BOOK,
       payload: newData
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const updatePlannedDate = (bookId, newDate) => async dispatch => {
+  try {
+    const formattedDate = moment(newDate, 'Do MMM YYYY').format('YYYYMMDD');
+
+    await API.put('prod', `/books/${bookId}`, {
+      body: {
+        datePlanned: formattedDate
+      }
+    });
+
+    dispatch({
+      type: EDIT_PLANNED_DATE,
+      payload: newDate
     });
   } catch (err) {
     console.error(err);

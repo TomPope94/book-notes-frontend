@@ -1,39 +1,39 @@
-import React, { Fragment, useState, useEffect } from "react";
-import { connect } from "react-redux";
-import moment from "moment";
+import React, { Fragment, useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import moment from 'moment';
 
-import { DayPickedContext } from "components/books/details/planning/dayPicked-context";
+import { DayPickedContext } from 'components/books/details/planning/dayPicked-context';
 
-import PlanCalendar from "components/books/details/planning/PlanCalendar";
-import MonthPicker from "components/books/details/planning/MonthPicker";
-import PlanDetails from "components/books/details/planning/PlanDetails";
+import PlanCalendar from 'components/books/details/planning/PlanCalendar';
+import MonthPicker from 'components/books/details/planning/MonthPicker';
+import PlanDetails from 'components/books/details/planning/PlanDetails';
 
 const styles = {
   plannedContent: {
     flexGrow: 1,
-    display: "flex",
-    flexDirection: "column"
+    display: 'flex',
+    flexDirection: 'column'
   },
   calendarContainer: {
-    width: "100%",
-    height: "100%",
-    display: "flex"
+    width: '100%',
+    height: '100%',
+    display: 'flex'
   },
   monthPickerRow: {
-    width: "100%",
-    display: "flex"
+    width: '100%',
+    display: 'flex'
   },
   monthPickerBuffer: {
-    width: "40%"
+    width: '40%'
   }
 };
 
 const BookPlanned = ({ selectedBook, loading }) => {
   const [dateSelected, setDateSelected] = useState({
     dayPicked: moment(new Date()).date(),
-    boxChosen: "",
-    monthChosen: moment(new Date()).format("MMM-YYYY"),
-    dateChosen: moment().format("Do MMM YYYY"),
+    boxChosen: '',
+    monthChosen: moment(new Date()).format('MMM-YYYY'),
+    dateChosen: moment().format('Do MMM YYYY'),
     plannedDate: false
   });
 
@@ -54,7 +54,6 @@ const BookPlanned = ({ selectedBook, loading }) => {
 
   return (
     <div style={styles.plannedContent}>
-      {" "}
       <DayPickedContext.Provider
         value={{
           state: dateSelected,
