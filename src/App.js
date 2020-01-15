@@ -61,7 +61,7 @@ const App = () => {
     <Provider store={store}>
       <Router history={history}>
         <Nav />
-        <div style={{ minHeight: '100vh' }}>
+        <div>
           <Switch>
             <Route exact path={AUTH} component={AuthBroker} />
             <Route exact path={SPLASH} component={Splash} />
