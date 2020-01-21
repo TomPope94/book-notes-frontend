@@ -10,6 +10,7 @@ import { BOOKS_ADD } from "constants/routes";
 import Book from "components/elements/Book";
 import Loader from "components/elements/Loader";
 import LibraryFilter from "components/books/LibraryFilter";
+import Footer from "components/nav/Footer";
 
 const styles = {
   library: {
@@ -97,15 +98,18 @@ const BooksHome = ({ listBooks, resetBooks, books }) => {
   return books.loading ? (
     <Loader />
   ) : (
-    <div style={styles.library}>
-      <div style={styles.libraryHeader}>
-        <div style={styles.libraryHeaderLeft}>
-          <h1 style={styles.libraryTitle}>My Library.</h1>
-          <Link to={BOOKS_ADD}>Add</Link>
+    <div>
+      <div style={styles.library}>
+        <div style={styles.libraryHeader}>
+          <div style={styles.libraryHeaderLeft}>
+            <h1 style={styles.libraryTitle}>My Library.</h1>
+            <Link to={BOOKS_ADD}>Add</Link>
+          </div>
+          <LibraryFilter />
         </div>
-        <LibraryFilter />
+        <div>{renderGroups}</div>
       </div>
-      <div>{renderGroups}</div>
+      <Footer />
     </div>
   );
 };

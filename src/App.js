@@ -24,7 +24,6 @@ import PlanHome from "components/planning/PlanHome";
 import PageNotFound from "components/other/PageNotFound";
 import Help from "components/other/Help";
 import Recall from "components/recall/Recall";
-import Footer from "components/nav/Footer";
 
 import {
   SPLASH,
@@ -89,7 +88,6 @@ const App = () => {
             <Route component={PageNotFound} />
           </Switch>
         </div>
-        <Footer />
       </Router>
     </Provider>
   );

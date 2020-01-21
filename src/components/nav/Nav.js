@@ -94,7 +94,7 @@ const Nav = ({ isAuthenticated }) => {
       <div style={styles.navBar}>
         {isAuthenticated ? (
           <div style={styles.navLinks}>
-            <h2>LibeRead</h2>
+            <h2>Liberead</h2>
             <Link to={BOOKS_HOME} style={styles.linkStyling}>
               Library
             </Link>

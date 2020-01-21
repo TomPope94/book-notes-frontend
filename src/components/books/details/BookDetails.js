@@ -101,7 +101,7 @@ const styles = {
     position: "absolute",
     top: 0,
     left: 0,
-    opacity: 0,
+    background: "rgba(1,1,1,0.1)",
     zIndex: 2,
     height: "100vh",
     width: "100vw"
