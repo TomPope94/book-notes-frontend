@@ -62,7 +62,7 @@ const BooksHome = ({ listBooks, resetBooks, books }) => {
     for (let i = 0; i < booksData.length; i++) {
       const books = generateBooks(booksData[i]);
       const group = (
-        <div>
+        <div key={uuid.v4()}>
           <h2 style={styles.subHeading}>{booksData[i].name}</h2>
           <span style={styles.groupUnderline} />
           <div style={styles.catalog} key={uuid.v4()}>

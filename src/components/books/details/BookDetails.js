@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import anime from "animejs";
 
-import { deleteBook, editBook } from "actions/books/books";
+import { editBook } from "actions/books/books";
 
 import { BOOKS_HOME } from "constants/routes";
 
@@ -57,15 +57,18 @@ const styles = {
     marginRight: 10,
     marginTop: 10,
     cursor: "pointer",
-    position: "relative",
-    zIndex: 2
+    position: "absolute",
+    top: 0,
+    right: 0,
+    zIndex: 10
   },
   editDot: {
     width: 5,
     height: 5,
     margin: 2,
     borderRadius: "50%",
-    background: "#004757"
+    background: "#004757",
+    border: "1px solid #004757"
   },
   coverContainer: {
     width: 200,
@@ -86,7 +89,8 @@ const styles = {
   editDropdown: {
     width: 150,
     height: 150,
-    opacity: 0,
+    transform: "scaleX(0)",
+    transformOrigin: "right",
     position: "absolute",
     pointerEvents: "none",
     top: 0,
@@ -104,7 +108,7 @@ const styles = {
   }
 };
 
-const BookDetails = ({ selectedBook, loading, deleteBook, editBook }) => {
+const BookDetails = ({ selectedBook, loading, editBook }) => {
   const [redirect, setRedirect] = useState(false);
   const [bookData, setBookData] = useState({
     bookTitle: "",
@@ -145,23 +149,29 @@ const BookDetails = ({ selectedBook, loading, deleteBook, editBook }) => {
   const animateDropDown = direction => {
     const animateDirection = direction ? "reverse" : "normal";
 
-    anime({
-      targets: ".editDropdown",
-      opacity: [0, 1],
-      easing: "linear",
-      direction: animateDirection,
-      duration: 250
-    });
+    anime
+      .timeline({
+        direction: animateDirection
+      })
+      .add({
+        targets: ".editDropdown",
+        scaleX: [0, 1],
+        duration: 500
+      })
+      .add(
+        {
+          targets: ".editDot",
+          easing: "linear",
+          background: ["rgb(0,71,87)", "#fff"],
+          duration: 250
+        },
+        [0]
+      );
   };
   const handleClick = async () => {
     await animateDropDown(dropdown);
 
     setDropdown(!dropdown);
-  };
-
-  const handleDelete = async () => {
-    await deleteBook(selectedBook.bookId);
-    setRedirect(true);
   };
 
   if (redirect) {
@@ -271,12 +281,12 @@ const BookDetails = ({ selectedBook, loading, deleteBook, editBook }) => {
           </div>
           <div style={styles.dropDownWholeContainer}>
             <div style={styles.dotsContainer} onClick={() => handleClick()}>
-              <div style={styles.editDot}></div>
-              <div style={styles.editDot}></div>
-              <div style={styles.editDot}></div>
+              <div style={styles.editDot} className="editDot"></div>
+              <div style={styles.editDot} className="editDot"></div>
+              <div style={styles.editDot} className="editDot"></div>
             </div>
             <div style={styles.editDropdown} className="editDropdown">
-              <BookEditDropdown />
+              <BookEditDropdown bookId={selectedBook.bookId} />
             </div>
           </div>
         </div>
@@ -308,4 +318,4 @@ const mapStateToProps = state => ({
   loading: state.books.loading
 });
 
-export default connect(mapStateToProps, { deleteBook, editBook })(BookDetails);
+export default connect(mapStateToProps, { editBook })(BookDetails);

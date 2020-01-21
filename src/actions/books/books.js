@@ -108,10 +108,6 @@ export const resetBooks = () => async dispatch => {
 export const deleteBook = bookId => async dispatch => {
   try {
     await API.del("prod", `/books/${bookId}`);
-    dispatch({
-      type: DELETE_BOOK,
-      payload: bookId
-    });
   } catch (err) {
     console.error(err);
   }
