@@ -1,30 +1,30 @@
-import React, { useEffect } from 'react';
-import { Router, Route, Switch } from 'react-router-dom';
-import history from './history';
+import React, { useEffect } from "react";
+import { Router, Route, Switch } from "react-router-dom";
+import history from "./history";
 
-import Nav from 'components/nav/Nav';
-import PrivateRoute from 'components/routing/PrivateRoute';
-import Splash from 'components/splash/Splash';
-import SalesPage from 'components/splash/SalesPage';
-import AuthBroker from 'components/auth/AuthBroker';
-import AuthForgot from 'components/auth/AuthForgot';
-import SignedUp from 'components/auth/SignedUp';
-import UserOnboarding from 'components/auth/UserOnboarding';
-import BooksHome from 'components/books/BooksHome';
-import BooksHelp from 'components/books/BooksHelp';
-import BooksDetails from 'components/books/details/BookDetails';
-import AddBook from 'components/books/AddBook';
-import Account from 'components/user/account/Account';
-import Billing from 'components/user/account/billing/Billing';
-import Profile from 'components/user/profile/Profile';
-import Activity from 'components/user/activity/Activity';
-import Search from 'components/planning/search/Search';
-import Tracking from 'components/tracking/Tracking';
-import PlanHome from 'components/planning/PlanHome';
-import PageNotFound from 'components/other/PageNotFound';
-import Help from 'components/other/Help';
-import Recall from 'components/recall/Recall';
-import Footer from 'components/nav/Footer';
+import Nav from "components/nav/Nav";
+import PrivateRoute from "components/routing/PrivateRoute";
+import Splash from "components/splash/Splash";
+import SalesPage from "components/splash/SalesPage";
+import AuthBroker from "components/auth/AuthBroker";
+import AuthForgot from "components/auth/AuthForgot";
+import SignedUp from "components/auth/SignedUp";
+import UserOnboarding from "components/auth/UserOnboarding";
+import BooksHome from "components/books/BooksHome";
+import BooksHelp from "components/books/BooksHelp";
+import BooksDetails from "components/books/details/BookDetails";
+import AddBook from "components/books/AddBook";
+import Account from "components/user/account/Account";
+import Billing from "components/user/account/billing/Billing";
+import Profile from "components/user/profile/Profile";
+import Activity from "components/user/activity/Activity";
+import Search from "components/planning/search/Search";
+import Tracking from "components/tracking/Tracking";
+import PlanHome from "components/planning/PlanHome";
+import PageNotFound from "components/other/PageNotFound";
+import Help from "components/other/Help";
+import Recall from "components/recall/Recall";
+import Footer from "components/nav/Footer";
 
 import {
   SPLASH,
@@ -46,11 +46,11 @@ import {
   TRACKING,
   RECALL,
   HELP
-} from 'constants/routes';
+} from "constants/routes";
 
-import { Provider } from 'react-redux';
-import store from 'store';
-import { loadUser } from './actions/auth';
+import { Provider } from "react-redux";
+import store from "store";
+import { loadUser } from "./actions/auth";
 
 const App = () => {
   useEffect(() => {
@@ -61,7 +61,7 @@ const App = () => {
     <Provider store={store}>
       <Router history={history}>
         <Nav />
-        <div>
+        <div style={{ paddingTop: 75 }}>
           <Switch>
             <Route exact path={AUTH} component={AuthBroker} />
             <Route exact path={SPLASH} component={Splash} />

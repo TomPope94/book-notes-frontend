@@ -24,7 +24,8 @@ const styles = {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    position: "relative"
+    position: "fixed",
+    zIndex: 10
   },
   navLinks: {
     display: "flex",
@@ -57,6 +58,11 @@ const styles = {
     fontSize: "1.5rem",
     textDecoration: "none",
     color: "#fff"
+  },
+  navRightContainer: {
+    display: "flex",
+    marginRight: 20,
+    alignItems: "center"
   }
 };
 
@@ -104,7 +110,7 @@ const Nav = ({ isAuthenticated }) => {
           </div>
         ) : null}
         {isAuthenticated ? (
-          <div>
+          <div style={styles.navRightContainer}>
             <Link to={HELP} style={styles.linkStyling}>
               Help
             </Link>
