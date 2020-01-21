@@ -8,7 +8,8 @@ import {
   EDIT_BOOK,
   DELETE_BOOK,
   EDIT_PLANNED_DATE,
-  CHANGE_FILTER
+  CHANGE_FILTER,
+  RESET_BOOKS
 } from "actions/types";
 import moment from "moment";
 
@@ -93,6 +94,16 @@ export const listBooks = filter => async dispatch => {
     dispatch({
       type: GET_ALL_BOOKS,
       payload: booksArr
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const resetBooks = () => async dispatch => {
+  try {
+    dispatch({
+      type: RESET_BOOKS
     });
   } catch (err) {
     console.error(err);

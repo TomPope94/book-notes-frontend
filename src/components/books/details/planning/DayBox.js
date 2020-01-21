@@ -1,9 +1,9 @@
-import React, { useState, useContext, useEffect } from 'react';
-import moment from 'moment';
-import { connect } from 'react-redux';
+import React, { useState, useContext, useEffect } from "react";
+import moment from "moment";
+import { connect } from "react-redux";
 
-import { DayPickedContext } from 'components/books/details/planning/dayPicked-context';
-import { updatePlannedDate } from 'actions/books/books';
+import { DayPickedContext } from "components/books/details/planning/dayPicked-context";
+import { updatePlannedDate } from "actions/books/books";
 
 const DayBox = ({
   id,
@@ -20,8 +20,9 @@ const DayBox = ({
   useEffect(() => {
     if (selectedBook.datePlanned) {
       const dateChosen = moment(
-        `${moment(monthChosen).format('YYYY-MM')}-${date}`
-      ).format('YYYYMMDD');
+        `${moment(monthChosen, "MMM-YYYY").format("YYYY-MM")}-${date}`,
+        "YYYY-MM-DD"
+      ).format("YYYYMMDD");
 
       if (selectedBook.datePlanned.toString() === dateChosen.toString()) {
         setPlannedDate(true);
@@ -30,40 +31,41 @@ const DayBox = ({
   }, []);
 
   let backgroundVar;
-  if (hover && typeof date === 'number') {
-    backgroundVar = '#f38b66';
+  if (hover && typeof date === "number") {
+    backgroundVar = "#f38b66";
   } else if (boxChosen === id || plannedDate) {
-    backgroundVar = 'rgba(243,139,102, 0.5)';
+    backgroundVar = "rgba(243,139,102, 0.5)";
   } else if (
     date === moment().date() &&
-    moment().month() === moment(monthChosen).month() &&
-    moment().year() === moment(monthChosen).year()
+    moment().month() === moment(monthChosen, "MMM-YYYY").month() &&
+    moment().year() === moment(monthChosen, "MMM-YYYY").year()
   ) {
-    backgroundVar = 'rgba(243, 139, 102, 0.25)';
-  } else if (typeof date !== 'number') {
-    backgroundVar = 'rgba(243, 139, 102, 0.1)';
+    backgroundVar = "rgba(243, 139, 102, 0.25)";
+  } else if (typeof date !== "number") {
+    backgroundVar = "rgba(243, 139, 102, 0.1)";
   } else {
-    backgroundVar = '#fff';
+    backgroundVar = "#fff";
   }
 
   const styles = {
     box: {
       flexGrow: 1,
-      width: '14.286%',
-      cursor: typeof date === 'number' ? 'pointer' : 'auto',
-      pointerEvents: typeof date !== 'number' ? 'none' : 'auto',
+      width: "14.286%",
+      cursor: typeof date === "number" ? "pointer" : "auto",
+      pointerEvents: typeof date !== "number" ? "none" : "auto",
       background: backgroundVar,
-      display: 'flex',
+      display: "flex",
       padding: 10,
-      fontSize: '1.25rem',
-      color: '#004757'
+      fontSize: "1.25rem",
+      color: "#004757"
     }
   };
 
   const handleClick = () => {
     const dateChosen = moment(
-      `${moment(monthChosen).format('YYYY-MM')}-${date}`
-    ).format('YYYYMMDD');
+      `${moment(monthChosen, "MMM-YYYY").format("YYYY-MM")}-${date}`,
+      "YYYY-MM-DD"
+    ).format("YYYYMMDD");
 
     pickedContext.changeState({
       ...pickedContext.state,

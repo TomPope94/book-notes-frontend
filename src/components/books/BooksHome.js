@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import uuid from "uuid";
 
-import { listBooks } from "actions/books/books";
+import { listBooks, resetBooks } from "actions/books/books";
 
 import Book from "components/elements/Book";
 import Loader from "components/elements/Loader";
@@ -23,9 +23,13 @@ const styles = {
   }
 };
 
-const BooksHome = ({ listBooks, books }) => {
+const BooksHome = ({ listBooks, resetBooks, books }) => {
   useEffect(() => {
     listBooks(books.filter);
+
+    return () => {
+      resetBooks();
+    };
   }, [listBooks]);
 
   // loop through array to create a row for each element
@@ -38,7 +42,6 @@ const BooksHome = ({ listBooks, books }) => {
         <div style={styles.catalog} key={uuid.v4()}>
           <h2 style={styles.subHeading}>{booksData[i].name}</h2>
           {books}
-          <Book addBook={true} key={uuid.v4()} />
         </div>
       );
       groupArr.push(group);
@@ -78,4 +81,4 @@ const mapStateToProps = state => ({
   books: state.books
 });
 
-export default connect(mapStateToProps, { listBooks })(BooksHome);
+export default connect(mapStateToProps, { listBooks, resetBooks })(BooksHome);

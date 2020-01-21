@@ -7,7 +7,8 @@ import {
   GET_DAILY_TRACKING,
   ADD_DAILY_TRACKING,
   EDIT_PLANNED_DATE,
-  CHANGE_FILTER
+  CHANGE_FILTER,
+  RESET_BOOKS
 } from "actions/types";
 
 const initialState = {
@@ -64,6 +65,17 @@ export default function(state = initialState, action) {
           tracking: [...trackingData, payload]
         },
         loading: false
+      };
+    case RESET_BOOKS:
+      return {
+        ...state,
+        loading: true,
+        books: []
+      };
+    case CHANGE_FILTER:
+      return {
+        ...state,
+        filter: payload
       };
     default:
       return state;

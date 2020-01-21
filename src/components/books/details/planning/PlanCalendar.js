@@ -21,7 +21,7 @@ const PlanCalendar = () => {
   const monthChosen = pickedContext.state.monthChosen;
 
   const calcDays = monthChosen =>
-    moment(monthChosen)
+    moment(monthChosen, "MMM-YYYY")
       .add(1, "months")
       .subtract(1, "days")
       .date();
@@ -29,14 +29,14 @@ const PlanCalendar = () => {
   const calcRows = monthChosen => {
     const numDays = calcDays(monthChosen);
     let rowCount;
-    if (moment(monthChosen).day() === 1) {
+    if (moment(monthChosen, "MMM-YYYY").day() === 1) {
       rowCount = 0;
     } else {
       rowCount = 1;
     }
 
     for (let i = 0; i < numDays; i++) {
-      const dateDay = moment(monthChosen)
+      const dateDay = moment(monthChosen, "MMM-YYYY")
         .add(i, "days")
         .day();
       if (dateDay === 1) {
@@ -60,7 +60,7 @@ const PlanCalendar = () => {
   const renderRows = (numRows, monthChosen) => {
     let rows = [];
     let prevLastDay = 0;
-    const startDay = moment(monthChosen).day();
+    const startDay = moment(monthChosen, "MMM-YYYY").day();
     const numDays = calcDays(monthChosen);
 
     for (let i = 1; i <= numRows; i++) {
