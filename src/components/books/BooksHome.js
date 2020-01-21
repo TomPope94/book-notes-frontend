@@ -6,12 +6,18 @@ import { listBooks, resetBooks } from "actions/books/books";
 
 import Book from "components/elements/Book";
 import Loader from "components/elements/Loader";
+import LibraryFilter from "components/books/LibraryFilter";
 
 const styles = {
   library: {
     paddingLeft: 50,
     paddingRight: 50,
     color: "rgba(34, 38, 65, 0.75)"
+  },
+  libraryHeader: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between"
   },
   catalog: {
     display: "flex",
@@ -39,9 +45,11 @@ const BooksHome = ({ listBooks, resetBooks, books }) => {
     for (let i = 0; i < booksData.length; i++) {
       const books = generateBooks(booksData[i]);
       const group = (
-        <div style={styles.catalog} key={uuid.v4()}>
+        <div>
           <h2 style={styles.subHeading}>{booksData[i].name}</h2>
-          {books}
+          <div style={styles.catalog} key={uuid.v4()}>
+            {books}
+          </div>
         </div>
       );
       groupArr.push(group);
@@ -72,7 +80,10 @@ const BooksHome = ({ listBooks, resetBooks, books }) => {
     <Loader />
   ) : (
     <div style={styles.library}>
-      <h1>My Library.</h1>
+      <div style={styles.libraryHeader}>
+        <h1>My Library.</h1>
+        <LibraryFilter />
+      </div>
       <div>{renderGroups}</div>
     </div>
   );

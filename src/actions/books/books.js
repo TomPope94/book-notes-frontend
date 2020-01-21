@@ -159,9 +159,7 @@ export const changeFilter = newFilter => async dispatch => {
   try {
     dispatch({
       type: CHANGE_FILTER,
-      payload: {
-        newFilter: newFilter
-      }
+      payload: newFilter
     });
   } catch (err) {
     console.error(err);
