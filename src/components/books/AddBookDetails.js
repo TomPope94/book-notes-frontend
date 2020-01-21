@@ -1,42 +1,45 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { connect } from "react-redux";
 
-import { addBook } from 'actions/books/books';
+import { addBook } from "actions/books/books";
 
-import FormInput from 'components/elements/FormInput';
-import FormButton from 'components/elements/FormButton';
+import FormInput from "components/elements/FormInput";
+import FormButton from "components/elements/FormButton";
 
 const styles = {
   title: {
-    fontSize: '1.5rem',
-    color: '#222641',
+    fontSize: "1.5rem",
+    color: "#222641",
     marginBottom: 20
   },
   formStyle: {
-    display: 'flex',
-    flexDirection: 'column'
+    display: "flex",
+    flexDirection: "column"
   }
 };
 
 const AddBookDetails = ({ addBook }) => {
   const [formData, setFormData] = useState({
-    title: '',
-    author: '',
-    cover: '',
-    categories: '',
-    pageCount: '',
-    language: ''
+    title: "",
+    author: "",
+    cover: "",
+    categories: "",
+    pageCount: "",
+    language: ""
   });
   const { title, author, cover, categories, pageCount, language } = formData;
+  const history = useHistory();
 
   const handleChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
-    addBook(formData);
+    await addBook(formData);
+    history.push("/books");
   };
 
   return (

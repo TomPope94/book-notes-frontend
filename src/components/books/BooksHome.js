@@ -1,8 +1,11 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import uuid from "uuid";
 
 import { listBooks, resetBooks } from "actions/books/books";
+
+import { BOOKS_ADD } from "constants/routes";
 
 import Book from "components/elements/Book";
 import Loader from "components/elements/Loader";
@@ -30,6 +33,13 @@ const styles = {
     height: 1,
     background: "linear-gradient(to right, #222641, transparent)",
     position: "absolute"
+  },
+  libraryHeaderLeft: {
+    display: "flex",
+    alignItems: "center"
+  },
+  libraryTitle: {
+    marginRight: 10
   },
   subHeading: {
     fontWeight: 200
@@ -89,7 +99,10 @@ const BooksHome = ({ listBooks, resetBooks, books }) => {
   ) : (
     <div style={styles.library}>
       <div style={styles.libraryHeader}>
-        <h1>My Library.</h1>
+        <div style={styles.libraryHeaderLeft}>
+          <h1 style={styles.libraryTitle}>My Library.</h1>
+          <Link to={BOOKS_ADD}>Add</Link>
+        </div>
         <LibraryFilter />
       </div>
       <div>{renderGroups}</div>

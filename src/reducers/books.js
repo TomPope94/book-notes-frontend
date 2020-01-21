@@ -21,12 +21,6 @@ const initialState = {
 export default function(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
-    case ADD_BOOK:
-      return {
-        ...state,
-        books: { ...state.books, payload },
-        loading: false
-      };
     case GET_ALL_BOOKS:
       return {
         ...state,

@@ -28,11 +28,6 @@ export const addBook = formData => async dispatch => {
     await API.post("prod", "/books", {
       body: APIBody
     });
-
-    dispatch({
-      type: ADD_BOOK,
-      payload: APIBody
-    });
   } catch (err) {
     console.error(err);
   }
