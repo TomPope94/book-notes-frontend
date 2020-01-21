@@ -22,7 +22,14 @@ const styles = {
   catalog: {
     display: "flex",
     flexDirection: "row",
-    flexWrap: "wrap"
+    overflowX: "overlay",
+    overflowY: "hidden"
+  },
+  groupUnderline: {
+    width: "100%",
+    height: 1,
+    background: "linear-gradient(to right, #222641, transparent)",
+    position: "absolute"
   },
   subHeading: {
     fontWeight: 200
@@ -47,6 +54,7 @@ const BooksHome = ({ listBooks, resetBooks, books }) => {
       const group = (
         <div>
           <h2 style={styles.subHeading}>{booksData[i].name}</h2>
+          <span style={styles.groupUnderline} />
           <div style={styles.catalog} key={uuid.v4()}>
             {books}
           </div>

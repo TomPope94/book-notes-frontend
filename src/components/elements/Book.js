@@ -1,48 +1,49 @@
-import React, { Fragment } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { BOOKS_ADD, BOOKS_DETAILS } from 'constants/routes';
-import { getBook } from 'actions/books/books';
-import anime from 'animejs';
+import React, { Fragment } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { connect } from "react-redux";
+import { BOOKS_ADD, BOOKS_DETAILS } from "constants/routes";
+import { getBook } from "actions/books/books";
+import anime from "animejs";
 
 const Book = ({ id, bookTitle, addBook, getBook }) => {
   const styles = {
     book: {
-      boxShadow: '0 2px 3px rgba(34,38,65,0.5)',
-      cursor: 'pointer',
+      boxShadow: "0 2px 3px rgba(34,38,65,0.5)",
+      cursor: "pointer",
       height: 300,
-      width: 200,
+      maxWidth: 200,
+      minWidth: 200,
       margin: 50,
       borderRadius: 5,
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
       padding: 10,
-      textAlign: 'center'
+      textAlign: "center"
     },
     addBook: {
-      border: '1px solid #f38b66',
-      background: '#fff'
+      border: "1px solid #f38b66",
+      background: "#fff"
     },
     existingBook: {
-      background: '#f38b66'
+      background: "#f38b66"
     }
   };
 
   const history = useHistory();
 
   const enlargeBook = (hover, e) => {
-    const animateDirection = hover ? 'normal' : 'reverse';
+    const animateDirection = hover ? "normal" : "reverse";
 
     anime({
       targets: e.target,
       scale: [1, 1.1],
       boxShadow: [
-        '0 2px 3px rgba(34,38,65,0.5)',
-        '0 3px 5px rgba(34,38,65,0.5)'
+        "0 2px 3px rgba(34,38,65,0.5)",
+        "0 3px 5px rgba(34,38,65,0.5)"
       ],
       duration: 250,
-      easing: 'cubicBezier(0.675, 0.000, 0.330, 1.000)',
+      easing: "cubicBezier(0.675, 0.000, 0.330, 1.000)",
       direction: animateDirection
     });
   };
