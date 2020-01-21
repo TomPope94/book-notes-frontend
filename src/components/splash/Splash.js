@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const Splash = () => {
-  return <h1>Welcome to Magnapp Reading!</h1>;
+  return <h1>Welcome to LiberRead!</h1>;
 };
 
 export default Splash;

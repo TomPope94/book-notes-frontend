@@ -6,13 +6,15 @@ import {
   EDIT_BOOK,
   GET_DAILY_TRACKING,
   ADD_DAILY_TRACKING,
-  EDIT_PLANNED_DATE
-} from 'actions/types';
+  EDIT_PLANNED_DATE,
+  CHANGE_FILTER
+} from "actions/types";
 
 const initialState = {
   books: [],
   selectedBook: null,
   loading: true,
+  filter: "bookState",
   error: {}
 };
 export default function(state = initialState, action) {
