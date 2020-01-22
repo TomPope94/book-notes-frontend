@@ -3,7 +3,6 @@ import anime from "animejs";
 import { connect } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 
-import { logout } from "actions/auth";
 import {
   AUTH,
   BOOKS_HOME,

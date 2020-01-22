@@ -15,29 +15,12 @@ import Loader from "components/elements/Loader";
 import BookEditDropdown from "components/books/details/BookEditDropdown";
 
 const styles = {
-  pageContainer: {
-    width: "100vw",
-    height: "100vh",
-    position: "absolute",
-    left: 0,
-    top: 0,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    background: "rgba(1,1,1,0.2)"
-  },
   contentContainer: {
-    width: "90%",
-    height: "75%",
-    borderTop: "20px solid #f38b66",
-    boxShadow: "0 2px 5px #222641",
-    background: "#fff",
+    width: "100%",
+    height: "100%",
     pointerEvents: "all",
     display: "flex",
-    flexDirection: "column",
-    position: "absolute",
-    bottom: 50,
-    borderRadius: 10
+    flexDirection: "column"
   },
   topLineContainer: {
     display: "flex",
@@ -45,8 +28,7 @@ const styles = {
     justifyContent: "space-between"
   },
   titleContainer: {
-    width: "50%",
-    marginLeft: 270
+    width: "50%"
   },
   dropDownWholeContainer: {
     position: "relative"
@@ -69,16 +51,6 @@ const styles = {
     borderRadius: "50%",
     background: "#004757",
     border: "1px solid #004757"
-  },
-  coverContainer: {
-    width: 200,
-    height: 200,
-    borderRadius: "50%",
-    background: "#fff",
-    border: "2px solid rgb(243,139,102)",
-    position: "absolute",
-    top: -120,
-    left: 50
   },
   byRow: {
     width: "100%",
@@ -234,7 +206,6 @@ const BookDetails = ({ selectedBook, loading, editBook }) => {
   } else {
     toRender = (
       <Fragment>
-        <div style={styles.coverContainer} />
         <div style={styles.topLineContainer}>
           <div style={styles.titleContainer}>
             <FormInput
@@ -300,14 +271,8 @@ const BookDetails = ({ selectedBook, loading, editBook }) => {
       {dropdown ? (
         <div style={styles.hiddenClick} onClick={() => handleClick()}></div>
       ) : null}
-      <div
-        style={{ ...styles.pageContainer, cursor: "pointer" }}
-        onClick={() => history.push(BOOKS_HOME)}
-      />
-      <div style={{ ...styles.pageContainer, pointerEvents: "none" }}>
-        <div style={styles.contentContainer}>
-          {loading ? <Loader /> : toRender}
-        </div>
+      <div style={styles.contentContainer}>
+        {loading ? <Loader /> : toRender}
       </div>
     </Fragment>
   );
