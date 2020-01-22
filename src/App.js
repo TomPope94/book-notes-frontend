@@ -60,7 +60,7 @@ const App = () => {
     <Provider store={store}>
       <Router history={history}>
         <Nav />
-        <div style={{ paddingTop: 75 }}>
+        <div style={{ paddingLeft: 200, paddingTop: 25, paddingRight: 25 }}>
           <Switch>
             <Route exact path={AUTH} component={AuthBroker} />
             <Route exact path={SPLASH} component={Splash} />

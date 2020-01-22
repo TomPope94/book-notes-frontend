@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
 const styles = {
   logoSVG: {
-    height: '100%',
-    marginRight: 50
+    width: "100%",
+    height: "100%"
   }
 };
 
@@ -107,7 +107,7 @@ const LogoOrange = () => {
             </g>
           </mask>
         </defs>
-        <g style={{ isolation: 'isolate' }}>
+        <g style={{ isolation: "isolate" }}>
           {/* <path fill="#f38b66" d="M0.5 -0.5H630.5V260.5H0.5z"></path> */}
           <text
             fill="#fff"
@@ -120,13 +120,13 @@ const LogoOrange = () => {
               read
             </tspan>
           </text>
-          <g style={{ mixBlendMode: 'lighten' }}>
+          <g style={{ mixBlendMode: "lighten" }}>
             <g
               fill="none"
               stroke="#ccc"
               strokeMiterlimit="10"
               mask="url(#e)"
-              style={{ mixBlendMode: 'lighten', isolation: 'isolate' }}
+              style={{ mixBlendMode: "lighten", isolation: "isolate" }}
             >
               <path d="M402.06 93.59c64.83-13.28 84.56 23.67 84.56 23.67S483.06 77 555.19 62.88"></path>
               <path d="M403.87 80.2c61.13-12.52 82.81 37.38 82.81 37.38s-6.44-53 61.62-66.1"></path>
@@ -139,13 +139,13 @@ const LogoOrange = () => {
               d="M403.42 111.37c53.18-16 76.74 1.5 81.75 6.08a1 1 0 001.62-.32C489.71 111 505 85.5 560.92 79.76"
             ></path>
           </g>
-          <g style={{ mixBlendMode: 'lighten' }}>
+          <g style={{ mixBlendMode: "lighten" }}>
             <g
               fill="none"
               stroke="#ccc"
               strokeMiterlimit="10"
               mask="url(#f)"
-              style={{ mixBlendMode: 'lighten', isolation: 'isolate' }}
+              style={{ mixBlendMode: "lighten", isolation: "isolate" }}
             >
               <path d="M232.1 65.49c61.5 24.46 57.72 66.18 57.72 66.18s19.11-35.62 87.18-7.87"></path>
               <path d="M241 55.3c57.94 23.06 48.7 76.7 48.7 76.7s23.7-47.86 87.78-21.47"></path>
@@ -163,7 +163,7 @@ const LogoOrange = () => {
             stroke="#ccc"
             strokeMiterlimit="10"
             mask="url(#g)"
-            style={{ mixBlendMode: 'lighten', isolation: 'isolate' }}
+            style={{ mixBlendMode: "lighten", isolation: "isolate" }}
           >
             <path d="M290.39 45.8c65.82-6.88 81.84 31.82 81.84 31.82s.39-40.42 73.56-47.43"></path>
             <path d="M293.5 32.65c62.06-6.48 78.76 45.29 78.76 45.29S371 24.55 440 18.18"></path>

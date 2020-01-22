@@ -10,12 +10,9 @@ import { BOOKS_ADD } from "constants/routes";
 import Book from "components/elements/Book";
 import Loader from "components/elements/Loader";
 import LibraryFilter from "components/books/LibraryFilter";
-import Footer from "components/nav/Footer";
 
 const styles = {
   library: {
-    paddingLeft: 50,
-    paddingRight: 50,
     color: "rgba(34, 38, 65, 0.75)"
   },
   libraryHeader: {
@@ -109,7 +106,6 @@ const BooksHome = ({ listBooks, resetBooks, books }) => {
         </div>
         <div>{renderGroups}</div>
       </div>
-      <Footer />
     </div>
   );
 };

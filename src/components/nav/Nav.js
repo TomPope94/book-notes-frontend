@@ -1,9 +1,9 @@
-import React, { useState, Fragment } from 'react';
-import anime from 'animejs';
-import { connect } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useState, Fragment } from "react";
+import anime from "animejs";
+import { connect } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
 
-import { logout } from 'actions/auth';
+import { logout } from "actions/auth";
 import {
   AUTH,
   BOOKS_HOME,
@@ -12,63 +12,70 @@ import {
   RECALL,
   HELP,
   SPLASH
-} from 'constants/routes';
+} from "constants/routes";
 
-import UserDropdown from 'components/nav/UserDropdown';
-import LogoOrange from 'components/elements/images/LogoOrange';
+import UserDropdown from "components/nav/UserDropdown";
+import LogoOrange from "components/elements/images/LogoOrange";
 
 const styles = {
   navBar: {
-    width: '100vw',
-    height: 50,
-    background: '#f38b66',
-    boxShadow: '0 1px 10px #222641',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    position: 'fixed',
+    height: "100vh",
+    width: 150,
+    background: "#f38b66",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    position: "fixed",
+    overflowY: "overlay",
     zIndex: 10
   },
   navLinks: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: '50%',
-    justifyContent: 'space-between'
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    width: "100%",
+    height: "50%",
+    justifyContent: "space-between"
   },
   dropDownBox: {
     height: 400,
-    width: '15vw',
-    background: '#f38b66',
-    position: 'absolute',
+    width: "15vw",
+    background: "#f38b66",
+    position: "absolute",
     top: 0,
     right: 0,
     marginTop: 50,
-    transformOrigin: 'top',
-    transform: 'scaleY(0)',
+    transformOrigin: "top",
+    transform: "scaleY(0)",
     zIndex: 3
   },
   hiddenClick: {
-    height: '100vh',
-    width: '100vw',
-    position: 'absolute',
+    height: "100vh",
+    width: "100vw",
+    position: "absolute",
     top: 0,
     left: 0,
     zIndex: 2
   },
   linkStyling: {
-    fontSize: '1.5rem',
-    textDecoration: 'none',
-    color: '#fff'
+    fontSize: "1.5rem",
+    textDecoration: "none",
+    color: "#fff"
   },
   navRightContainer: {
-    display: 'flex',
+    display: "flex",
     marginRight: 20,
-    alignItems: 'center'
+    alignItems: "center"
   },
   logoContainer: {
-    height: '100%',
-    cursor: 'pointer'
+    width: "80%",
+    height: 100,
+    cursor: "pointer"
+  },
+  navDivider: {
+    width: "85%",
+    height: 2,
+    background: "linear-gradient(90deg, transparent, #fff, transparent)"
   }
 };
 
@@ -77,10 +84,10 @@ const Nav = ({ isAuthenticated }) => {
   const history = useHistory();
 
   const toggleDropdown = isOpen => {
-    const animateDirection = isOpen ? 'reverse' : 'normal';
+    const animateDirection = isOpen ? "reverse" : "normal";
 
     anime({
-      targets: '.userDropDown',
+      targets: ".userDropDown",
       duration: 500,
       direction: animateDirection,
       scaleY: [0, 1]
@@ -107,6 +114,7 @@ const Nav = ({ isAuthenticated }) => {
             >
               <LogoOrange />
             </div>
+            <span style={styles.navDivider} />
             <Link to={BOOKS_HOME} style={styles.linkStyling}>
               Library
             </Link>
