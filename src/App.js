@@ -14,6 +14,7 @@ import BooksHome from 'components/books/BooksHome';
 import BooksHelp from 'components/books/BooksHelp';
 import BooksDetails from 'components/books/details/BookDetails';
 import AddBook from 'components/books/AddBook';
+import AddBookManually from 'components/books/AddBookManually';
 import Account from 'components/user/account/Account';
 import Billing from 'components/user/account/billing/Billing';
 import Profile from 'components/user/profile/Profile';
@@ -87,6 +88,11 @@ const App = () => {
               exact
               path={routes.BOOKS_ADD.route}
               component={AddBook}
+            />
+            <PrivateRoute
+              exact
+              path={routes.BOOKS_MANUAL.route}
+              component={AddBookManually}
             />
             <PrivateRoute
               exact

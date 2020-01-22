@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { BOOKS_HOME, BOOKS_ADD } from 'constants/routes';
+import { BOOKS_HOME, BOOKS_ADD, BOOKS_MANUAL } from 'constants/routes';
 
 import Breadcrumb from 'components/nav/Breadcrumb';
 import AddBookDetails from 'components/books/AddBookDetails';
@@ -17,7 +17,8 @@ const styles = {
   },
   addBookChoices: {
     display: 'flex',
-    width: '100%'
+    width: '100%',
+    height: '100%'
   },
   contentLeft: {
     width: '50%',
@@ -45,8 +46,12 @@ const AddBook = () => {
           <div style={styles.contentLeft}>
             <AddBookSearch />
           </div>
-          <div style={styles.contentRight}>
-            <h1>Enter Details Manually</h1>
+          <div
+            style={styles.contentRight}
+            onClick={() => history.push(BOOKS_MANUAL.route)}
+          >
+            <h1>Enter Details Manually?</h1>
+            <p>For when you have all the details you need already...</p>
           </div>
         </div>
       </div>

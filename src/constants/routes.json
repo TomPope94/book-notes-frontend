@@ -39,6 +39,10 @@
     "route": "/books/add",
     "label": "Add Book"
   },
+  "BOOKS_MANUAL": {
+    "route": "/books/add/manual",
+    "label": "Manual Entry"
+  },
   "ACCOUNT_HOME": {
     "route": "/user/account",
     "label": "Account"
