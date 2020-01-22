@@ -56,8 +56,7 @@ const LibraryFilter = ({ changeFilter, resetBooks, listBooks, filter }) => {
 
     anime({
       targets: ".filterContainer",
-      duration: 300,
-      easing: "linear",
+      duration: 1000,
       translateX: ["85%", 0],
       direction: animateDirection
     });
