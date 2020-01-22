@@ -1,7 +1,13 @@
-import React from "react";
+import React from 'react';
+
+import LogoWhite from 'components/elements/images/LogoWhite';
 
 const Splash = () => {
-  return <h1>Welcome to LiberRead!</h1>;
+  return (
+    <div>
+      <LogoWhite />
+    </div>
+  );
 };
 
 export default Splash;
