@@ -1,12 +1,12 @@
-import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
-import { SEARCH } from 'constants/routes';
+import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
+import { SEARCH } from "constants/routes";
 
 const PlanHome = () => {
   return (
     <Fragment>
       <h1>Plan Homepage</h1>
-      <Link to={SEARCH}>Search</Link>
+      <Link to={SEARCH.route}>Search</Link>
     </Fragment>
   );
 };

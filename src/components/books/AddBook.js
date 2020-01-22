@@ -6,7 +6,7 @@ import AddBookSearch from "components/books/AddBookSearch";
 
 const styles = {
   contentContainer: {
-    height: "100%",
+    height: "95%",
     color: "rgba(34, 38, 65, 0.75)",
     pointerEvents: "all",
     display: "flex",

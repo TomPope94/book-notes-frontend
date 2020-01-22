@@ -138,7 +138,7 @@ const AuthDesktop = ({ isAuthenticated }) => {
   };
 
   if (isAuthenticated) {
-    return <Redirect to={BOOKS_HOME} />;
+    return <Redirect to={BOOKS_HOME.route} />;
   }
 
   const changeState = async () => {

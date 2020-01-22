@@ -100,7 +100,7 @@ const BooksHome = ({ listBooks, resetBooks, books }) => {
         <div style={styles.libraryHeader}>
           <div style={styles.libraryHeaderLeft}>
             <h1 style={styles.libraryTitle}>My Library.</h1>
-            <Link to={BOOKS_ADD}>Add</Link>
+            <Link to={BOOKS_ADD.route}>Add</Link>
           </div>
           <LibraryFilter />
         </div>

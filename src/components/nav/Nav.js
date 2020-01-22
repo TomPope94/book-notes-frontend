@@ -173,7 +173,7 @@ const Nav = ({ isAuthenticated }) => {
           <div style={styles.navLinks}>
             <div
               style={styles.logoContainer}
-              onClick={() => history.push(SPLASH)}
+              onClick={() => history.push(SPLASH.route)}
             >
               <LogoOrange />
             </div>
@@ -181,13 +181,13 @@ const Nav = ({ isAuthenticated }) => {
             <div style={styles.pageLinks}>
               <div
                 style={styles.pageLink}
-                onClick={() => history.push(BOOKS_HOME)}
+                onClick={() => history.push(BOOKS_HOME.route)}
                 id="libraryLink"
                 onMouseOver={() => animateHover("libraryLink", true)}
                 onMouseOut={() => animateHover("libraryLink", false)}
               >
                 <span style={styles.linkBackground} />
-                {baseLocation === BOOKS_HOME ? (
+                {baseLocation === BOOKS_HOME.route ? (
                   <Fragment>
                     <div style={styles.linkRibbon} />
                     <div style={styles.linkRibbonOverhang} />
@@ -197,13 +197,13 @@ const Nav = ({ isAuthenticated }) => {
               </div>
               <div
                 style={styles.pageLink}
-                onClick={() => history.push(PLANNING)}
+                onClick={() => history.push(PLANNING.route)}
                 id="planLink"
                 onMouseOver={() => animateHover("planLink", true)}
                 onMouseOut={() => animateHover("planLink", false)}
               >
                 <span style={styles.linkBackground} />
-                {baseLocation === PLANNING ? (
+                {baseLocation === PLANNING.route ? (
                   <Fragment>
                     <div style={styles.linkRibbon} />
                     <div style={styles.linkRibbonOverhang} />
@@ -213,13 +213,13 @@ const Nav = ({ isAuthenticated }) => {
               </div>
               <div
                 style={styles.pageLink}
-                onClick={() => history.push(TRACKING)}
+                onClick={() => history.push(TRACKING.route)}
                 id="trackLink"
                 onMouseOver={() => animateHover("trackLink", true)}
                 onMouseOut={() => animateHover("trackLink", false)}
               >
                 <span style={styles.linkBackground} />
-                {baseLocation === TRACKING ? (
+                {baseLocation === TRACKING.route ? (
                   <Fragment>
                     <div style={styles.linkRibbon} />
                     <div style={styles.linkRibbonOverhang} />
@@ -229,13 +229,13 @@ const Nav = ({ isAuthenticated }) => {
               </div>
               <div
                 style={styles.pageLink}
-                onClick={() => history.push(RECALL)}
+                onClick={() => history.push(RECALL.route)}
                 id="recallLink"
                 onMouseOver={() => animateHover("recallLink", true)}
                 onMouseOut={() => animateHover("recallLink", false)}
               >
                 <span style={styles.linkBackground} />
-                {baseLocation === RECALL ? (
+                {baseLocation === RECALL.route ? (
                   <Fragment>
                     <div style={styles.linkRibbon} />
                     <div style={styles.linkRibbonOverhang} />

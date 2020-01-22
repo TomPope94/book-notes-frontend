@@ -51,11 +51,11 @@ const Book = ({ id, bookTitle, addBook, getBook }) => {
   const openBook = () => {
     getBook(id);
 
-    history.push(BOOKS_DETAILS);
+    history.push(BOOKS_DETAILS.route);
   };
 
   const bookType = addBook ? (
-    <Link to={BOOKS_ADD}>
+    <Link to={BOOKS_ADD.route}>
       <div style={{ ...styles.book, ...styles.addBook }} />
     </Link>
   ) : (

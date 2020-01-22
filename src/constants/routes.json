@@ -1,21 +1,78 @@
 {
-  "SPLASH": "/",
-  "SALES": "/product",
-  "AUTH": "/auth",
-  "AUTH_FORGOT": "/auth/retrieve",
-  "AUTH_SIGNED_UP": "/auth/signedup",
-  "AUTH_ONBOARDING": "/auth/welcome",
-  "BOOKS_HOME": "/books",
-  "BOOKS_HELP": "/books/help",
-  "BOOKS_DETAILS": "/books/details",
-  "BOOKS_ADD": "/books/add",
-  "ACCOUNT_HOME": "/user/account",
-  "ACCOUNT_BILLING": "/user/account/billing",
-  "PROFILE_HOME": "/user/profile",
-  "USER_ACTIVITY": "/user/activity",
-  "TRACKING": "/tracking",
-  "PLANNING": "/planning",
-  "SEARCH": "/planning/search",
-  "RECALL": "/recall",
-  "HELP": "/help"
+  "SPLASH": {
+    "route": "/",
+    "label": "Homepage"
+  },
+  "SALES": {
+    "route": "/product",
+    "label": "Store"
+  },
+  "AUTH": {
+    "route": "/auth",
+    "label": "Login"
+  },
+  "AUTH_FORGOT": {
+    "route": "/auth/retrieve",
+    "label": "Forgot Login"
+  },
+  "AUTH_SIGNED_UP": {
+    "route": "/auth/signedup",
+    "label": "Signed Up"
+  },
+  "AUTH_ONBOARDING": {
+    "route": "/auth/welcome",
+    "label": "User Welcome"
+  },
+  "BOOKS_HOME": {
+    "route": "/books",
+    "label": "Library"
+  },
+  "BOOKS_HELP": {
+    "route": "/books/help",
+    "label": "Help"
+  },
+  "BOOKS_DETAILS": {
+    "route": "/books/details",
+    "label": "Details"
+  },
+  "BOOKS_ADD": {
+    "route": "/books/add",
+    "label": "Add Book"
+  },
+  "ACCOUNT_HOME": {
+    "route": "/user/account",
+    "label": "Account"
+  },
+  "ACCOUNT_BILLING": {
+    "route": "/user/account/billing",
+    "label": "Billing"
+  },
+  "PROFILE_HOME": {
+    "route": "/user/profile",
+    "label": "Profile"
+  },
+  "USER_ACTIVITY": {
+    "route": "/user/activity",
+    "label": "Activity"
+  },
+  "TRACKING": {
+    "route": "/tracking",
+    "label": "Tracking"
+  },
+  "PLANNING": {
+    "route": "/planning",
+    "label": "Planning"
+  },
+  "SEARCH": {
+    "route": "/planning/search",
+    "label": "Book Search"
+  },
+  "RECALL": {
+    "route": "/recall",
+    "label": "Recall"
+  },
+  "HELP": {
+    "route": "/help",
+    "label": "Help"
+  }
 }

@@ -3,6 +3,7 @@ import { Router, Route, Switch } from "react-router-dom";
 import history from "./history";
 
 import Nav from "components/nav/Nav";
+import Breadcrumb from "components/nav/Breadcrumb";
 import PrivateRoute from "components/routing/PrivateRoute";
 import Splash from "components/splash/Splash";
 import SalesPage from "components/splash/SalesPage";
@@ -25,27 +26,7 @@ import PageNotFound from "components/other/PageNotFound";
 import Help from "components/other/Help";
 import Recall from "components/recall/Recall";
 
-import {
-  SPLASH,
-  SALES,
-  AUTH,
-  AUTH_FORGOT,
-  AUTH_SIGNED_UP,
-  AUTH_ONBOARDING,
-  BOOKS_HOME,
-  BOOKS_HELP,
-  BOOKS_DETAILS,
-  BOOKS_ADD,
-  ACCOUNT_HOME,
-  ACCOUNT_BILLING,
-  PROFILE_HOME,
-  USER_ACTIVITY,
-  SEARCH,
-  PLANNING,
-  TRACKING,
-  RECALL,
-  HELP
-} from "constants/routes";
+import routes from "constants/routes";
 
 import { Provider } from "react-redux";
 import store from "store";
@@ -68,30 +49,79 @@ const App = () => {
             height: "95vh"
           }}
         >
+          <Breadcrumb routes={routes} separator="/" />
           <Switch>
-            <Route exact path={AUTH} component={AuthBroker} />
-            <Route exact path={SPLASH} component={Splash} />
-            <Route exact path={SALES} component={SalesPage} />
-            <Route exact path={HELP} component={Help} />
-            <Route exact path={AUTH_FORGOT} component={AuthForgot} />
-            <PrivateRoute exact path={AUTH_SIGNED_UP} component={SignedUp} />
+            <Route exact path={routes.AUTH.route} component={AuthBroker} />
+            <Route exact path={routes.SPLASH.route} component={Splash} />
+            <Route exact path={routes.SALES.route} component={SalesPage} />
+            <Route exact path={routes.HELP.route} component={Help} />
+            <Route
+              exact
+              path={routes.AUTH_FORGOT.route}
+              component={AuthForgot}
+            />
             <PrivateRoute
               exact
-              path={AUTH_ONBOARDING}
+              path={routes.AUTH_SIGNED_UP.route}
+              component={SignedUp}
+            />
+            <PrivateRoute
+              exact
+              path={routes.AUTH_ONBOARDING.route}
               component={UserOnboarding}
             />
-            <PrivateRoute exact path={BOOKS_HOME} component={BooksHome} />
-            <PrivateRoute exact path={BOOKS_HELP} component={BooksHelp} />
-            <PrivateRoute exact path={BOOKS_DETAILS} component={BooksDetails} />
-            <PrivateRoute exact path={BOOKS_ADD} component={AddBook} />
-            <PrivateRoute exact path={ACCOUNT_HOME} component={Account} />
-            <PrivateRoute exact path={ACCOUNT_BILLING} component={Billing} />
-            <PrivateRoute exact path={PROFILE_HOME} component={Profile} />
-            <PrivateRoute exact path={USER_ACTIVITY} component={Activity} />
-            <PrivateRoute exact path={SEARCH} component={Search} />
-            <PrivateRoute exact path={PLANNING} component={PlanHome} />
-            <PrivateRoute exact path={TRACKING} component={Tracking} />
-            <PrivateRoute exact path={RECALL} component={Recall} />
+            <PrivateRoute
+              exact
+              path={routes.BOOKS_HOME.route}
+              component={BooksHome}
+            />
+            <PrivateRoute
+              exact
+              path={routes.BOOKS_HELP.route}
+              component={BooksHelp}
+            />
+            <PrivateRoute
+              exact
+              path={routes.BOOKS_DETAILS.route}
+              component={BooksDetails}
+            />
+            <PrivateRoute
+              exact
+              path={routes.BOOKS_ADD.route}
+              component={AddBook}
+            />
+            <PrivateRoute
+              exact
+              path={routes.ACCOUNT_HOME.route}
+              component={Account}
+            />
+            <PrivateRoute
+              exact
+              path={routes.ACCOUNT_BILLING.route}
+              component={Billing}
+            />
+            <PrivateRoute
+              exact
+              path={routes.PROFILE_HOME.route}
+              component={Profile}
+            />
+            <PrivateRoute
+              exact
+              path={routes.USER_ACTIVITY.route}
+              component={Activity}
+            />
+            <PrivateRoute exact path={routes.SEARCH.route} component={Search} />
+            <PrivateRoute
+              exact
+              path={routes.PLANNING.route}
+              component={PlanHome}
+            />
+            <PrivateRoute
+              exact
+              path={routes.TRACKING.route}
+              component={Tracking}
+            />
+            <PrivateRoute exact path={routes.RECALL.route} component={Recall} />
             <Route component={PageNotFound} />
           </Switch>
         </div>

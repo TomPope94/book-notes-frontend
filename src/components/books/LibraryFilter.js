@@ -72,7 +72,7 @@ const LibraryFilter = ({ changeFilter, resetBooks, listBooks, filter }) => {
   return (
     <div style={styles.filterContainer} className="filterContainer">
       <div style={styles.arrow} onClick={() => handleClick()}>
-        {filterExpand ? "Close" : "Open"}
+        {filterExpand ? ">" : "<"}
       </div>
       <div>
         <h3 style={styles.filterTitle}>Group By:</h3>
