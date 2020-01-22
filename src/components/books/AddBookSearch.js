@@ -16,7 +16,8 @@ const styles = {
   },
   searchForm: {
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
+    width: "75%"
   }
 };
 

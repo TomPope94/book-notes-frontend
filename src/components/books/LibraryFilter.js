@@ -30,7 +30,8 @@ const styles = {
   arrow: {
     display: "flex",
     alignItems: "center",
-    width: "25%"
+    width: "25%",
+    cursor: "pointer"
   },
   filterForm: {
     display: "flex"

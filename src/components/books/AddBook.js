@@ -7,18 +7,21 @@ import AddBookSearch from "components/books/AddBookSearch";
 const styles = {
   contentContainer: {
     height: "100%",
+    color: "rgba(34, 38, 65, 0.75)",
     pointerEvents: "all",
     display: "flex",
-    flexDirection: "row"
+    flexDirection: "column"
+  },
+  addBookChoices: {
+    display: "flex",
+    width: "100%"
   },
   contentLeft: {
-    height: "100%",
     width: "50%",
     display: "flex",
     flexDirection: "column"
   },
   contentRight: {
-    height: "100%",
     width: "50%"
   },
   title: {
@@ -33,12 +36,14 @@ const AddBook = () => {
   return (
     <Fragment>
       <div style={styles.contentContainer}>
-        <div style={styles.contentLeft}>
-          <h1 style={styles.title}>Add Book.</h1>
-          <AddBookSearch />
-        </div>
-        <div style={styles.contentRight}>
-          <AddBookDetails />
+        <h1 style={styles.title}>Add Book.</h1>
+        <div style={styles.addBookChoices}>
+          <div style={styles.contentLeft}>
+            <AddBookSearch />
+          </div>
+          <div style={styles.contentRight}>
+            <h1>Enter Details Manually</h1>
+          </div>
         </div>
       </div>
     </Fragment>
