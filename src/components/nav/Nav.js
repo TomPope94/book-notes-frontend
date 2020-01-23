@@ -10,10 +10,9 @@ import {
   PLANNING,
   RECALL,
   HELP,
-  SPLASH
+  SPLASH,
+  USER_HOME
 } from "constants/routes";
-
-import UserDropdown from "components/nav/UserDropdown";
 import LogoOrange from "components/elements/images/LogoOrange";
 import HelpIcon from "components/elements/icons/HelpIcon";
 import UserIcon from "components/elements/icons/UserIcon";
@@ -260,10 +259,10 @@ const Nav = ({ isAuthenticated }) => {
               textFill={"#fff"}
               textStroke={"#fff"}
             />
-            <UserIcon />
+            <UserIcon onClick={() => history.push(USER_HOME.route)} />
           </div>
         ) : (
-          <Link to={AUTH}>Login</Link>
+          <Link to={AUTH.route}>Login</Link>
         )}
       </div>
     </Fragment>

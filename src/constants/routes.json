@@ -47,21 +47,25 @@
     "route": "/books/add/search",
     "label": "Search"
   },
+  "USER_HOME": {
+    "route": "/user",
+    "label": "User"
+  },
   "ACCOUNT_HOME": {
     "route": "/user/account",
     "label": "Account"
   },
   "ACCOUNT_BILLING": {
-    "route": "/user/account/billing",
+    "route": "/user/billing",
     "label": "Billing"
   },
-  "PROFILE_HOME": {
-    "route": "/user/profile",
-    "label": "Profile"
+  "USER_NOTIFICATIONS": {
+    "route": "/user/notifications",
+    "label": "Notifications"
   },
-  "USER_ACTIVITY": {
-    "route": "/user/activity",
-    "label": "Activity"
+  "USER_HELP": {
+    "route": "/user/help",
+    "label": "User Help"
   },
   "TRACKING": {
     "route": "/tracking",

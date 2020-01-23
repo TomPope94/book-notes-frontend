@@ -79,7 +79,7 @@ const Login = ({ login }) => {
             onChange={e => handleChange(e)}
           />
           <div style={styles.buttonRow}>
-            <Link to={AUTH_FORGOT}>Can't Remember?</Link>
+            <Link to={AUTH_FORGOT.route}>Can't Remember?</Link>
             <FormButton type="submit">Login</FormButton>
           </div>
         </form>

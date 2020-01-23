@@ -16,10 +16,11 @@ import BooksDetails from "components/books/details/BookDetails";
 import AddBook from "components/books/addBook/AddBook";
 import AddBookManually from "components/books/addBook/AddBookManually";
 import AddBookSearch from "components/books/addBook/AddBookSearch";
+import UserHome from "components/user/UserHome";
 import Account from "components/user/account/Account";
-import Billing from "components/user/account/billing/Billing";
-import Profile from "components/user/profile/Profile";
-import Activity from "components/user/activity/Activity";
+import Billing from "components/user/billing/Billing";
+import Notifications from "components/user/notifications/Notifications";
+import UserHelp from "components/user/help/UserHelp";
 import Search from "components/planning/search/Search";
 import Tracking from "components/tracking/Tracking";
 import PlanHome from "components/planning/PlanHome";
@@ -102,6 +103,11 @@ const App = () => {
             />
             <PrivateRoute
               exact
+              path={routes.USER_HOME.route}
+              component={UserHome}
+            />
+            <PrivateRoute
+              exact
               path={routes.ACCOUNT_HOME.route}
               component={Account}
             />
@@ -112,13 +118,13 @@ const App = () => {
             />
             <PrivateRoute
               exact
-              path={routes.PROFILE_HOME.route}
-              component={Profile}
+              path={routes.USER_NOTIFICATIONS.route}
+              component={Notifications}
             />
             <PrivateRoute
               exact
-              path={routes.USER_ACTIVITY.route}
-              component={Activity}
+              path={routes.USER_HELP.route}
+              component={UserHelp}
             />
             <PrivateRoute exact path={routes.SEARCH.route} component={Search} />
             <PrivateRoute
