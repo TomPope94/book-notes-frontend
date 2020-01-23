@@ -15,6 +15,8 @@ import {
 
 import UserDropdown from 'components/nav/UserDropdown';
 import LogoOrange from 'components/elements/images/LogoOrange';
+import HelpIcon from 'components/elements/icons/HelpIcon';
+import UserIcon from 'components/elements/icons/UserIcon';
 
 const styles = {
   navBar: {
@@ -89,7 +91,8 @@ const styles = {
   },
   navRightContainer: {
     display: 'flex',
-    marginRight: 20,
+    flexDirection: 'column',
+    height: 150,
     alignItems: 'center'
   },
   logoContainer: {
@@ -249,13 +252,8 @@ const Nav = ({ isAuthenticated }) => {
         ) : null}
         {isAuthenticated ? (
           <div style={styles.navRightContainer}>
-            <Link to={HELP} style={styles.linkStyling}>
-              Help
-            </Link>
-            <button onClick={() => handleClick()}>User</button>
-            <div style={styles.dropDownBox} className="userDropDown">
-              <UserDropdown />
-            </div>
+            <HelpIcon />
+            <UserIcon />
           </div>
         ) : (
           <Link to={AUTH}>Login</Link>

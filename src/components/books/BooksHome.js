@@ -1,43 +1,44 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import uuid from "uuid";
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import uuid from 'uuid';
 
-import { listBooks, resetBooks } from "actions/books/books";
+import { listBooks, resetBooks } from 'actions/books/books';
 
-import { BOOKS_ADD } from "constants/routes";
+import { BOOKS_ADD } from 'constants/routes';
 
-import Book from "components/elements/Book";
-import Loader from "components/elements/Loader";
-import LibraryFilter from "components/books/LibraryFilter";
+import Book from 'components/elements/Book';
+import Loader from 'components/elements/Loader';
+import LibraryFilter from 'components/books/LibraryFilter';
+import AddBookIcon from 'components/elements/icons/AddBookIcon';
 
 const styles = {
   library: {
-    color: "rgba(34, 38, 65, 0.75)"
+    color: 'rgba(34, 38, 65, 0.75)'
   },
   libraryHeader: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between"
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between'
   },
   catalog: {
-    display: "flex",
-    flexDirection: "row",
-    overflowX: "overlay",
-    overflowY: "hidden"
+    display: 'flex',
+    flexDirection: 'row',
+    overflowX: 'overlay',
+    overflowY: 'hidden'
   },
   groupUnderline: {
-    width: "100%",
+    width: '100%',
     height: 1,
-    background: "linear-gradient(to right, #222641, transparent)",
-    position: "absolute"
+    background: 'linear-gradient(to right, #222641, transparent)',
+    position: 'absolute'
   },
   libraryHeaderLeft: {
-    display: "flex",
-    alignItems: "center"
+    display: 'flex',
+    alignItems: 'center'
   },
   libraryTitle: {
-    marginRight: 10
+    marginRight: 50
   },
   subHeading: {
     fontWeight: 200
@@ -53,6 +54,7 @@ const BooksHome = ({ listBooks, resetBooks, books }) => {
     };
   }, [listBooks]);
 
+  const history = useHistory();
   // loop through array to create a row for each element
   // loop through each element to create books for each row
   const generateGroups = booksData => {
@@ -100,7 +102,10 @@ const BooksHome = ({ listBooks, resetBooks, books }) => {
         <div style={styles.libraryHeader}>
           <div style={styles.libraryHeaderLeft}>
             <h1 style={styles.libraryTitle}>My Library.</h1>
-            <Link to={BOOKS_ADD.route}>Add</Link>
+            <AddBookIcon
+              height="50"
+              onClick={() => history.push(BOOKS_ADD.route)}
+            />
           </div>
           <LibraryFilter />
         </div>
