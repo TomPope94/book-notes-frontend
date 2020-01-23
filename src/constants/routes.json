@@ -43,6 +43,10 @@
     "route": "/books/add/manual",
     "label": "Manual Entry"
   },
+  "BOOKS_SEARCH": {
+    "route": "/books/add/search",
+    "label": "Search"
+  },
   "ACCOUNT_HOME": {
     "route": "/user/account",
     "label": "Account"

@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import Breadcrumb from 'components/nav/Breadcrumb';
-import AddBookDetails from 'components/books/AddBookDetails';
+import Breadcrumb from "components/nav/Breadcrumb";
+import AddBookDetails from "components/books/addBook/AddBookDetails";
 
-import { BOOKS_HOME, BOOKS_ADD, BOOKS_MANUAL } from 'constants/routes';
+import { BOOKS_HOME, BOOKS_ADD, BOOKS_MANUAL } from "constants/routes";
 
 const AddBookManually = () => {
   return (

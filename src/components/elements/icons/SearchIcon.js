@@ -1,18 +1,8 @@
-import React from 'react';
+import React from "react";
 
-const styles = {
-  icon: {
-    width: '100%'
-  }
-};
-
-const SearchIcon = () => {
+const SearchIcon = ({ ...props }) => {
   return (
-    <svg
-      style={styles.icon}
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 117 117"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 117 117" {...props}>
       <path
         fill="none"
         stroke="#000"
