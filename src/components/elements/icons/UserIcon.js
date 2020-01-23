@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
 const styles = {
   icon: {
-    height: '100%',
+    height: "100%",
     marginBottom: 20
   }
 };
