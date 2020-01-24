@@ -1,15 +1,17 @@
 import React, { useState, Fragment } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import anime from "animejs";
 
-import { BOOKS_HOME } from "constants/routes";
+import { USER_DASHBOARD, SPLASH } from "constants/routes";
 
 import Login from "components/auth/Login";
 import Register from "components/auth/Register";
 
 const AuthDesktop = ({ isAuthenticated }) => {
   const [loginState, setLoginState] = useState(true);
+
+  const history = useHistory();
 
   const styles = {
     pageContainer: {
@@ -20,7 +22,8 @@ const AuthDesktop = ({ isAuthenticated }) => {
       left: 0,
       display: "flex",
       flexDirection: "row",
-      background: "#fff"
+      background: "#fff",
+      zIndex: 3
     },
     currentFormContainer: {
       background: "transparent",
@@ -63,7 +66,7 @@ const AuthDesktop = ({ isAuthenticated }) => {
       alignItems: "center",
       justifyContent: "center",
       display: loginState ? "none" : "flex",
-      zIndex: 10
+      zIndex: 4
     },
     stateContainerRight: {
       display: "flex",
@@ -75,7 +78,14 @@ const AuthDesktop = ({ isAuthenticated }) => {
     changeStateText: {
       color: "#676a7b",
       fontSize: "3rem",
-      cursor: "pointer"
+      cursor: "pointer",
+      transform: "scaleY(1)"
+    },
+    backButton: {
+      position: "absolute",
+      top: 0,
+      left: 0,
+      zIndex: 5
     }
   };
   const delay = ms => new Promise(res => setTimeout(res, ms));
@@ -99,6 +109,16 @@ const AuthDesktop = ({ isAuthenticated }) => {
           },
           0
         )
+        .add({
+          targets: ".changeToRegister",
+          scaleY: [1, 0],
+          duration: 0
+        })
+        .add({
+          targets: ".changeToLogin",
+          scaleY: [0, 1],
+          duration: 0
+        })
         .add(
           {
             targets: ".changeToLogin",
@@ -126,6 +146,11 @@ const AuthDesktop = ({ isAuthenticated }) => {
           },
           1000
         )
+        .add({
+          targets: ".changeToRegister",
+          scaleY: [0, 1],
+          duration: 0
+        })
         .add(
           {
             targets: ".changeToLogin",
@@ -133,12 +158,17 @@ const AuthDesktop = ({ isAuthenticated }) => {
             duration: 1500
           },
           0
-        );
+        )
+        .add({
+          targets: ".changeToLogin",
+          scaleY: [1, 0],
+          duration: 0
+        });
     }
   };
 
   if (isAuthenticated) {
-    return <Redirect to={BOOKS_HOME} />;
+    return <Redirect to={USER_DASHBOARD.route} />;
   }
 
   const changeState = async () => {
@@ -149,6 +179,9 @@ const AuthDesktop = ({ isAuthenticated }) => {
 
   return (
     <Fragment>
+      <div style={styles.backButton} onClick={() => history.push(SPLASH.route)}>
+        Back
+      </div>
       <div
         style={{ ...styles.changeStateContainer, ...styles.stateContainerLeft }}
       >

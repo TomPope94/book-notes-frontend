@@ -1,47 +1,47 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-import { login } from "actions/auth";
+import { login } from 'actions/auth';
 
-import { AUTH_FORGOT } from "constants/routes";
+import { AUTH_FORGOT } from 'constants/routes';
 
-import FormInput from "components/elements/FormInput";
-import FormButton from "components/elements/FormButton";
+import FormInput from 'components/elements/FormInput';
+import FormButton from 'components/elements/FormButton';
 
 const styles = {
   formContainer: {
-    height: "100%",
-    width: "100%",
-    background: "#f38b66",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center"
+    height: '100%',
+    width: '100%',
+    background: '#f38b66',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   form: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center"
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   title: {
-    fontSize: "5rem",
+    fontSize: '5rem',
     fontWeight: 200,
-    color: "#222641"
+    color: '#222641'
   },
   buttonRow: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    width: "100%"
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%'
   }
 };
 
 const Login = ({ login }) => {
   const [formData, setFormData] = useState({
-    email: "",
-    password: ""
+    email: '',
+    password: ''
   });
   const { email, password } = formData;
 
@@ -61,7 +61,7 @@ const Login = ({ login }) => {
     <div style={styles.formContainer}>
       <div style={styles.form} className="formContent">
         <h1 style={styles.title}>
-          Login<span style={{ color: "#fff" }}>.</span>
+          Login<span style={{ color: '#fff' }}>.</span>
         </h1>
         <form style={styles.form} onSubmit={e => handleSubmit(e)}>
           <FormInput
@@ -79,7 +79,7 @@ const Login = ({ login }) => {
             onChange={e => handleChange(e)}
           />
           <div style={styles.buttonRow}>
-            <Link to={AUTH_FORGOT}>Can't Remember?</Link>
+            <Link to={AUTH_FORGOT.route}>Can't Remember?</Link>
             <FormButton type="submit">Login</FormButton>
           </div>
         </form>

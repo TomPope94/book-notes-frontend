@@ -5,8 +5,8 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT
-} from "actions/types";
-import { Auth } from "aws-amplify";
+} from 'actions/types';
+import { Auth } from 'aws-amplify';
 
 export const loadUser = () => async dispatch => {
   try {
@@ -59,6 +59,27 @@ export const logout = () => async dispatch => {
     await Auth.signOut({ global: true });
 
     dispatch({ type: LOGOUT });
+  } catch (err) {
+    console.error(err.message);
+  }
+};
+
+export const forgotPassword = username => async dispatch => {
+  try {
+    await Auth.forgotPassword(username);
+  } catch (err) {
+    console.error(err.message);
+  }
+};
+
+export const resetPassword = (
+  username,
+  code,
+  new_password
+) => async dispatch => {
+  try {
+    const data = await Auth.forgotPasswordSubmit(username, code, new_password);
+    debugger;
   } catch (err) {
     console.error(err.message);
   }

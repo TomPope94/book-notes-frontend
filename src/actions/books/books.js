@@ -1,7 +1,7 @@
 import { API } from "aws-amplify";
 import {
-  // SEARCH_SUCCESS,
-  // SEARCH_FAIL,
+  SEARCH_SUCCESS,
+  SEARCH_FAIL,
   GET_ALL_BOOKS,
   GET_BOOK,
   ADD_BOOK,
@@ -46,8 +46,8 @@ export const getBook = bookId => async dispatch => {
 };
 
 export const searchBooks = (title, author) => async dispatch => {
-  const titleFormat = title;
-  const authorFormat = author;
+  const titleFormat = title.split(" ").join("+");
+  const authorFormat = author.split(" ").join("+");
 
   const searchBody = {
     bookTitle: titleFormat,
@@ -55,13 +55,15 @@ export const searchBooks = (title, author) => async dispatch => {
   };
 
   try {
-    const res = await API.get("prod", "/books/search", {
+    const res = await API.post("prod", "/books/search", {
       body: searchBody
     });
 
-    debugger;
+    dispatch({
+      type: SEARCH_SUCCESS,
+      payload: res
+    });
   } catch (err) {
-    debugger;
     console.error(err);
   }
 };

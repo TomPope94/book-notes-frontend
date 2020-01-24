@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 
 const styles = {
   buttonStyle: {
-    border: 'none',
-    background: '#fff',
-    fontSize: '2rem',
+    border: "none",
+    background: "#fff",
+    fontSize: "2rem",
     padding: 10,
-    cursor: 'pointer',
-    color: '#222641'
+    cursor: "pointer",
+    color: "#222641"
   }
 };
 

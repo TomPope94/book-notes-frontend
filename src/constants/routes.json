@@ -1,21 +1,114 @@
 {
-  "SPLASH": "/",
-  "SALES": "/product",
-  "AUTH": "/auth",
-  "AUTH_FORGOT": "/auth/retrieve",
-  "AUTH_SIGNED_UP": "/auth/signedup",
-  "AUTH_ONBOARDING": "/auth/welcome",
-  "BOOKS_HOME": "/books",
-  "BOOKS_HELP": "/books/help",
-  "BOOKS_DETAILS": "/books/details",
-  "BOOKS_ADD": "/books/add",
-  "ACCOUNT_HOME": "/user/account",
-  "ACCOUNT_BILLING": "/user/account/billing",
-  "PROFILE_HOME": "/user/profile",
-  "USER_ACTIVITY": "/user/activity",
-  "TRACKING": "/tracking",
-  "PLANNING": "/planning",
-  "SEARCH": "/planning/search",
-  "RECALL": "/recall",
-  "HELP": "/help"
+  "SPLASH": {
+    "route": "/",
+    "label": "Homepage"
+  },
+  "SALES": {
+    "route": "/product",
+    "label": "Store"
+  },
+  "AUTH": {
+    "route": "/auth",
+    "label": "Login"
+  },
+  "AUTH_FORGOT": {
+    "route": "/auth/retrieve",
+    "label": "Forgot Login"
+  },
+  "AUTH_RESET": {
+    "route": "/auth/retrieve/reset",
+    "label": "Password Reset"
+  },
+  "AUTH_SIGNED_UP": {
+    "route": "/auth/signedup",
+    "label": "Signed Up"
+  },
+  "AUTH_ONBOARDING": {
+    "route": "/auth/welcome",
+    "label": "User Welcome"
+  },
+  "USER_DASHBOARD": {
+    "route": "/dashboard",
+    "label": "Dashboard"
+  },
+  "BOOKS_HOME": {
+    "route": "/books",
+    "label": "Library"
+  },
+  "BOOKS_HELP": {
+    "route": "/books/help",
+    "label": "Help"
+  },
+  "BOOKS_DETAILS": {
+    "route": "/books/details",
+    "label": "Details"
+  },
+  "BOOKS_ADD": {
+    "route": "/books/add",
+    "label": "Add Book"
+  },
+  "BOOKS_MANUAL": {
+    "route": "/books/add/manual",
+    "label": "Manual Entry"
+  },
+  "BOOKS_SEARCH": {
+    "route": "/books/add/search",
+    "label": "Search"
+  },
+  "USER_HOME": {
+    "route": "/user",
+    "label": "User"
+  },
+  "ACCOUNT_HOME": {
+    "route": "/user/account",
+    "label": "Account"
+  },
+  "ACCOUNT_BILLING": {
+    "route": "/user/billing",
+    "label": "Billing"
+  },
+  "USER_NOTIFICATIONS": {
+    "route": "/user/notifications",
+    "label": "Notifications"
+  },
+  "USER_HELP": {
+    "route": "/user/help",
+    "label": "User Help"
+  },
+  "TRACKING": {
+    "route": "/tracking",
+    "label": "Tracking"
+  },
+  "PLANNING": {
+    "route": "/planning",
+    "label": "Planning"
+  },
+  "SEARCH": {
+    "route": "/planning/search",
+    "label": "Book Search"
+  },
+  "RECALL": {
+    "route": "/recall",
+    "label": "Recall"
+  },
+  "HELP": {
+    "route": "/help",
+    "label": "Help"
+  },
+  "GUEST_BLOG": {
+    "route": "/blog",
+    "label": "Blog"
+  },
+  "GUEST_PRICING": {
+    "route": "/pricing",
+    "label": "Pricing"
+  },
+  "GUEST_PRODUCT": {
+    "route": "/product",
+    "label": "Product"
+  },
+  "GUEST_SUPPORT": {
+    "route": "/support",
+    "label": "Support"
+  }
 }

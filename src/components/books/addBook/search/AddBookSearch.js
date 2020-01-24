@@ -3,20 +3,40 @@ import { connect } from "react-redux";
 
 import { searchBooks } from "actions/books/books";
 
-import AddBookSearchResults from "components/books/AddBookSearchResults";
+import { BOOKS_HOME, BOOKS_ADD, BOOKS_SEARCH } from "constants/routes";
+
+import AddBookSearchResults from "components/books/addBook/search/AddBookSearchResults";
 
 import FormInput from "components/elements/FormInput";
 import FormButton from "components/elements/FormButton";
+import Breadcrumb from "components/nav/Breadcrumb";
+import SearchIcon from "components/elements/icons/SearchIcon";
 
 const styles = {
   title: {
-    fontSize: "1.5rem",
+    fontSize: "2rem",
     color: "#222641",
-    marginBottom: 20
+    marginBottom: 20,
+    fontWeight: 200
   },
   searchForm: {
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
+    width: "75%"
+  },
+  searchButtonOuter: {
+    width: "10%",
+    borderRadius: 10,
+    boxShadow: "0 1px 2px #8a8fad",
+    cursor: "pointer",
+    background: "#fff"
+  },
+  searchButtonInner: {
+    display: "flex",
+    alignItems: "center"
+  },
+  textInputStyle: {
+    borderBottom: "1px solid grey"
   }
 };
 
@@ -44,7 +64,7 @@ const AddBookSearch = ({ searchBooks }) => {
   if (searching) {
     toRender = (
       <Fragment>
-        <h2 style={styles.title}>Search for book:</h2>
+        <h1 style={styles.title}>Search for book:</h1>
         <form style={styles.searchForm} onSubmit={e => handleSubmit(e)}>
           <FormInput
             type="text"
@@ -52,6 +72,7 @@ const AddBookSearch = ({ searchBooks }) => {
             value={title}
             onChange={e => handleChange(e)}
             placeholder="Title"
+            styling={styles.textInputStyle}
           />
           <FormInput
             type="text"
@@ -59,22 +80,35 @@ const AddBookSearch = ({ searchBooks }) => {
             value={author}
             onChange={e => handleChange(e)}
             placeholder="Author(s)"
+            styling={styles.textInputStyle}
           />
-          <FormButton type="submit">Search</FormButton>
+          <div>
+            <FormButton type="submit">
+              <div style={styles.searchButtonInner}>
+                <SearchIcon style={{ height: 50, marginRight: 10 }} />
+                Search
+              </div>
+            </FormButton>
+          </div>
         </form>
       </Fragment>
     );
   } else {
     toRender = (
       <Fragment>
-        <h1>Search Results!</h1>
-        <FormButton onClick={() => setSearching(true)}>Search Again</FormButton>
+        <h1 style={styles.title}>Search Results:</h1>
         <AddBookSearchResults />
+        <FormButton onClick={() => setSearching(true)}>Search Again</FormButton>
       </Fragment>
     );
   }
 
-  return <div>{toRender}</div>;
+  return (
+    <Fragment>
+      <Breadcrumb routes={{ BOOKS_HOME, BOOKS_ADD, BOOKS_SEARCH }} />
+      {toRender}
+    </Fragment>
+  );
 };
 
 export default connect(null, { searchBooks })(AddBookSearch);
