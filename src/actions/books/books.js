@@ -55,7 +55,7 @@ export const searchBooks = (title, author) => async dispatch => {
   };
 
   try {
-    const res = await API.get("prod", "/books/search", {
+    const res = await API.post("prod", "/books/search", {
       body: searchBody
     });
 
