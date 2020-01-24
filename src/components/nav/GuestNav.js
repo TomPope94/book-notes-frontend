@@ -2,7 +2,14 @@ import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 
-import { AUTH, SPLASH } from "constants/routes";
+import {
+  AUTH,
+  SPLASH,
+  GUEST_PRODUCT,
+  GUEST_PRICING,
+  GUEST_BLOG,
+  GUEST_SUPPORT
+} from "constants/routes";
 
 import LogoWhite from "components/elements/images/LogoWhite";
 import LogoOrange from "components/elements/images/LogoOrange";
@@ -55,14 +62,29 @@ const GuestNav = ({ isAuthenticated }) => {
               onClick={() => history.push(SPLASH.route)}
             />
             <p
-              onClick={() => history.push(SPLASH.route)}
+              onClick={() => history.push(GUEST_PRODUCT.route)}
               style={styles.linkStyle}
             >
               Product
             </p>
-            <p style={styles.linkStyle}>Pricing</p>
-            <p style={styles.linkStyle}>Blog</p>
-            <p style={styles.linkStyle}>Support</p>
+            <p
+              onClick={() => history.push(GUEST_PRICING.route)}
+              style={styles.linkStyle}
+            >
+              Pricing
+            </p>
+            <p
+              onClick={() => history.push(GUEST_BLOG.route)}
+              style={styles.linkStyle}
+            >
+              Blog
+            </p>
+            <p
+              onClick={() => history.push(GUEST_SUPPORT.route)}
+              style={styles.linkStyle}
+            >
+              Support
+            </p>
           </div>
           <div style={styles.navRight}>
             <p style={styles.linkStyle}>Twitter</p>

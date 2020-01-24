@@ -29,6 +29,10 @@ import PlanHome from "components/planning/PlanHome";
 import PageNotFound from "components/other/PageNotFound";
 import Help from "components/other/Help";
 import Recall from "components/recall/Recall";
+import Product from "components/guest/Product";
+import Pricing from "components/guest/Pricing";
+import Blog from "components/guest/Blog";
+import Support from "components/guest/Support";
 
 import routes from "constants/routes";
 
@@ -57,6 +61,22 @@ const App = () => {
           <Switch>
             <Route exact path={routes.AUTH.route} component={AuthBroker} />
             <Route exact path={routes.SPLASH.route} component={Splash} />
+            <Route
+              exact
+              path={routes.GUEST_PRODUCT.route}
+              component={Product}
+            />
+            <Route
+              exact
+              path={routes.GUEST_PRICING.route}
+              component={Pricing}
+            />
+            <Route exact path={routes.GUEST_BLOG.route} component={Blog} />
+            <Route
+              exact
+              path={routes.GUEST_SUPPORT.route}
+              component={Support}
+            />
             <Route exact path={routes.SALES.route} component={SalesPage} />
             <Route exact path={routes.HELP.route} component={Help} />
             <Route

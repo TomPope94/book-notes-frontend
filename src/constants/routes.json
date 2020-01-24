@@ -90,5 +90,21 @@
   "HELP": {
     "route": "/help",
     "label": "Help"
+  },
+  "GUEST_BLOG": {
+    "route": "/blog",
+    "label": "Blog"
+  },
+  "GUEST_PRICING": {
+    "route": "/pricing",
+    "label": "Pricing"
+  },
+  "GUEST_PRODUCT": {
+    "route": "/product",
+    "label": "Product"
+  },
+  "GUEST_SUPPORT": {
+    "route": "/support",
+    "label": "Support"
   }
 }
