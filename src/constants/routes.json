@@ -15,6 +15,10 @@
     "route": "/auth/retrieve",
     "label": "Forgot Login"
   },
+  "AUTH_RESET": {
+    "route": "/auth/retrieve/reset",
+    "label": "Password Reset"
+  },
   "AUTH_SIGNED_UP": {
     "route": "/auth/signedup",
     "label": "Signed Up"

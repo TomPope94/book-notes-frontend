@@ -2,12 +2,14 @@ import React, { useEffect } from "react";
 import { Router, Route, Switch } from "react-router-dom";
 import history from "./history";
 
-import Nav from "components/nav/Nav";
+import UserNav from "components/nav/UserNav";
+import GuestNav from "components/nav/GuestNav";
 import PrivateRoute from "components/routing/PrivateRoute";
 import Splash from "components/splash/Splash";
 import SalesPage from "components/splash/SalesPage";
 import AuthBroker from "components/auth/AuthBroker";
 import AuthForgot from "components/auth/AuthForgot";
+import AuthForgotSubmit from "components/auth/AuthForgotSubmit";
 import SignedUp from "components/auth/SignedUp";
 import UserOnboarding from "components/auth/UserOnboarding";
 import BooksHome from "components/books/BooksHome";
@@ -42,7 +44,8 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router history={history}>
-        <Nav />
+        <GuestNav />
+        <UserNav />
         <div
           style={{
             paddingLeft: 200,
@@ -60,6 +63,11 @@ const App = () => {
               exact
               path={routes.AUTH_FORGOT.route}
               component={AuthForgot}
+            />
+            <Route
+              exact
+              path={routes.AUTH_RESET.route}
+              component={AuthForgotSubmit}
             />
             <PrivateRoute
               exact
