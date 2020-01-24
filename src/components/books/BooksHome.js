@@ -83,6 +83,7 @@ const BooksHome = ({ listBooks, resetBooks, books }) => {
           addBook={false}
           id={group.books[i].bookId}
           bookTitle={group.books[i].bookTitle}
+          image={group.books[i].coverArt}
           key={uuid.v4()}
         />
       );
