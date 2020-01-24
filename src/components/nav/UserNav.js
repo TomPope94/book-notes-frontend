@@ -23,7 +23,7 @@ const styles = {
   navBar: {
     height: "100vh",
     width: 150,
-    background: "rgba(243, 139, 102, 0.75)",
+    background: "#F6A88C",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
@@ -113,14 +113,14 @@ const styles = {
     position: "absolute",
     top: 0,
     left: 0,
-    background: "#8a8fad",
+    background: "#477B87",
     boxShadow: "rgb(1,1,1,0.5) -3px 3px 5px",
     zIndex: -1
   },
   linkRibbonOverhang: {
     width: 0,
     height: 0,
-    borderTop: "15px solid rgba(34, 38, 65, 1)",
+    borderTop: "15px solid #0e3f4a",
     borderRight: "15px solid transparent",
     position: "absolute",
     right: -15,
@@ -262,9 +262,7 @@ const UserNav = ({ isAuthenticated, logout }) => {
             <UserIcon onClick={() => history.push(USER_HOME.route)} />
           </div>
         </div>
-      ) : (
-        <Link to={AUTH.route}>Login</Link>
-      )}
+      ) : null}
     </Fragment>
   );
 };
