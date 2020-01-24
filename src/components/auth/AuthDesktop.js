@@ -3,7 +3,7 @@ import { Redirect, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import anime from "animejs";
 
-import { BOOKS_HOME, SPLASH } from "constants/routes";
+import { USER_DASHBOARD, SPLASH } from "constants/routes";
 
 import Login from "components/auth/Login";
 import Register from "components/auth/Register";
@@ -168,7 +168,7 @@ const AuthDesktop = ({ isAuthenticated }) => {
   };
 
   if (isAuthenticated) {
-    return <Redirect to={BOOKS_HOME.route} />;
+    return <Redirect to={USER_DASHBOARD.route} />;
   }
 
   const changeState = async () => {

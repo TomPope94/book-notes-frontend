@@ -12,12 +12,13 @@ import AuthForgot from "components/auth/AuthForgot";
 import AuthForgotSubmit from "components/auth/AuthForgotSubmit";
 import SignedUp from "components/auth/SignedUp";
 import UserOnboarding from "components/auth/UserOnboarding";
+import Dashboard from "components/dashboard/Dashboard";
 import BooksHome from "components/books/BooksHome";
 import BooksHelp from "components/books/BooksHelp";
 import BooksDetails from "components/books/details/BookDetails";
 import AddBook from "components/books/addBook/AddBook";
 import AddBookManually from "components/books/addBook/AddBookManually";
-import AddBookSearch from "components/books/addBook/AddBookSearch";
+import AddBookSearch from "components/books/addBook/search/AddBookSearch";
 import UserHome from "components/user/UserHome";
 import Account from "components/user/account/Account";
 import Billing from "components/user/billing/Billing";
@@ -98,6 +99,11 @@ const App = () => {
               exact
               path={routes.AUTH_ONBOARDING.route}
               component={UserOnboarding}
+            />
+            <PrivateRoute
+              exact
+              path={routes.USER_DASHBOARD.route}
+              component={Dashboard}
             />
             <PrivateRoute
               exact

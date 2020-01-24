@@ -5,7 +5,7 @@ import { searchBooks } from "actions/books/books";
 
 import { BOOKS_HOME, BOOKS_ADD, BOOKS_SEARCH } from "constants/routes";
 
-import AddBookSearchResults from "components/books/addBook/AddBookSearchResults";
+import AddBookSearchResults from "components/books/addBook/search/AddBookSearchResults";
 
 import FormInput from "components/elements/FormInput";
 import FormButton from "components/elements/FormButton";
@@ -14,9 +14,10 @@ import SearchIcon from "components/elements/icons/SearchIcon";
 
 const styles = {
   title: {
-    fontSize: "1.5rem",
+    fontSize: "2rem",
     color: "#222641",
-    marginBottom: 20
+    marginBottom: 20,
+    fontWeight: 200
   },
   searchForm: {
     display: "flex",
@@ -63,7 +64,7 @@ const AddBookSearch = ({ searchBooks }) => {
   if (searching) {
     toRender = (
       <Fragment>
-        <h2 style={styles.title}>Search for book:</h2>
+        <h1 style={styles.title}>Search for book:</h1>
         <form style={styles.searchForm} onSubmit={e => handleSubmit(e)}>
           <FormInput
             type="text"
@@ -95,18 +96,18 @@ const AddBookSearch = ({ searchBooks }) => {
   } else {
     toRender = (
       <Fragment>
-        <h1>Search Results!</h1>
-        <FormButton onClick={() => setSearching(true)}>Search Again</FormButton>
+        <h1 style={styles.title}>Search Results:</h1>
         <AddBookSearchResults />
+        <FormButton onClick={() => setSearching(true)}>Search Again</FormButton>
       </Fragment>
     );
   }
 
   return (
-    <div>
+    <Fragment>
       <Breadcrumb routes={{ BOOKS_HOME, BOOKS_ADD, BOOKS_SEARCH }} />
       {toRender}
-    </div>
+    </Fragment>
   );
 };
 

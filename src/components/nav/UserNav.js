@@ -1,18 +1,17 @@
 import React, { useState, Fragment } from "react";
 import anime from "animejs";
 import { connect } from "react-redux";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 import { logout } from "actions/auth";
 
 import {
-  AUTH,
+  USER_DASHBOARD,
   BOOKS_HOME,
   TRACKING,
   PLANNING,
   RECALL,
   HELP,
-  SPLASH,
   USER_HOME
 } from "constants/routes";
 import LogoOrange from "components/elements/images/LogoOrange";
@@ -178,7 +177,7 @@ const UserNav = ({ isAuthenticated, logout }) => {
           <div style={styles.navLinks}>
             <LogoOrange
               style={styles.logoContainer}
-              onClick={() => history.push(SPLASH.route)}
+              onClick={() => history.push(USER_DASHBOARD.route)}
             />
             <span style={styles.navDivider} />
             <div style={styles.pageLinks}>

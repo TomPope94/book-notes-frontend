@@ -7,7 +7,8 @@ import {
   ADD_DAILY_TRACKING,
   EDIT_PLANNED_DATE,
   CHANGE_FILTER,
-  RESET_BOOKS
+  RESET_BOOKS,
+  SEARCH_SUCCESS
 } from "actions/types";
 
 const initialState = {
@@ -15,6 +16,7 @@ const initialState = {
   selectedBook: null,
   loading: true,
   filter: "bookState",
+  searchResults: [],
   error: {}
 };
 export default function(state = initialState, action) {
@@ -69,6 +71,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         filter: payload
+      };
+    case SEARCH_SUCCESS:
+      return {
+        ...state,
+        searchResults: payload
       };
     default:
       return state;
