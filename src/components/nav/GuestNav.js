@@ -1,19 +1,38 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React, { Fragment } from "react";
+import { connect } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
 
-import { AUTH } from 'constants/routes';
+import { AUTH, SPLASH } from "constants/routes";
+
+import LogoWhite from "components/elements/images/LogoWhite";
+
+const styles = {
+  navContainer: {
+    display: "flex",
+    alignItems: "center",
+    height: 65
+  },
+  logoContainer: {
+    height: "80%",
+    cursor: "pointer"
+  }
+};
 
 const GuestNav = ({ isAuthenticated }) => {
+  const history = useHistory();
+
   return (
-    <div>
+    <Fragment>
       {!isAuthenticated ? (
-        <div>
-          <h1>Guest Nav</h1>
+        <div style={styles.navContainer}>
+          <LogoWhite
+            style={styles.logoContainer}
+            onClick={() => history.push(SPLASH.route)}
+          />
           <Link to={AUTH.route}>Login</Link>
         </div>
       ) : null}
-    </div>
+    </Fragment>
   );
 };
 

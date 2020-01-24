@@ -33,7 +33,7 @@ const styles = {
     position: "relative",
     transform: "scale(1,1)",
     transform: "translateY(0)",
-    marginTop: 25
+    margin: 25
   },
   title: {
     fontSize: "3rem",
@@ -129,7 +129,15 @@ const AddBook = () => {
           </div>
         </div>
         <WaveBlue
-          style={{ width: "100vw", position: "absolute", left: 0, bottom: 0 }}
+          style={{
+            width: "100vw",
+            position: "absolute",
+            left: 0,
+            bottom: 0,
+            opacity: 0.9,
+            transform: "scaleY(0.5)",
+            transformOrigin: "bottom"
+          }}
         />
       </div>
     </Fragment>

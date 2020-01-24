@@ -176,12 +176,10 @@ const UserNav = ({ isAuthenticated, logout }) => {
       {isAuthenticated ? (
         <div style={styles.navBar}>
           <div style={styles.navLinks}>
-            <div
+            <LogoOrange
               style={styles.logoContainer}
               onClick={() => history.push(SPLASH.route)}
-            >
-              <LogoOrange />
-            </div>
+            />
             <span style={styles.navDivider} />
             <div style={styles.pageLinks}>
               <div
@@ -256,8 +254,8 @@ const UserNav = ({ isAuthenticated, logout }) => {
               strokeWidth={2}
               fill={"#fff"}
               stroke={"#fff"}
-              textFill={"#fff"}
-              textStroke={"#fff"}
+              textfill={"#fff"}
+              textstroke={"#fff"}
             />
             <UserIcon onClick={() => history.push(USER_HOME.route)} />
           </div>

@@ -1,13 +1,12 @@
-import React from 'react';
+import React from "react";
 
-const LogoWhite = () => {
+const LogoWhite = ({ ...props }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
-      width="630"
-      height="261"
       viewBox="0 0 630 261"
+      {...props}
     >
       <defs>
         <radialGradient
@@ -100,13 +99,13 @@ const LogoWhite = () => {
           </g>
         </mask>
       </defs>
-      <g style={{ isolation: 'isolate' }}>
+      <g style={{ isolation: "isolate" }}>
         <g
           fill="none"
           stroke="#ccc"
           strokeMiterlimit="10"
           mask="url(#e)"
-          style={{ mixBlendMode: 'darken', isolation: 'isolate' }}
+          style={{ mixBlendMode: "darken", isolation: "isolate" }}
         >
           <path d="M385.92 84.52c64.83-13.28 84.55 23.68 84.55 23.68S466.92 67.93 539 53.81"></path>
           <path d="M387.73 71.14c61.13-12.52 82.81 37.37 82.81 37.37s-6.44-53 61.62-66.09"></path>
@@ -123,7 +122,7 @@ const LogoWhite = () => {
           stroke="#ccc"
           strokeMiterlimit="10"
           mask="url(#f)"
-          style={{ mixBlendMode: 'darken', isolation: 'isolate' }}
+          style={{ mixBlendMode: "darken", isolation: "isolate" }}
         >
           <path d="M216 56.43c61.5 24.46 57.72 66.17 57.72 66.17s19.11-35.62 87.17-7.86"></path>
           <path d="M224.82 46.23c58 23.06 48.74 76.67 48.74 76.67s23.7-47.86 87.77-21.46"></path>
@@ -140,7 +139,7 @@ const LogoWhite = () => {
           stroke="#ccc"
           strokeMiterlimit="10"
           mask="url(#g)"
-          style={{ mixBlendMode: 'darken', isolation: 'isolate' }}
+          style={{ mixBlendMode: "darken", isolation: "isolate" }}
         >
           <path d="M274.25 36.73c65.82-6.88 81.84 31.83 81.84 31.83s.39-40.42 73.55-47.43"></path>
           <path d="M277.36 23.59c62.06-6.49 78.76 45.28 78.76 45.28s-1.23-53.39 67.78-59.75"></path>
