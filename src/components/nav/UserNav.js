@@ -3,6 +3,8 @@ import anime from 'animejs';
 import { connect } from 'react-redux';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 
+import { logout } from 'actions/auth';
+
 import {
   AUTH,
   BOOKS_HOME,
@@ -127,7 +129,7 @@ const styles = {
   }
 };
 
-const Nav = ({ isAuthenticated }) => {
+const UserNav = ({ isAuthenticated, logout }) => {
   const [userDropdown, setUserDropdown] = useState(false);
   const history = useHistory();
   const location = useLocation();
@@ -172,8 +174,8 @@ const Nav = ({ isAuthenticated }) => {
       {userDropdown ? (
         <div style={styles.hiddenClick} onClick={() => handleClick()} />
       ) : null}
-      <div style={styles.navBar}>
-        {isAuthenticated ? (
+      {isAuthenticated ? (
+        <div style={styles.navBar}>
           <div style={styles.navLinks}>
             <div
               style={styles.logoContainer}
@@ -249,16 +251,20 @@ const Nav = ({ isAuthenticated }) => {
               </div>
             </div>
           </div>
-        ) : null}
-        {isAuthenticated ? (
           <div style={styles.navRightContainer}>
             <HelpIcon />
             <UserIcon />
+            <button
+              onClick={() => {
+                logout();
+              }}
+            >
+              Logout
+            </button>
           </div>
-        ) : (
-          <Link to={AUTH}>Login</Link>
-        )}
-      </div>
+          )
+        </div>
+      ) : null}
     </Fragment>
   );
 };
@@ -267,4 +273,4 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps)(Nav);
+export default connect(mapStateToProps, { logout })(UserNav);
