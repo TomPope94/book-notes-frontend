@@ -104,7 +104,7 @@ const BooksHome = ({ listBooks, resetBooks, books }) => {
           <div style={styles.libraryHeaderLeft}>
             <h1 style={styles.libraryTitle}>My Library.</h1>
             <AddBookIcon
-              height="50"
+              height="75"
               onClick={() => history.push(BOOKS_ADD.route)}
             />
           </div>

@@ -76,7 +76,7 @@ const Book = ({ id, bookTitle, image, addBook, getBook }) => {
       onMouseOver={e => enlargeBook(true, e)}
       onMouseOut={e => enlargeBook(false, e)}
     >
-      {bookTitle}
+      {image ? null : bookTitle}
     </div>
     // </Link>
   );
