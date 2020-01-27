@@ -9,7 +9,7 @@ const SearchBooksImage = ({ ...props }) => {
         </clipPath>
       </defs>
       <path fill="#75b3b3" d="M-2.31 0H500.19V500H-2.31z"></path>
-      <g clip-path="url(#magnifyInner)" style={{ pointerEvents: "none" }}>
+      <g clipPath="url(#magnifyInner)" style={{ pointerEvents: "none" }}>
         <path
           fill="#f26a4b"
           fillRule="evenodd"

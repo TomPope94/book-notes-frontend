@@ -1,9 +1,9 @@
 import React, { useState, Fragment, useEffect } from "react";
 import { connect } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect, useHistory, useParams } from "react-router-dom";
 import anime from "animejs";
 
-import { editBook } from "actions/books/books";
+import { editBook, getBook } from "actions/books/books";
 
 import { BOOKS_HOME, BOOKS_DETAILS } from "constants/routes";
 
@@ -80,7 +80,7 @@ const styles = {
   }
 };
 
-const BookDetails = ({ selectedBook, loading, editBook }) => {
+const BookDetails = ({ selectedBook, loading, editBook, getBook }) => {
   const [redirect, setRedirect] = useState(false);
   const [bookData, setBookData] = useState({
     bookTitle: "",
@@ -101,6 +101,11 @@ const BookDetails = ({ selectedBook, loading, editBook }) => {
     bookState
   } = bookData;
   const [viewProgress, setViewProgress] = useState(true);
+  const { id } = useParams();
+  // console.log(id);
+  useEffect(() => {
+    getBook(id);
+  }, []);
   useEffect(() => {
     if (selectedBook) {
       setBookData({
@@ -288,4 +293,4 @@ const mapStateToProps = state => ({
   loading: state.books.loading
 });
 
-export default connect(mapStateToProps, { editBook })(BookDetails);
+export default connect(mapStateToProps, { editBook, getBook })(BookDetails);

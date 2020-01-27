@@ -117,7 +117,7 @@ const App = () => {
             />
             <PrivateRoute
               exact
-              path={routes.BOOKS_DETAILS.route}
+              path={`${routes.BOOKS_DETAILS.route}/:id`}
               component={BooksDetails}
             />
             <PrivateRoute
