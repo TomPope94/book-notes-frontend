@@ -24,8 +24,8 @@ const styles = {
 const BookEditDropdown = ({ deleteBook, bookId }) => {
   const history = useHistory();
 
-  const handleDelete = bookId => {
-    deleteBook(bookId);
+  const handleDelete = async bookId => {
+    await deleteBook(bookId);
     history.push("/books");
   };
 
