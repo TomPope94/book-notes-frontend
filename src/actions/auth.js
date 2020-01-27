@@ -6,11 +6,13 @@ import {
   LOGIN_FAIL,
   LOGOUT
 } from "actions/types";
+import { getUser } from "actions/user";
 import { Auth } from "aws-amplify";
 
 export const loadUser = () => async dispatch => {
   try {
     await Auth.currentSession();
+    dispatch(getUser());
     dispatch({
       type: USER_LOADED
     });
@@ -23,7 +25,15 @@ export const loadUser = () => async dispatch => {
 
 export const registerUser = (email, password) => async dispatch => {
   try {
-    await Auth.signUp(email, password);
+    await Auth.signUp({
+      username: email,
+      password: password,
+      attributes: {
+        "custom:onboard": "false",
+        "custom:bookLimit": "3",
+        name: "NA"
+      }
+    });
 
     dispatch({
       type: REGISTER_SUCCESS
@@ -40,7 +50,7 @@ export const registerUser = (email, password) => async dispatch => {
 export const login = (email, password) => async dispatch => {
   try {
     await Auth.signIn(email, password);
-
+    dispatch(getUser());
     dispatch({
       type: LOGIN_SUCCESS
     });
