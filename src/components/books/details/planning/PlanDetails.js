@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { connect } from "react-redux";
 
 import { DayPickedContext } from "components/books/details/planning/dayPicked-context";
@@ -6,7 +6,6 @@ import { DayPickedContext } from "components/books/details/planning/dayPicked-co
 import { editBook } from "actions/books/books";
 
 import DateChosen from "components/books/details/planning/DateChosen";
-import WaveBlue from "components/elements/dividers/WaveBlue";
 
 const styles = {
   detailsContainter: {
@@ -27,12 +26,7 @@ const styles = {
 
 const PlanDetails = ({ selectedBook, editBook }) => {
   const pickedContext = useContext(DayPickedContext);
-  const {
-    dayPicked,
-    monthChosen,
-    dateChosen,
-    plannedDate
-  } = pickedContext.state;
+  const { dateChosen, plannedDate } = pickedContext.state;
 
   const handleClick = async newState => {
     if (selectedBook) {

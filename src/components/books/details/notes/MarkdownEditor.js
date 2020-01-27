@@ -1,15 +1,15 @@
-import React, { useState, useMemo } from 'react';
-import { createEditor, Editor } from 'slate';
-import { Slate, Editable, withReact } from 'slate-react';
-import { withHistory } from 'slate-history';
+import React, { useState, useMemo } from "react";
+import { createEditor, Editor } from "slate";
+import { Slate, Editable, withReact } from "slate-react";
+import { withHistory } from "slate-history";
 
 function MarkdownEditor() {
   // debugger;
-  const [value, setValue] = useState(initialValue);
-  const [selection, setSelection] = useState(null);
+  const [value] = useState(initialValue);
+  const [selection] = useState(null);
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
 
-  const handleChange = (value, selection) => {
+  const handleChange = value => {
     // debugger;
     Editor.insertText(value);
     // setSelection(selection);
@@ -20,7 +20,7 @@ function MarkdownEditor() {
       editor={editor}
       value={value}
       selection={selection}
-      onChange={(value, selection) => handleChange(value, selection)}
+      onChange={value => handleChange(value)}
     >
       <Editable placeholder="Enter some plain text..." autoFocus />
     </Slate>
@@ -29,7 +29,7 @@ function MarkdownEditor() {
 
 const initialValue = [
   {
-    children: [{ text: 'This is editable plain text, just like a <textarea>!' }]
+    children: [{ text: "This is editable plain text, just like a <textarea>!" }]
   }
 ];
 

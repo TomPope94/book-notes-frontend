@@ -12,7 +12,6 @@ import {
 import Breadcrumb from "components/nav/Breadcrumb";
 import SearchBooksImage from "components/elements/images/SearchBooksImage";
 import ManualEntryImage from "components/elements/images/ManualEntryImage";
-import ManualIMG from "components/elements/images/add_book_assets_manual_entry.png";
 
 const styles = {
   contentContainer: {

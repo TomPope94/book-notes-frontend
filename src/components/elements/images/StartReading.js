@@ -1,24 +1,9 @@
-import React from 'react';
-
-const styles = {
-  svg: {
-    width: '75%',
-    height: '75%',
-    pointerEvents: 'none'
-  },
-  scaleElements: {
-    transform: 'scale(0)',
-    transformOrigin: 'top'
-  },
-  calendar: {
-    opacity: 0
-  }
-};
+import React from "react";
 
 const StartReading = ({ ...props }) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" {...props}>
-      <g style={{ pointerEvents: 'none' }}>
+      <g style={{ pointerEvents: "none" }}>
         <path fill="#75b3b3" d="M-1.13 0H501.37V500H-1.13z"></path>
         <path
           fill="#fff"
@@ -49,7 +34,7 @@ const StartReading = ({ ...props }) => {
           fontSize="43"
           transform="translate(97.2 87.8)"
         >
-          Start{' '}
+          Start{" "}
           <tspan x="88.58" y="0" fill="#fff">
             reading now
           </tspan>

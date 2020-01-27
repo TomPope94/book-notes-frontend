@@ -1,7 +1,7 @@
-import React, { useEffect, useContext } from 'react';
-import { connect } from 'react-redux';
-import DrawLine from 'components/books/details/tracker/DrawLine';
-import { TrackerContext } from 'components/books/details/tracker/tracker-context';
+import React, { useEffect, useContext } from "react";
+import { connect } from "react-redux";
+import DrawLine from "components/books/details/tracker/DrawLine";
+import { TrackerContext } from "components/books/details/tracker/tracker-context";
 
 const Viz = props => {
   const trackerContext = useContext(TrackerContext);
@@ -10,8 +10,8 @@ const Viz = props => {
     if (props.selectedBook.tracking) {
       DrawLine(props, trackerContext.changeState, trackerContext.state);
     }
-  }, [props]);
-  return <div style={{ position: 'relative' }} className="viz" />;
+  }, [props, trackerContext.changeState, trackerContext.state]);
+  return <div style={{ position: "relative" }} className="viz" />;
 };
 
 const mapStateToProps = state => ({

@@ -1,7 +1,5 @@
 import React from "react";
 
-import LogoOrange from "components/elements/images/LogoOrange";
-
 const styles = {
   pageContainer: {
     background: "#f38b66",

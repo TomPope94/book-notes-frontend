@@ -1,6 +1,6 @@
 import React, { useState, Fragment, useEffect } from "react";
 import { connect } from "react-redux";
-import { Redirect, useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import anime from "animejs";
 
 import { editBook, getBook } from "actions/books/books";
@@ -81,7 +81,6 @@ const styles = {
 };
 
 const BookDetails = ({ selectedBook, loading, editBook, getBook }) => {
-  const [redirect, setRedirect] = useState(false);
   const [bookData, setBookData] = useState({
     bookTitle: "",
     bookAuthor: "",
@@ -91,21 +90,15 @@ const BookDetails = ({ selectedBook, loading, editBook, getBook }) => {
     coverArt: "",
     bookState: ""
   });
-  const {
-    bookTitle,
-    bookAuthor,
-    numPages,
-    categories,
-    bookLanguage,
-    coverArt,
-    bookState
-  } = bookData;
-  const [viewProgress, setViewProgress] = useState(true);
+  const { bookTitle, bookAuthor } = bookData;
   const { id } = useParams();
-  // console.log(id);
+
   useEffect(() => {
     getBook(id);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   useEffect(() => {
     if (selectedBook) {
       setBookData({
@@ -120,8 +113,6 @@ const BookDetails = ({ selectedBook, loading, editBook, getBook }) => {
     }
   }, [selectedBook]);
   const [dropdown, setDropdown] = useState(false);
-
-  const history = useHistory();
 
   const animateDropDown = direction => {
     const animateDirection = direction ? "reverse" : "normal";
@@ -150,10 +141,6 @@ const BookDetails = ({ selectedBook, loading, editBook, getBook }) => {
 
     setDropdown(!dropdown);
   };
-
-  if (redirect) {
-    return <Redirect to={BOOKS_HOME} />;
-  }
 
   const handleChange = e => {
     setBookData({ ...bookData, [e.target.name]: e.target.value });
@@ -232,7 +219,6 @@ const BookDetails = ({ selectedBook, loading, editBook, getBook }) => {
               <h2
                 style={{
                   fontSize: "1.5rem",
-                  margin: 0,
                   margin: "0px 1rem 0px 100px",
                   color: "rgba(34,38,65,0.75)"
                 }}

@@ -1,17 +1,13 @@
 import { API } from "aws-amplify";
 import {
   SEARCH_SUCCESS,
-  SEARCH_FAIL,
   GET_ALL_BOOKS,
   GET_BOOK,
-  ADD_BOOK,
   EDIT_BOOK,
-  DELETE_BOOK,
   EDIT_PLANNED_DATE,
   CHANGE_FILTER,
   RESET_BOOKS
 } from "actions/types";
-import moment from "moment";
 
 export const addBook = formData => async dispatch => {
   const APIBody = {

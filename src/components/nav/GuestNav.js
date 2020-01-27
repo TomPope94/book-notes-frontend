@@ -11,7 +11,6 @@ import {
   GUEST_SUPPORT
 } from "constants/routes";
 
-import LogoWhite from "components/elements/images/LogoWhite";
 import LogoOrange from "components/elements/images/LogoOrange";
 
 const styles = {

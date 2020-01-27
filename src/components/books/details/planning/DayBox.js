@@ -28,6 +28,7 @@ const DayBox = ({
         setPlannedDate(true);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   let backgroundVar;

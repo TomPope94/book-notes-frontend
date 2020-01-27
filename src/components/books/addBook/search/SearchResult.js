@@ -77,6 +77,7 @@ const SearchResult = ({ result, addBook }) => {
         <img
           style={styles.imageContainer}
           src={image[imagesAvailable[numImages - 1]]}
+          alt={`${title} book cover`}
         />
       ) : (
         <div style={styles.imageContainer}>No Image Available...</div>

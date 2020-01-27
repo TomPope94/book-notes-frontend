@@ -1,25 +1,9 @@
-import React, { useEffect } from 'react';
-import anime from 'animejs';
-
-const styles = {
-  svg: {
-    width: '100%',
-    height: '100%',
-    pointerEvents: 'none'
-  },
-  scaleElements: {
-    transform: 'scale(0)',
-    transformOrigin: 'top'
-  },
-  calendar: {
-    opacity: 0
-  }
-};
+import React from "react";
 
 const Calendar = ({ ...props }) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" {...props}>
-      <g style={{ pointerEvents: 'none' }}>
+      <g style={{ pointerEvents: "none" }}>
         <path fill="#75b3b3" d="M-1.2 0.5H501.3V500.5H-1.2z"></path>
         <rect
           width="402"

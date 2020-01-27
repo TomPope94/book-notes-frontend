@@ -1,36 +1,36 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import { connect } from 'react-redux';
+import React, { Fragment, useEffect, useState } from "react";
+import { connect } from "react-redux";
 
-import { getDailyTracking } from 'actions/books/tracker';
-import { TrackerContext } from 'components/books/details/tracker/tracker-context';
+import { getDailyTracking } from "actions/books/tracker";
+import { TrackerContext } from "components/books/details/tracker/tracker-context";
 
-import AddProgressForm from 'components/books/details/tracker/AddProgressForm';
-import BookTrackerReport from 'components/books/details/tracker/BookTrackerReport';
+import AddProgressForm from "components/books/details/tracker/AddProgressForm";
+import BookTrackerReport from "components/books/details/tracker/BookTrackerReport";
 
 const styles = {
   title: {
-    color: 'rgba(34, 38, 65, 0.75)',
+    color: "rgba(34, 38, 65, 0.75)",
     fontWeight: 200,
     paddingLeft: 25
   },
   titleRow: {
-    display: 'flex',
-    alignItems: 'center'
+    display: "flex",
+    alignItems: "center"
   }
 };
 
 const BookDetailsTracker = ({ getDailyTracking, selectedBook }) => {
-  const [reportState, setReportState] = useState({
-    show: true,
-    dateSelected: '',
+  const [reportState] = useState({
+    dateSelected: "",
     numPages: 0
   });
-  const { show, dateSelected, numPages } = reportState;
+  const { dateSelected, numPages } = reportState;
 
   useEffect(() => {
     if (selectedBook) {
       getDailyTracking(selectedBook.bookId);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   let toRender;
@@ -56,7 +56,7 @@ const BookDetailsTracker = ({ getDailyTracking, selectedBook }) => {
                   changeState({
                     ...state,
                     showForm: !state.showForm,
-                    dateSelected: '',
+                    dateSelected: "",
                     numPages: 0
                   })
                 }

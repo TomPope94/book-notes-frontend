@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useContext } from "react";
+import React, { Fragment, useContext } from "react";
 import { connect } from "react-redux";
 
 import { TrackerContext } from "components/books/details/tracker/tracker-context";

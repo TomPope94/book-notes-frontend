@@ -27,7 +27,7 @@ const BookTrackerReport = () => {
   });
   useEffect(() => {
     resetRefDimension();
-  }, [ref.current]);
+  }, []);
 
   const resetRefDimension = () => {
     const width = ref.current ? ref.current.clientWidth : 0;

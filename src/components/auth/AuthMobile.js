@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
 import anime from "animejs";
 import { useSwipeable } from "react-swipeable";
-
-import { BOOKS_HOME } from "constants/routes";
 
 import Login from "components/auth/Login";
 import Register from "components/auth/Register";

@@ -5,8 +5,8 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT
-} from 'actions/types';
-import { Auth } from 'aws-amplify';
+} from "actions/types";
+import { Auth } from "aws-amplify";
 
 export const loadUser = () => async dispatch => {
   try {
@@ -72,14 +72,9 @@ export const forgotPassword = username => async dispatch => {
   }
 };
 
-export const resetPassword = (
-  username,
-  code,
-  new_password
-) => async dispatch => {
+export const resetPassword = (username, code, new_password) => async () => {
   try {
-    const data = await Auth.forgotPasswordSubmit(username, code, new_password);
-    debugger;
+    await Auth.forgotPasswordSubmit(username, code, new_password);
   } catch (err) {
     console.error(err.message);
   }

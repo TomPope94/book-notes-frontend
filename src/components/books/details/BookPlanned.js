@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import moment from "moment";
 
@@ -47,7 +47,8 @@ const BookPlanned = ({ selectedBook, loading }) => {
         dayPicked: moment(selectedBook.datePlanned).date()
       });
     }
-  }, [selectedBook]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const changeDateSelectedState = newState => {
     setDateSelected({ ...dateSelected, ...newState });
