@@ -1,12 +1,11 @@
-import React from "react";
-import { Route, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
-import { AUTH } from "constants/routes";
+import React from 'react';
+import { Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { AUTH } from 'constants/routes';
 
 const PrivateRoute = ({
   component: Component,
-  auth: { isAuthenticated },
-  loading,
+  auth: { isAuthenticated, loading },
   ...rest
 }) => (
   <Route
@@ -22,8 +21,7 @@ const PrivateRoute = ({
 );
 
 const mapStateToProps = state => ({
-  auth: state.auth,
-  loading: state.books.books.loading
+  auth: state.auth
 });
 
 export default connect(mapStateToProps)(PrivateRoute);
