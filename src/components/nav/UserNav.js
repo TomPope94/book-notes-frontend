@@ -112,7 +112,7 @@ const styles = {
     position: "absolute",
     top: 0,
     left: 0,
-    background: "#477B87",
+    background: "#75b3b3",
     boxShadow: "rgb(1,1,1,0.5) -3px 3px 5px",
     zIndex: -1
   },
