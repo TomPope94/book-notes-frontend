@@ -105,7 +105,7 @@ const DrawLine = (props, changeState, state) => {
   const dateRange = d3.extent(dataset, d => d.date);
   const dayDiff = d3.timeDay.count(dateRange[0], dateRange[1]);
   let chartedData = [];
-  for (let i = 0; i < dayDiff; i++) {
+  for (let i = 0; i <= dayDiff; i++) {
     const newDate = d3.timeDay.offset(dateRange[0], i);
     const matchData = dataset.filter(
       d => d.date.toString() === newDate.toString()

@@ -4,6 +4,7 @@ import {
   GET_ALL_BOOKS,
   GET_BOOK,
   EDIT_BOOK,
+  RESET_BOOK,
   EDIT_PLANNED_DATE,
   CHANGE_FILTER,
   RESET_BOOKS
@@ -142,6 +143,16 @@ export const editBook = (bookId, newData) => async dispatch => {
     dispatch({
       type: EDIT_BOOK,
       payload: newData
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const resetBook = () => async dispatch => {
+  try {
+    dispatch({
+      type: RESET_BOOK
     });
   } catch (err) {
     console.error(err);

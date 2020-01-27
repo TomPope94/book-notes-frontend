@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import anime from "animejs";
 
-import { editBook, getBook } from "actions/books/books";
+import { editBook, getBook, resetBook } from "actions/books/books";
 
 import { BOOKS_HOME, BOOKS_DETAILS } from "constants/routes";
 
@@ -80,7 +80,13 @@ const styles = {
   }
 };
 
-const BookDetails = ({ selectedBook, loading, editBook, getBook }) => {
+const BookDetails = ({
+  selectedBook,
+  loading,
+  editBook,
+  getBook,
+  resetBook
+}) => {
   const [bookData, setBookData] = useState({
     bookTitle: "",
     bookAuthor: "",
@@ -96,6 +102,9 @@ const BookDetails = ({ selectedBook, loading, editBook, getBook }) => {
   useEffect(() => {
     getBook(id);
 
+    return () => {
+      resetBook();
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -279,4 +288,6 @@ const mapStateToProps = state => ({
   loading: state.books.loading
 });
 
-export default connect(mapStateToProps, { editBook, getBook })(BookDetails);
+export default connect(mapStateToProps, { editBook, getBook, resetBook })(
+  BookDetails
+);

@@ -2,6 +2,7 @@ import {
   GET_ALL_BOOKS,
   GET_BOOK,
   EDIT_BOOK,
+  RESET_BOOK,
   GET_DAILY_TRACKING,
   ADD_DAILY_TRACKING,
   EDIT_PLANNED_DATE,
@@ -35,12 +36,12 @@ export default function(state = initialState, action) {
         selectedBook: { ...state.selectedBook, ...payload },
         loading: false
       };
-    // case DELETE_BOOK:
-    //   return {
-    //     ...state,
-    //     books: state.books.filter(book => book.bookId !== payload),
-    //     loading: false
-    //   };
+    case RESET_BOOK:
+      return {
+        ...state,
+        selectedBook: null,
+        loading: true
+      };
     case GET_DAILY_TRACKING:
       return {
         ...state,

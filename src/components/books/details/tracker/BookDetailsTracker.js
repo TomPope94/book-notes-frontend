@@ -30,6 +30,7 @@ const BookDetailsTracker = ({ getDailyTracking, selectedBook }) => {
     if (selectedBook) {
       getDailyTracking(selectedBook.bookId);
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
