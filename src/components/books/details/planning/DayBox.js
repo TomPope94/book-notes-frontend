@@ -34,15 +34,15 @@ const DayBox = ({
   if (hover && typeof date === "number") {
     backgroundVar = "#f38b66";
   } else if (boxChosen === id || plannedDate) {
-    backgroundVar = "rgba(243,139,102, 0.5)";
+    backgroundVar = "rgb(249,197,178)";
   } else if (
     date === moment().date() &&
     moment().month() === moment(monthChosen, "MMM-YYYY").month() &&
     moment().year() === moment(monthChosen, "MMM-YYYY").year()
   ) {
-    backgroundVar = "rgba(243, 139, 102, 0.25)";
+    backgroundVar = "rgb(252, 226, 217)";
   } else if (typeof date !== "number") {
-    backgroundVar = "rgba(243, 139, 102, 0.1)";
+    backgroundVar = "rgb(229, 235, 236)";
   } else {
     backgroundVar = "#fff";
   }

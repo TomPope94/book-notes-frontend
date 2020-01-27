@@ -1,46 +1,46 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import React from "react";
+import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 
-import { addBook } from 'actions/books/books';
-import { BOOKS_HOME } from 'constants/routes';
+import { addBook } from "actions/books/books";
+import { BOOKS_HOME } from "constants/routes";
 
-const SearchResult = ({ result, addBook, ...props }) => {
+const SearchResult = ({ result, addBook }) => {
   const history = useHistory();
   const styles = {
     resultContainer: {
-      display: 'flex',
-      alignItems: 'center',
+      display: "flex",
+      alignItems: "center",
       marginBottom: 50,
-      boxShadow: '0 1px 2px grey',
+      boxShadow: "0 1px 2px grey",
       padding: 30,
       borderRadius: 15,
       height: 300
     },
     topDetails: {
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-between',
-      width: '30%',
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "space-between",
+      width: "30%",
       marginRight: 20,
-      height: '100%'
+      height: "100%"
     },
     imageContainer: {
-      width: '10%',
+      width: "10%",
       marginRight: 20,
       minWidth: 200
     },
     subDetails: {
       mariginRight: 20,
-      width: '30%'
+      width: "30%"
     },
     buttonsContainer: {
-      display: 'flex',
-      flexDirection: 'column',
-      width: '30%',
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: '100%'
+      display: "flex",
+      flexDirection: "column",
+      width: "30%",
+      alignItems: "center",
+      justifyContent: "center",
+      height: "100%"
     }
   };
   const {
@@ -57,12 +57,12 @@ const SearchResult = ({ result, addBook, ...props }) => {
   const numImages = image ? imagesAvailable.length : null;
 
   const bookDataFormatted = {
-    title: title ? title : '',
-    author: authors ? authors : '',
-    pageCount: pageCount ? pageCount : '',
-    cover: image ? image[imagesAvailable[numImages - 1]] : '',
-    categories: categories ? categories : '',
-    language: language ? language : ''
+    title: title ? title : "",
+    author: authors ? authors : "",
+    pageCount: pageCount ? pageCount : "",
+    cover: image ? image[imagesAvailable[numImages - 1]] : "",
+    categories: categories ? categories : "",
+    language: language ? language : ""
   };
 
   const handleAdd = async () => {
@@ -83,13 +83,13 @@ const SearchResult = ({ result, addBook, ...props }) => {
       )}
       <div style={styles.topDetails}>
         <h3>Title: {title}</h3>
-        <h3>Author(s): {authors ? authors.join(', ') : 'NA'}</h3>
+        <h3>Author(s): {authors ? authors.join(", ") : "NA"}</h3>
       </div>
       <div style={styles.subDetails}>
         <ul>
           <li>Published: {published}</li>
           <li>Page count: {pageCount}</li>
-          <li>Categories: {categories ? categories.join(', ') : 'NA'}</li>
+          <li>Categories: {categories ? categories.join(", ") : "NA"}</li>
           <li>Language: {language}</li>
         </ul>
       </div>

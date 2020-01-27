@@ -10,7 +10,7 @@ const styles = {
     width: "14.286%",
     display: "flex",
     justifyContent: "center",
-    background: "#f38b66",
+    background: "#75b3b3",
     color: "#fff",
     fontSize: "1.25rem"
   }

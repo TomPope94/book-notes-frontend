@@ -9,10 +9,11 @@ import CalendarTitleRow from "components/books/details/planning/CalendarTitleRow
 
 const styles = {
   calendar: {
-    height: "100%",
     width: "60%",
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
+    border: "5px solid #013a40",
+    borderRadius: 5
   }
 };
 

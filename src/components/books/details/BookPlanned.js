@@ -7,6 +7,7 @@ import { DayPickedContext } from "components/books/details/planning/dayPicked-co
 import PlanCalendar from "components/books/details/planning/PlanCalendar";
 import MonthPicker from "components/books/details/planning/MonthPicker";
 import PlanDetails from "components/books/details/planning/PlanDetails";
+import WaveBlue from "components/elements/dividers/WaveBlue";
 
 const styles = {
   plannedContent: {
@@ -71,6 +72,9 @@ const BookPlanned = ({ selectedBook, loading }) => {
           />
         </div>
       </DayPickedContext.Provider>
+      <WaveBlue
+        style={{ position: "absolute", left: 0, bottom: 0, zIndex: -1 }}
+      />
     </div>
   );
 };

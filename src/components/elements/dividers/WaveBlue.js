@@ -1,6 +1,6 @@
 import React from "react";
 
-const WaveOrange = ({ ...props }) => {
+const WaveBlue = ({ ...props }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -20,4 +20,4 @@ const WaveOrange = ({ ...props }) => {
   );
 };
 
-export default WaveOrange;
+export default WaveBlue;
