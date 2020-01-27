@@ -58,10 +58,10 @@ const SearchResult = ({ result, addBook, ...props }) => {
 
   const bookDataFormatted = {
     title: title ? title : '',
-    author: authors ? authors[0] : '',
+    author: authors ? authors : '',
     pageCount: pageCount ? pageCount : '',
     cover: image ? image[imagesAvailable[numImages - 1]] : '',
-    categories: categories ? categories[0] : '',
+    categories: categories ? categories : '',
     language: language ? language : ''
   };
 

@@ -237,7 +237,11 @@ const BookDetails = ({ selectedBook, loading, editBook }) => {
               </h2>
               <FormInput
                 type="text"
-                value={bookAuthor}
+                value={
+                  typeof bookAuthor === 'string'
+                    ? bookAuthor
+                    : bookAuthor.join(', ')
+                }
                 name="bookAuthor"
                 onChange={e => handleChange(e)}
                 onBlur={() => handleBlur()}
