@@ -24,12 +24,8 @@
     "label": "Signed Up"
   },
   "AUTH_ONBOARDING": {
-    "route": "/auth/welcome",
+    "route": "/welcome",
     "label": "User Welcome"
-  },
-  "USER_VERIFY": {
-    "route": "/auth/verify",
-    "label": "User Verification"
   },
   "USER_DASHBOARD": {
     "route": "/dashboard",

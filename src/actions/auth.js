@@ -29,6 +29,7 @@ export const registerUser = (email, password) => async dispatch => {
       username: email,
       password: password,
       attributes: {
+        "custom:firstLogin": "true",
         "custom:onboard": "false",
         "custom:bookLimit": "3",
         name: "NA"

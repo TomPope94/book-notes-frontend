@@ -1,4 +1,4 @@
-import { GET_USER } from 'actions/types';
+import { GET_USER, UPDATE_ATTRIBUTES } from "actions/types";
 
 const initialState = {
   attributes: {
@@ -15,6 +15,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         attributes: payload,
+        loading: false
+      };
+    case UPDATE_ATTRIBUTES:
+      return {
+        ...state,
+        attributes: { ...state.attributes, ...payload },
         loading: false
       };
     default:

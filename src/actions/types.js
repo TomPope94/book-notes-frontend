@@ -23,3 +23,4 @@ export const ADD_DAILY_TRACKING = "ADD_DAILY_TRACKING";
 
 // user
 export const GET_USER = "GET_USER";
+export const UPDATE_ATTRIBUTES = "UPDATE_ATTRIBUTES";
