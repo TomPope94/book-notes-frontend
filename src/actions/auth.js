@@ -5,9 +5,9 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT
-} from 'actions/types';
-import { getUser } from 'actions/user';
-import { Auth } from 'aws-amplify';
+} from "actions/types";
+import { getUser } from "actions/user";
+import { Auth } from "aws-amplify";
 
 export const loadUser = () => async dispatch => {
   try {
@@ -29,9 +29,9 @@ export const registerUser = (email, password) => async dispatch => {
       username: email,
       password: password,
       attributes: {
-        'custom:onboard': 'false',
-        'custom:bookLimit': '3',
-        name: 'NA'
+        "custom:onboard": "false",
+        "custom:bookLimit": "3",
+        name: "NA"
       }
     });
 
@@ -43,6 +43,16 @@ export const registerUser = (email, password) => async dispatch => {
   } catch (err) {
     const errors = err.message; // this will be changed for an error message in app/redux
     console.error(errors);
+  }
+};
+
+export const verifyEmail = (email, code, password) => async dispatch => {
+  try {
+    await Auth.confirmSignUp(email, code);
+
+    dispatch(login(email, password));
+  } catch (err) {
+    console.error(err);
   }
 };
 
@@ -87,13 +97,5 @@ export const resetPassword = (username, code, new_password) => async () => {
     await Auth.forgotPasswordSubmit(username, code, new_password);
   } catch (err) {
     console.error(err.message);
-  }
-};
-
-export const verifyEmail = (username, code) => async () => {
-  try {
-    await Auth.confirmSignUp(username, code);
-  } catch (err) {
-    console.error(err);
   }
 };
