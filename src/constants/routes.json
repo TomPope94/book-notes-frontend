@@ -27,6 +27,10 @@
     "route": "/auth/welcome",
     "label": "User Welcome"
   },
+  "USER_VERIFY": {
+    "route": "/auth/verify",
+    "label": "User Verification"
+  },
   "USER_DASHBOARD": {
     "route": "/dashboard",
     "label": "Dashboard"

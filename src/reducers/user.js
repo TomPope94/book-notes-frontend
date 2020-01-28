@@ -1,8 +1,10 @@
-import { GET_USER } from "actions/types";
+import { GET_USER } from 'actions/types';
 
 const initialState = {
-  attributes: null,
-  loading: false
+  attributes: {
+    email_verified: false
+  },
+  loading: true
 };
 
 export default function(state = initialState, action) {
@@ -12,7 +14,8 @@ export default function(state = initialState, action) {
     case GET_USER:
       return {
         ...state,
-        attributes: payload
+        attributes: payload,
+        loading: false
       };
     default:
       return state;
