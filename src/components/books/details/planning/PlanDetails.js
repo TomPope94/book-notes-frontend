@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect, Fragment } from "react";
 import { connect } from "react-redux";
+import moment from "moment";
 
 import { DayPickedContext } from "components/books/details/planning/dayPicked-context";
 
@@ -27,6 +28,18 @@ const styles = {
 const PlanDetails = ({ selectedBook, editBook }) => {
   const pickedContext = useContext(DayPickedContext);
   const { dateChosen, plannedDate } = pickedContext.state;
+  const [datePassed, setDatePassed] = useState(false);
+
+  useEffect(() => {
+    if (dateChosen) {
+      const dateBefore = moment(dateChosen, "YYYYMMDD").isBefore(moment());
+      if (dateBefore) {
+        setDatePassed(true);
+      } else {
+        setDatePassed(false);
+      }
+    }
+  }, [dateChosen]);
 
   const handleClick = async newState => {
     if (selectedBook) {
@@ -37,6 +50,8 @@ const PlanDetails = ({ selectedBook, editBook }) => {
     }
   };
 
+  const dayDiff = moment(dateChosen, "YYYYMMDD").diff(moment(), "days") + 1;
+
   return (
     <div style={styles.detailsContainter}>
       <h1>
@@ -46,10 +61,21 @@ const PlanDetails = ({ selectedBook, editBook }) => {
           <DateChosen date={dateChosen} />
         )}
       </h1>
-      <h2>Stick an image here...</h2>
-      <h3 style={styles.startNowButton} onClick={() => handleClick("Reading")}>
-        Or start reading now?
-      </h3>
+      {datePassed ? (
+        <h2>Start reading?</h2>
+      ) : (
+        <Fragment>
+          <h2>
+            {dayDiff} day{dayDiff === 1 ? null : "s"} left
+          </h2>
+          <h3
+            style={styles.startNowButton}
+            onClick={() => handleClick("Reading")}
+          >
+            Or start reading now?
+          </h3>
+        </Fragment>
+      )}
     </div>
   );
 };
