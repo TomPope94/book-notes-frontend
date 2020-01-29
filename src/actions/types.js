@@ -24,3 +24,9 @@ export const ADD_DAILY_TRACKING = "ADD_DAILY_TRACKING";
 // user
 export const GET_USER = "GET_USER";
 export const UPDATE_ATTRIBUTES = "UPDATE_ATTRIBUTES";
+
+// purchasing
+export const UPDATE_ITEM = "UPDATE_ITEM";
+export const REMOVE_ITEM = "REMOVE_ITEM";
+export const GET_SLOTS_COUNT = "GET_SLOTS_COUNT";
+export const RECALC_BASKET = "RECALC_BASKET";

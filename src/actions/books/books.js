@@ -110,7 +110,10 @@ export const listBooks = filter => async dispatch => {
 
     dispatch({
       type: GET_ALL_BOOKS,
-      payload: booksArr
+      payload: {
+        filteredBooks: booksArr,
+        rawBooks: res
+      }
     });
   } catch (err) {
     console.error(err);

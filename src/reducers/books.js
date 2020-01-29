@@ -12,6 +12,7 @@ import {
 } from "actions/types";
 
 const initialState = {
+  rawBooks: [],
   books: [],
   selectedBook: null,
   loading: true,
@@ -25,7 +26,8 @@ export default function(state = initialState, action) {
     case GET_ALL_BOOKS:
       return {
         ...state,
-        books: payload,
+        books: payload.filteredBooks,
+        rawBooks: payload.rawBooks,
         loading: false
       };
     case GET_BOOK:

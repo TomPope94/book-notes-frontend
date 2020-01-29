@@ -42,13 +42,13 @@ const styles = {
   }
 };
 
-const UserHome = ({ logout }) => {
+const UserHome = ({ logout, user }) => {
   const history = useHistory();
 
   return (
     <div style={styles.contentContainer}>
       <div style={styles.toplineContainer}>
-        <h2>Hello User!</h2>
+        <h2>Hello {user.attributes.displayName}!</h2>
         <button onClick={() => logout()}>Logout</button>
       </div>
       <div style={styles.buttonsContainer}>
@@ -88,4 +88,8 @@ const UserHome = ({ logout }) => {
   );
 };
 
-export default connect(null, { logout })(UserHome);
+const mapStateToProps = state => ({
+  user: state.user
+});
+
+export default connect(mapStateToProps, { logout })(UserHome);

@@ -6,7 +6,6 @@ import { AUTH, USER_VERIFY } from "constants/routes";
 const PrivateRoute = ({
   component: Component,
   auth: { isAuthenticated, loading },
-  user,
   ...rest
 }) => (
   <Route
@@ -22,8 +21,7 @@ const PrivateRoute = ({
 );
 
 const mapStateToProps = state => ({
-  auth: state.auth,
-  user: state.user
+  auth: state.auth
 });
 
 export default connect(mapStateToProps)(PrivateRoute);

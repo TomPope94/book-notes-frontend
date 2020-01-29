@@ -19,6 +19,7 @@ import BooksDetails from "components/books/details/BookDetails";
 import AddBook from "components/books/addBook/AddBook";
 import AddBookManually from "components/books/addBook/AddBookManually";
 import AddBookSearch from "components/books/addBook/search/AddBookSearch";
+import PurchaseJourney from "components/purchasing/PurchaseJourney";
 import UserHome from "components/user/UserHome";
 import Account from "components/user/account/Account";
 import Billing from "components/user/billing/Billing";
@@ -134,6 +135,11 @@ const App = () => {
               exact
               path={routes.BOOKS_SEARCH.route}
               component={AddBookSearch}
+            />
+            <PrivateRoute
+              exact
+              path={routes.PRODUCT_HOME.route}
+              component={PurchaseJourney}
             />
             <PrivateRoute
               exact

@@ -5,7 +5,7 @@ import uuid from "uuid";
 
 import { listBooks, resetBooks } from "actions/books/books";
 
-import { BOOKS_ADD } from "constants/routes";
+import { BOOKS_ADD, PRODUCT_HOME } from "constants/routes";
 
 import Book from "components/elements/Book";
 import Loader from "components/elements/Loader";
@@ -42,10 +42,13 @@ const styles = {
   },
   subHeading: {
     fontWeight: 200
+  },
+  bookCounter: {
+    marginLeft: 25
   }
 };
 
-const BooksHome = ({ listBooks, resetBooks, books }) => {
+const BooksHome = ({ listBooks, resetBooks, books, user }) => {
   useEffect(() => {
     listBooks(books.filter);
 
@@ -53,6 +56,8 @@ const BooksHome = ({ listBooks, resetBooks, books }) => {
       resetBooks();
     };
   }, [listBooks, books.filter, resetBooks]);
+
+  const bookCount = books.rawBooks.length;
 
   const history = useHistory();
   // loop through array to create a row for each element
@@ -95,6 +100,14 @@ const BooksHome = ({ listBooks, resetBooks, books }) => {
   const renderGroups =
     books.books.length > 0 ? generateGroups(books.books) : null;
 
+  const handleAdd = () => {
+    if (bookCount >= user.attributes.bookLimit) {
+      history.push(PRODUCT_HOME.route);
+    } else {
+      history.push(BOOKS_ADD.route);
+    }
+  };
+
   return books.loading ? (
     <Loader />
   ) : (
@@ -103,10 +116,10 @@ const BooksHome = ({ listBooks, resetBooks, books }) => {
         <div style={styles.libraryHeader}>
           <div style={styles.libraryHeaderLeft}>
             <h1 style={styles.libraryTitle}>My Library.</h1>
-            <AddBookIcon
-              height="75"
-              onClick={() => history.push(BOOKS_ADD.route)}
-            />
+            <AddBookIcon height="75" onClick={() => handleAdd()} />
+            <h3 style={styles.bookCounter}>
+              {bookCount}/{user.attributes.bookLimit} books created
+            </h3>
           </div>
           <LibraryFilter />
         </div>
@@ -116,7 +129,8 @@ const BooksHome = ({ listBooks, resetBooks, books }) => {
   );
 };
 const mapStateToProps = state => ({
-  books: state.books
+  books: state.books,
+  user: state.user
 });
 
 export default connect(mapStateToProps, { listBooks, resetBooks })(BooksHome);

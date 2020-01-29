@@ -61,7 +61,7 @@ export const verifyEmail = (email, code, password) => async dispatch => {
 export const login = (email, password) => async dispatch => {
   try {
     await Auth.signIn(email, password);
-    // await dispatch(getUser());
+    await dispatch(loadUser());
     dispatch({
       type: LOGIN_SUCCESS
     });

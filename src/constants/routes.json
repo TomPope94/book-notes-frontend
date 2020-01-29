@@ -55,6 +55,10 @@
     "route": "/books/add/search",
     "label": "Search"
   },
+  "PRODUCT_HOME": {
+    "route": "/products",
+    "label": "Product Home"
+  },
   "USER_HOME": {
     "route": "/user",
     "label": "User"

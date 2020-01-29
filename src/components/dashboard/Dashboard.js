@@ -15,7 +15,7 @@ const Dashboard = ({ user, sendWelcome }) => {
     <Fragment>
       {user.loading ? null : (
         <div>
-          <h1>Dashboard</h1>
+          <h1>{user.attributes.displayName}'s Dashboard</h1>
           <button onClick={() => sendWelcome("tompope1994@gmail.com")}>
             Send welcome
           </button>
