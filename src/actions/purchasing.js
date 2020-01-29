@@ -33,23 +33,15 @@ export const updateQuants = newProdsSelected => async dispatch => {
   }
 };
 
-export const countProducts = prodsSelected => async dispatch => {
+export const countProducts = newSlots => async dispatch => {
   try {
-    const products = Object.values(prodsSelected);
-    let value = [];
-    let slots = [];
-    for (let i = 0; i < products.length; i++) {
-      value.push(products[i].price * products[i].quantity);
-      slots.push(products[i].slots * products[i].quantity);
-    }
-    const totalBasketValue = value.reduce((acc, currVal) => acc + currVal);
-    const totalBasketSlots = slots.reduce((acc, currVal) => acc + currVal);
+    const basketVal = (newSlots / 2) * (2 * 0.99 + (newSlots - 1) * -0.1);
 
     dispatch({
       type: RECALC_BASKET,
       payload: {
-        basketTotal: Math.round(totalBasketValue * 100) / 100,
-        slotsInBasket: Math.round(totalBasketSlots * 100) / 100
+        slotsInBasket: newSlots,
+        basketTotal: Math.round(basketVal * 100) / 100
       }
     });
   } catch (err) {

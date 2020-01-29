@@ -1,9 +1,10 @@
 import React from "react";
 
 const styles = {
-  cardsRow: {
+  slotsInBasketRow: {
     display: "flex",
-    justifyContent: "space-evenly"
+    justifyContent: "flex-start",
+    alignItems: "center"
   },
   cardsContainer: {
     display: "flex",
@@ -25,64 +26,26 @@ const styles = {
 };
 
 const ProductHome = ({ changeview, purchasing, updatebasket, ...props }) => {
-  const { productsSelected } = purchasing;
+  const { slotsInBasket } = purchasing;
 
-  const handleChange = async (productName, direction) => {
-    if (direction === "add") {
-      productsSelected[productName].quantity += 1;
-    } else {
-      productsSelected[productName].quantity -= 1;
-    }
+  const handleChange = async add => {
+    const newSlots = add ? slotsInBasket + 1 : slotsInBasket - 1;
 
-    await updatebasket(productsSelected);
+    await updatebasket(newSlots);
   };
   // debugger;
   return (
     <div>
-      <h2>Our Products:</h2>
-      <div style={styles.cardsRow}>
-        <div style={styles.cardsContainer}>
-          {productsSelected.one.quantity > 0 ? (
-            <button
-              style={styles.minusButton}
-              onClick={() => handleChange("one", "subtract")}
-            >
-              -
-            </button>
-          ) : null}
-          <div style={styles.card} onClick={() => handleChange("one", "add")}>
-            <h2>1</h2>
-            <p>£0.99</p>
-          </div>
-        </div>
-        <div style={styles.cardsContainer}>
-          {productsSelected.three.quantity > 0 ? (
-            <button
-              style={styles.minusButton}
-              onClick={() => handleChange("three", "subtract")}
-            >
-              -
-            </button>
-          ) : null}
-          <div style={styles.card} onClick={() => handleChange("three", "add")}>
-            <h2>3</h2>
-            <p>£1.99</p>
-          </div>
-        </div>
-        <div style={styles.cardsContainer}>
-          {productsSelected.five.quantity > 0 ? (
-            <button
-              style={styles.minusButton}
-              onClick={() => handleChange("five", "subtract")}
-            >
-              -
-            </button>
-          ) : null}
-          <div style={styles.card} onClick={() => handleChange("five", "add")}>
-            <h2>5</h2>
-            <p>£2.99</p>
-          </div>
-        </div>
+      <h2>Choose up to 5 slots:</h2>
+      <div style={styles.slotsInBasketRow}>
+        <h3>Current Basket:</h3>
+        <p>{slotsInBasket}</p>
+        {slotsInBasket < 5 ? (
+          <button onClick={() => handleChange(true)}>+</button>
+        ) : null}
+        {slotsInBasket > 0 ? (
+          <button onClick={() => handleChange(false)}>-</button>
+        ) : null}
       </div>
       <button onClick={() => changeview("basket")}>Basket</button>
     </div>
