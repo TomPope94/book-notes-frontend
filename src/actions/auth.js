@@ -6,13 +6,13 @@ import {
   LOGIN_FAIL,
   LOGOUT
 } from "actions/types";
-import { getUser } from "actions/user";
-import { Auth } from "aws-amplify";
+import { getUser, createUser } from "actions/user";
+import { Auth, API } from "aws-amplify";
 
 export const loadUser = () => async dispatch => {
   try {
     await Auth.currentSession();
-    dispatch(getUser());
+    await dispatch(getUser());
     dispatch({
       type: USER_LOADED
     });
@@ -39,8 +39,6 @@ export const registerUser = (email, password) => async dispatch => {
     dispatch({
       type: REGISTER_SUCCESS
     });
-
-    dispatch(loadUser());
   } catch (err) {
     const errors = err.message; // this will be changed for an error message in app/redux
     console.error(errors);
@@ -51,7 +49,9 @@ export const verifyEmail = (email, code, password) => async dispatch => {
   try {
     await Auth.confirmSignUp(email, code);
 
-    dispatch(login(email, password));
+    await dispatch(login(email, password));
+    await dispatch(createUser(email));
+    await dispatch(getUser());
   } catch (err) {
     console.error(err);
   }
@@ -61,7 +61,7 @@ export const verifyEmail = (email, code, password) => async dispatch => {
 export const login = (email, password) => async dispatch => {
   try {
     await Auth.signIn(email, password);
-    dispatch(getUser());
+    // await dispatch(getUser());
     dispatch({
       type: LOGIN_SUCCESS
     });

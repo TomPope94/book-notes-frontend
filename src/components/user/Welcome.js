@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { useHistory, Redirect } from "react-router-dom";
 
-import { updateAttributes } from "actions/user";
+import { updateUser } from "actions/user";
 import { USER_DASHBOARD } from "constants/routes";
 
 const styles = {
@@ -17,25 +17,47 @@ const styles = {
   }
 };
 
-const Welcome = ({ updateAttributes, user }) => {
+const Welcome = ({ updateUser, user }) => {
+  const [formData, setFormData] = useState({
+    displayName: "",
+    firstLogin: false
+  });
+  const { displayName } = formData;
   const history = useHistory();
 
-  if (!user.attributes["custom:firstLogin"]) {
+  if (!user.attributes.firstLogin) {
     return <Redirect to={USER_DASHBOARD.route} />;
   }
 
-  const handleClick = async () => {
-    await updateAttributes({
-      "custom:firstLogin": false
-    });
+  const handleSubmit = async e => {
+    e.preventDefault();
+    await updateUser({ ...user.attributes, ...formData });
 
     history.push(USER_DASHBOARD.route);
   };
 
+  const handleChange = e => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   return (
     <div style={styles.pageContainer}>
-      <h1>WELCOME!!!!!!</h1>
-      <button onClick={() => handleClick()}>Enter</button>
+      <h1>Welcome to Liberead</h1>
+      <p>
+        Thank you for signing up for a Liberead account, it's great to meet you!
+        Before we can continue, what should we call you? Don't worry this can be
+        changed later...
+      </p>
+      <form onSubmit={e => handleSubmit(e)}>
+        <input
+          type="text"
+          placeholder="Name"
+          name="displayName"
+          value={displayName}
+          onChange={e => handleChange(e)}
+        />
+        <input type="submit" value="submit" />
+      </form>
     </div>
   );
 };
@@ -44,4 +66,4 @@ const mapStateToProps = state => ({
   user: state.user
 });
 
-export default connect(mapStateToProps, { updateAttributes })(Welcome);
+export default connect(mapStateToProps, { updateUser })(Welcome);
