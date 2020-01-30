@@ -33,7 +33,7 @@ const ProductHome = ({ changeview, purchasing, updatebasket, ...props }) => {
 
     await updatebasket(newSlots);
   };
-  // debugger;
+
   return (
     <div>
       <h2>Choose up to 5 slots:</h2>

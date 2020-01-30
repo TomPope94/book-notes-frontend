@@ -48,3 +48,15 @@ export const countProducts = newSlots => async dispatch => {
     console.error(err);
   }
 };
+
+export const startPayIntent = details => async dispatch => {
+  try {
+    const secret = await API.post("prod", "/billing/start", {
+      body: details
+    });
+    // debugger;
+    return secret;
+  } catch (err) {
+    console.error(err);
+  }
+};

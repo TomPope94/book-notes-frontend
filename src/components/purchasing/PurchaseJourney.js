@@ -1,5 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { connect } from "react-redux";
+import { StripeProvider, Elements } from "react-stripe-elements";
+import config from "config";
 
 import { countBooks, updateQuants } from "actions/purchasing";
 
@@ -45,7 +47,11 @@ const PurchaseJourney = ({ purchasing, user, countBooks, updateQuants }) => {
         ) : viewState === "basket" ? (
           <Basket purchasing={purchasing} changeview={setViewState} />
         ) : viewState === "checkout" ? (
-          <Checkout />
+          <StripeProvider apiKey={config.STRIPE_KEY}>
+            <Elements>
+              <Checkout purchasing={purchasing} changeview={setViewState} />
+            </Elements>
+          </StripeProvider>
         ) : null}
       </div>
     </div>
