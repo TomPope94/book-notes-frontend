@@ -1,23 +1,23 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState } from 'react';
 import {
   CardNumberElement,
   CardExpiryElement,
   CardCVCElement,
   CardElement
-} from "react-stripe-elements";
+} from 'react-stripe-elements';
 
 const style = {
   base: {
-    fontSize: "32px",
-    color: "#424770",
-    letterSpacing: "0.025em",
-    fontFamily: "Source Code Pro, monospace",
-    "::placeholder": {
-      color: "#aab7c4"
+    fontSize: '32px',
+    color: '#424770',
+    letterSpacing: '0.025em',
+    fontFamily: 'Source Code Pro, monospace',
+    '::placeholder': {
+      color: '#aab7c4'
     }
   },
   invalid: {
-    color: "#9e2146"
+    color: '#9e2146'
   }
 };
 
@@ -28,16 +28,16 @@ const styles = {
     minWidth: 150
   },
   secondaryContainer: {
-    display: "flex"
+    display: 'flex'
   },
   overlayLoading: {
-    width: "100%",
-    height: "100%",
-    position: "absolute",
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
     top: 0,
     left: 0,
     zIndex: 9,
-    background: "#fff"
+    background: '#fff'
   }
 };
 
@@ -54,28 +54,12 @@ const CheckoutForm = ({ changecardname, submit, ...props }) => {
           name="CardholderName"
           onChange={e => changecardname(e.target.value)}
         />
-        {/* <div style={styles.labelContainer}>
-          <label>
-            Card Number
-            <CardNumberElement onReady={() => setReady(true)} style={style} />
-          </label>
-        </div>
-        <div style={styles.secondaryContainer}>
-          <div style={styles.labelContainer}>
-            <label>
-              Expiration Date
-              <CardExpiryElement onReady={() => setReady(true)} style={style} />
-            </label>
-          </div>
-          <div style={styles.labelContainer}>
-            <label>
-              CVC
-              <CardCVCElement onReady={() => setReady(true)} style={style} />
-            </label>
-          </div> */}
-        {/* </div> */}
         <div style={styles.labelContainer}>
-          <CardElement style={style} onReady={() => setReady(true)} />
+          <CardElement
+            style={style}
+            onReady={() => setReady(true)}
+            hidePostalCode={true}
+          />
         </div>
         <button>Pay</button>
       </form>
