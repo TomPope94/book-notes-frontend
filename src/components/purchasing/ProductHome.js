@@ -1,53 +1,103 @@
-import React from "react";
+import React, { useState } from 'react';
+import StoreBook from 'components/elements/icons/store/StoreBook';
+import ContinueStoreButton from 'components/elements/ContinueStoreButton';
+import BasketChosen from './BasketChosen';
 
 const styles = {
   slotsInBasketRow: {
-    display: "flex",
-    justifyContent: "flex-start",
-    alignItems: "center"
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    marginTop: 50,
+    marginBottom: 50,
+    width: '50%'
   },
-  cardsContainer: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    position: "relative"
+  storeBook: {
+    marginLeft: 10,
+    marginRight: 10,
+    maxWidth: 200,
+    flexGrow: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    cursor: 'pointer'
   },
-  card: {
-    background: "#fff",
-    boxShadow: "0 2px 5px grey",
-    borderRadius: 10,
-    padding: 25,
-    cursor: "pointer"
-  },
-  minusButton: {
-    position: "absolute",
-    bottom: 0
+  bottomRow: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginRight: 50,
+    width: '50%'
   }
 };
 
-const ProductHome = ({ changeview, purchasing, updatebasket, ...props }) => {
+const ProductHome = ({
+  changeview,
+  purchasing,
+  updatebasket,
+  updatebaskethover,
+  ...props
+}) => {
+  const [hoverState, setHoverState] = useState(0);
   const { slotsInBasket } = purchasing;
 
-  const handleChange = async add => {
-    const newSlots = add ? slotsInBasket + 1 : slotsInBasket - 1;
-
-    await updatebasket(newSlots);
+  const handleHover = async num => {
+    setHoverState(num);
+    await updatebaskethover(num);
   };
 
   return (
     <div>
-      <h2>Choose up to 5 slots:</h2>
       <div style={styles.slotsInBasketRow}>
-        <h3>Current Basket:</h3>
-        <p>{slotsInBasket}</p>
-        {slotsInBasket < 5 ? (
-          <button onClick={() => handleChange(true)}>+</button>
-        ) : null}
-        {slotsInBasket > 0 ? (
-          <button onClick={() => handleChange(false)}>-</button>
-        ) : null}
+        <StoreBook
+          number={1}
+          style={styles.storeBook}
+          onClick={async () => await updatebasket(1)}
+          onMouseOver={() => handleHover(1)}
+          hovernumber={hoverState}
+          basket={slotsInBasket}
+        />
+        <StoreBook
+          number={2}
+          style={styles.storeBook}
+          onClick={async () => await updatebasket(2)}
+          onMouseOver={() => handleHover(2)}
+          hovernumber={hoverState}
+          basket={slotsInBasket}
+        />
+        <StoreBook
+          number={3}
+          style={styles.storeBook}
+          onClick={async () => await updatebasket(3)}
+          onMouseOver={() => handleHover(3)}
+          hovernumber={hoverState}
+          basket={slotsInBasket}
+        />
+        <StoreBook
+          number={4}
+          style={styles.storeBook}
+          onClick={async () => await updatebasket(4)}
+          onMouseOver={() => handleHover(4)}
+          hovernumber={hoverState}
+          basket={slotsInBasket}
+        />
+        <StoreBook
+          number={5}
+          style={styles.storeBook}
+          onClick={async () => await updatebasket(5)}
+          onMouseOver={() => handleHover(5)}
+          hovernumber={hoverState}
+          basket={slotsInBasket}
+        />
       </div>
-      <button onClick={() => changeview("basket")}>Basket</button>
+      <div style={styles.bottomRow}>
+        <BasketChosen purchasing={purchasing} />
+        <ContinueStoreButton
+          text="To Basket."
+          onClick={() => changeview('basket')}
+        />
+      </div>
     </div>
   );
 };
