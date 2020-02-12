@@ -59,7 +59,7 @@ const PurchaseJourney = ({
     }
   }, []);
 
-  const slotsLeft = purchasing.slotsUsed - user.attributes.bookLimit;
+  const slotsLeft = user.attributes.bookLimit - purchasing.slotsUsed;
 
   return (
     <div>
@@ -98,7 +98,11 @@ const PurchaseJourney = ({
             />
           </Fragment>
         ) : viewState === 2 ? (
-          <Basket purchasing={purchasing} changeview={setViewState} />
+          <Basket
+            purchasing={purchasing}
+            changeview={setViewState}
+            slotsleft={slotsLeft}
+          />
         ) : viewState === 3 ? (
           <StripeProvider apiKey={config.STRIPE_KEY}>
             <Elements>
