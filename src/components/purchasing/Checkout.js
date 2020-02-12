@@ -62,7 +62,7 @@ const Checkout = ({ purchasing, changeview, startPayIntent, ...props }) => {
         />
       </div>
       {!confirm ? null : <CheckoutConfirm submit={handleConfirm} />}
-      <button onClick={() => changeview('basket')}>Back to Basket</button>
+      <button onClick={() => changeview(2)}>Back to Basket</button>
     </Fragment>
   );
 };

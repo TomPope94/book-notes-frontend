@@ -93,10 +93,7 @@ const ProductHome = ({
       </div>
       <div style={styles.bottomRow}>
         <BasketChosen purchasing={purchasing} />
-        <ContinueStoreButton
-          text="To Basket."
-          onClick={() => changeview('basket')}
-        />
+        <ContinueStoreButton text="To Basket." onClick={() => changeview(2)} />
       </div>
     </div>
   );

@@ -50,12 +50,12 @@ const PurchaseJourney = ({
   countProducts,
   countProductsHover
 }) => {
-  const [viewState, setViewState] = useState('products');
+  const [viewState, setViewState] = useState(1);
 
   useEffect(() => {
     countBooks();
     if (purchasing.basketTotal > 0) {
-      setViewState('basket');
+      setViewState(2);
     }
   }, []);
 
@@ -75,13 +75,16 @@ const PurchaseJourney = ({
               flexGrow: 1,
               marginLeft: 100
             }}
+            changeview={setViewState}
+            currentview={viewState}
+            purchasing={purchasing}
           />
         </div>
         <HelpIcon width="50px" />
       </div>
 
       <div>
-        {viewState === 'products' ? (
+        {viewState === 1 ? (
           <Fragment>
             <p style={styles.contentText}>
               You have <span style={styles.orangeSpan}>{slotsLeft}</span> slots
@@ -94,9 +97,9 @@ const PurchaseJourney = ({
               updatebaskethover={countProductsHover}
             />
           </Fragment>
-        ) : viewState === 'basket' ? (
+        ) : viewState === 2 ? (
           <Basket purchasing={purchasing} changeview={setViewState} />
-        ) : viewState === 'checkout' ? (
+        ) : viewState === 3 ? (
           <StripeProvider apiKey={config.STRIPE_KEY}>
             <Elements>
               <Checkout purchasing={purchasing} changeview={setViewState} />

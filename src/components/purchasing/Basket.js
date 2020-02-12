@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const Basket = ({ purchasing, changeview, ...props }) => {
   const { slotsInBasket, basketTotal } = purchasing;
@@ -10,9 +10,9 @@ const Basket = ({ purchasing, changeview, ...props }) => {
         You're purchasing {slotsInBasket} book slots for a total of £
         {basketTotal}
       </p>
-      <button onClick={() => changeview("products")}>Back to Product</button>
+      <button onClick={() => changeview(2)}>Back to Product</button>
       {basketTotal > 0 ? (
-        <button onClick={() => changeview("checkout")}>Checkout</button>
+        <button onClick={() => changeview(3)}>Checkout</button>
       ) : null}
     </div>
   );
