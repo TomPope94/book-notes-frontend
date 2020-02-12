@@ -23,7 +23,7 @@ import StoreIcon from 'components/elements/icons/StoreIcon';
 const styles = {
   navBar: {
     height: '100vh',
-    width: 150,
+    width: 100,
     background: '#F6A88C',
     display: 'flex',
     flexDirection: 'column',
@@ -43,7 +43,7 @@ const styles = {
     flexDirection: 'column',
     width: '100%',
     justifyContent: 'space-evenly',
-    height: '75%'
+    height: '50%'
   },
   pageLink: {
     height: '25%',
@@ -86,7 +86,7 @@ const styles = {
     zIndex: 2
   },
   linkStyling: {
-    fontSize: '1.5rem',
+    fontSize: '1.25rem',
     textDecoration: 'none',
     color: '#fff',
     pointerEvents: 'none'
@@ -109,7 +109,7 @@ const styles = {
     marginBottom: 20
   },
   linkRibbon: {
-    width: 165,
+    width: 115,
     height: '100%',
     position: 'absolute',
     top: 0,
