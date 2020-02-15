@@ -6,8 +6,31 @@ import { startPayIntent } from 'actions/purchasing';
 
 import CheckoutForm from 'components/purchasing/CheckoutForm';
 import CheckoutConfirm from 'components/purchasing/CheckoutConfirm';
+import CheckoutSummary from './CheckoutSummary';
 
-const Checkout = ({ purchasing, changeview, startPayIntent, ...props }) => {
+const styles = {
+  subTitle: {
+    fontSize: '1.5rem',
+    fontWeight: 200,
+    color: '#216e82'
+  },
+  subHeading: {
+    fontSize: '1.5rem',
+    fontWeight: 200,
+    color: '#b1d7e0'
+  },
+  checkoutContainer: {
+    display: 'flex'
+  }
+};
+
+const Checkout = ({
+  purchasing,
+  user,
+  changeview,
+  startPayIntent,
+  ...props
+}) => {
   const [cardholderName, setCardholderName] = useState('');
   const [cardObj, setCardObj] = useState(null);
   const [confirm, setConfirm] = useState(false);
@@ -49,20 +72,22 @@ const Checkout = ({ purchasing, changeview, startPayIntent, ...props }) => {
 
   return (
     <Fragment>
-      <p>
-        You're purchasing {slotsInBasket} book slots for a total of £
-        {basketTotal}
-      </p>
-      <div style={{ width: '50%' }}>
-        <CheckoutForm
-          changecardname={setCardholderName}
-          cardholdername={cardholderName}
-          submit={handleStart}
-          changeview={changeview}
-        />
+      <p style={styles.subTitle}>Checkout:</p>
+      <p style={styles.subHeading}>Please enter your card details:</p>
+      <div style={styles.checkoutContainer}>
+        <div style={{ width: '50%' }}>
+          <CheckoutForm
+            changecardname={setCardholderName}
+            cardholdername={cardholderName}
+            submit={handleStart}
+            changeview={changeview}
+          />
+        </div>
+        <div style={{ width: '50%' }}>
+          <CheckoutSummary purchasing={purchasing} user={user} />
+        </div>
       </div>
       {!confirm ? null : <CheckoutConfirm submit={handleConfirm} />}
-      <button onClick={() => changeview(2)}>Back to Basket</button>
     </Fragment>
   );
 };

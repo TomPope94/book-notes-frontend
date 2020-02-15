@@ -106,7 +106,11 @@ const PurchaseJourney = ({
         ) : viewState === 3 ? (
           <StripeProvider apiKey={config.STRIPE_KEY}>
             <Elements>
-              <Checkout purchasing={purchasing} changeview={setViewState} />
+              <Checkout
+                purchasing={purchasing}
+                user={user}
+                changeview={setViewState}
+              />
             </Elements>
           </StripeProvider>
         ) : null}

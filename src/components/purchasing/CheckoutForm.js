@@ -8,24 +8,25 @@ import {
 
 const style = {
   base: {
+    color: '#32325d',
+    fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+    fontSmoothing: 'antialiased',
     fontSize: '32px',
-    color: '#424770',
-    letterSpacing: '0.025em',
-    fontFamily: 'Source Code Pro, monospace',
     '::placeholder': {
-      color: '#aab7c4'
+      color: '#216e82'
     }
   },
   invalid: {
-    color: '#9e2146'
+    color: '#fa755a',
+    iconColor: '#fa755a'
   }
 };
 
 const styles = {
   labelContainer: {
     marginBottom: 25,
-    marginRight: 50,
-    minWidth: 150
+    minWidth: 150,
+    width: '75%'
   },
   secondaryContainer: {
     display: 'flex'
@@ -38,16 +39,33 @@ const styles = {
     left: 0,
     zIndex: 9,
     background: '#fff'
+  },
+  textInput: {
+    background: 'none',
+    border: 'none',
+    borderBottom: '1px solid #216e82',
+    fontSize: '2rem',
+    width: '75%',
+    marginBottom: 50,
+    fontFamily: 'baskervile',
+    color: '#216e82'
+  },
+  formContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    marginTop: 25
   }
 };
 
-const CheckoutForm = ({ changecardname, submit, ...props }) => {
+const CheckoutForm = ({ changecardname, submit, changeview, ...props }) => {
   const [ready, setReady] = useState(false);
 
   return (
     <Fragment>
-      <form onSubmit={submit}>
+      <form style={styles.formContainer} onSubmit={submit}>
         <input
+          style={styles.textInput}
           type="text"
           value={props.cardholderName}
           placeholder="Cardholder Name"
@@ -61,7 +79,8 @@ const CheckoutForm = ({ changecardname, submit, ...props }) => {
             hidePostalCode={true}
           />
         </div>
-        <button>Pay</button>
+        <button onClick={() => changeview(2)}>Back.</button>
+        <button>Confirm.</button>
       </form>
       {ready ? null : <div style={styles.overlayLoading} />}
     </Fragment>
