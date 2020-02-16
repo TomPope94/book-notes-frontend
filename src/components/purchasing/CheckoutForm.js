@@ -79,7 +79,7 @@ const CheckoutForm = ({ changecardname, submit, changeview, ...props }) => {
             hidePostalCode={true}
           />
         </div>
-        <button onClick={() => changeview(2)}>Back.</button>
+        <button onClick={() => changeview(1)}>Back.</button>
         <button>Confirm.</button>
       </form>
       {ready ? null : <div style={styles.overlayLoading} />}

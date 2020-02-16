@@ -87,7 +87,8 @@ const PurchaseJourney = ({
         {viewState === 1 ? (
           <Fragment>
             <p style={styles.contentText}>
-              You have <span style={styles.orangeSpan}>{slotsLeft}</span> slots
+              You have <span style={styles.orangeSpan}>{slotsLeft}</span>{' '}
+              {slotsLeft > 1 ? 'slots ' : 'slot '}
               left.
             </p>
             <ProductHome
@@ -98,12 +99,6 @@ const PurchaseJourney = ({
             />
           </Fragment>
         ) : viewState === 2 ? (
-          <Basket
-            purchasing={purchasing}
-            changeview={setViewState}
-            slotsleft={slotsLeft}
-          />
-        ) : viewState === 3 ? (
           <StripeProvider apiKey={config.STRIPE_KEY}>
             <Elements>
               <Checkout
@@ -113,7 +108,7 @@ const PurchaseJourney = ({
               />
             </Elements>
           </StripeProvider>
-        ) : null}
+        ) : viewState === 3 ? null : null}
       </div>
     </div>
   );

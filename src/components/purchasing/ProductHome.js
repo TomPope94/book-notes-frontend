@@ -40,7 +40,7 @@ const ProductHome = ({
   ...props
 }) => {
   const [hoverState, setHoverState] = useState(0);
-  const { slotsInBasket } = purchasing;
+  const { slotsInBasket, basketTotal } = purchasing;
 
   const handleHover = async num => {
     setHoverState(num);
@@ -93,7 +93,14 @@ const ProductHome = ({
       </div>
       <div style={styles.bottomRow}>
         <BasketChosen purchasing={purchasing} />
-        <ContinueStoreButton text="To Basket." onClick={() => changeview(2)} />
+        <ContinueStoreButton
+          text="To Basket."
+          onClick={() => {
+            if (slotsInBasket > 0 && basketTotal > 0) {
+              changeview(2);
+            }
+          }}
+        />
       </div>
     </div>
   );

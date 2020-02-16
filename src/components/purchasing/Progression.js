@@ -47,13 +47,6 @@ const Progression = ({ changeview, currentview, purchasing, ...props }) => {
             : { ...styles.circle, ...styles.circleInactive }
         }
       />
-      <div
-        style={
-          currentview >= 4
-            ? { ...styles.circle, ...styles.circleActive }
-            : { ...styles.circle, ...styles.circleInactive }
-        }
-      />
     </div>
   );
 };
