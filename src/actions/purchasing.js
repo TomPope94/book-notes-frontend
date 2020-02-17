@@ -55,11 +55,24 @@ export const countProductsHover = newSlots => async dispatch => {
 
 export const startPayIntent = details => async dispatch => {
   try {
-    const secret = await API.post('prod', '/billing/start', {
+    const res = await API.post('prod', '/billing/start', {
       body: details
     });
-    // debugger;
-    return secret;
+    debugger;
+    return res;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const cancelPayIntent = PID => async dispatch => {
+  debugger;
+  try {
+    const res = await API.post('prod', '/billing/cancel', {
+      body: PID
+    });
+    debugger;
+    return res;
   } catch (err) {
     console.error(err);
   }

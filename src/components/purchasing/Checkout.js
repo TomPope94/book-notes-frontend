@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
 import { Elements, injectStripe } from 'react-stripe-elements';
 
-import { startPayIntent } from 'actions/purchasing';
+import { startPayIntent, cancelPayIntent } from 'actions/purchasing';
 
 import CheckoutForm from 'components/purchasing/CheckoutForm';
 import CheckoutConfirm from 'components/purchasing/CheckoutConfirm';
@@ -29,12 +29,14 @@ const Checkout = ({
   user,
   changeview,
   startPayIntent,
+  cancelPayIntent,
   ...props
 }) => {
   const [cardholderName, setCardholderName] = useState('');
   const [cardObj, setCardObj] = useState(null);
   const [confirm, setConfirm] = useState(false);
   const [clientSecret, setClientSecret] = useState('');
+  const [PID, setPID] = useState('');
 
   const { slotsInBasket, basketTotal } = purchasing;
 
@@ -44,12 +46,24 @@ const Checkout = ({
       const secret = await startPayIntent({
         slots: purchasing.slotsInBasket
       });
-      await setClientSecret(secret.secret.client_secret);
-      await setCardObj(props.elements.getElement('card'));
-      setConfirm(true);
+      debugger;
+      try {
+        await setPID(secret.secret.id);
+        await setClientSecret(secret.secret.client_secret);
+        await setCardObj(props.elements.getElement('card'));
+        setConfirm(true);
+      } catch (error) {
+        console.error('woopsie something went wrong with the set states...');
+      }
     } else {
       console.log("Stripe.js hasn't loaded yet.");
     }
+  };
+
+  const handleCancel = async () => {
+    // ev.preventDefault();
+    debugger;
+    await cancelPayIntent(PID);
   };
 
   const handleConfirm = async ev => {
@@ -87,9 +101,13 @@ const Checkout = ({
           <CheckoutSummary purchasing={purchasing} user={user} />
         </div>
       </div>
-      {!confirm ? null : <CheckoutConfirm submit={handleConfirm} />}
+      {!confirm ? null : (
+        <CheckoutConfirm submit={handleConfirm} cancel={handleCancel} />
+      )}
     </Fragment>
   );
 };
 
-export default connect(null, { startPayIntent })(injectStripe(Checkout));
+export default connect(null, { startPayIntent, cancelPayIntent })(
+  injectStripe(Checkout)
+);
