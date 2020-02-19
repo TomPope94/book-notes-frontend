@@ -1,36 +1,32 @@
-import React, { useState, useMemo } from "react";
-import { createEditor, Editor } from "slate";
-import { Slate, Editable, withReact } from "slate-react";
-import { withHistory } from "slate-history";
+// Import React dependencies.
+import React, { useEffect, useMemo, useState } from 'react';
+// Import the Slate editor factory.
+import { createEditor } from 'slate';
 
-function MarkdownEditor() {
-  // debugger;
-  const [value] = useState(initialValue);
-  const [selection] = useState(null);
-  const editor = useMemo(() => withHistory(withReact(createEditor())), []);
+// Import the Slate components and React plugin.
+import { Slate, Editable, withReact } from 'slate-react';
 
-  const handleChange = value => {
-    // debugger;
-    Editor.insertText(value);
-    // setSelection(selection);
-  };
+const MarkdownEditor = () => {
+  const editor = useMemo(() => withReact(createEditor()), []);
+  // Add the initial value when setting up our state.
+  const [value, setValue] = useState([
+    {
+      type: 'paragraph',
+      children: [{ text: 'A line of text in a paragraph.' }]
+    }
+  ]);
 
   return (
     <Slate
       editor={editor}
       value={value}
-      selection={selection}
-      onChange={value => handleChange(value)}
+      onChange={value => {
+        setValue(value);
+      }}
     >
-      <Editable placeholder="Enter some plain text..." autoFocus />
+      <Editable />
     </Slate>
   );
-}
-
-const initialValue = [
-  {
-    children: [{ text: "This is editable plain text, just like a <textarea>!" }]
-  }
-];
+};
 
 export default MarkdownEditor;

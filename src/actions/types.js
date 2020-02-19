@@ -21,6 +21,10 @@ export const RESET_BOOKS = 'RESET_BOOKS';
 export const GET_DAILY_TRACKING = 'GET_DAILY_TRACKING';
 export const ADD_DAILY_TRACKING = 'ADD_DAILY_TRACKING';
 
+// notes
+export const GET_NOTES = 'GET_NOTES';
+export const UPDATE_NOTES = 'UPDATE_NOTES';
+
 // user
 export const GET_USER = 'GET_USER';
 export const UPDATE_ATTRIBUTES = 'UPDATE_ATTRIBUTES';

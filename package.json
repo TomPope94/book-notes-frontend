@@ -20,10 +20,10 @@
     "react-stripe-elements": "^6.0.1",
     "react-swipeable": "^5.5.0",
     "redux": "^4.0.4",
-    "slate": "^0.52.5",
+    "slate": "^0.57.1",
     "slate-history": "^0.52.5",
     "slate-plain-serializer": "^0.7.11",
-    "slate-react": "^0.52.7",
+    "slate-react": "^0.57.1",
     "uuid": "^3.3.3"
   },
   "scripts": {
