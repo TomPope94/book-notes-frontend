@@ -1,4 +1,8 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import moment from 'moment';
+
+import { updateNotes } from 'actions/books/notes';
 
 import MarkdownEditor from 'components/books/details/notes/MarkdownEditor';
 
@@ -19,11 +23,31 @@ const initialValue = [
   }
 ];
 
-const BookDetailsNotes = () => {
+const BookDetailsNotes = ({ updateNotes, selectedBook }) => {
   const [value, setValue] = useState(initialValue);
-  console.log(value);
+
+  useEffect(() => {
+    if (selectedBook.bookNotes) {
+      setValue(selectedBook.bookNotes.notesContent);
+    }
+  }, [selectedBook.bookNotes]);
+
   const handleSave = async () => {
-    debugger;
+    const currentNotes = selectedBook.bookNotes
+      ? selectedBook.bookNotes
+      : {
+          notesCreated: moment().format('YYYYMMDD'),
+          notesContent: value,
+          notesLastEdited: null,
+          notesNumEdited: 0
+        };
+
+    const newNotesObj = {
+      ...currentNotes,
+      notesContent: value
+    };
+
+    await updateNotes(newNotesObj, selectedBook.bookId);
   };
 
   return (
@@ -35,4 +59,8 @@ const BookDetailsNotes = () => {
   );
 };
 
-export default BookDetailsNotes;
+const mapStateToProps = state => ({
+  selectedBook: state.books.selectedBook
+});
+
+export default connect(mapStateToProps, { updateNotes })(BookDetailsNotes);

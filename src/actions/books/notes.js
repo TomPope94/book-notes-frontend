@@ -1,22 +1,15 @@
 import { API } from 'aws-amplify';
 import { UPDATE_NOTES } from 'actions/types';
 
-export const updateNotes = (
-  newNotes,
-  notesMetaData,
-  bookId
-) => async dispatch => {
+export const updateNotes = (notesObj, bookId) => async dispatch => {
   const APIBody = {
     bookNotes: {
-      notesContent: newNotes,
-      notesCreated: notesMetaData.notesCreated,
-      notesLastEdited: notesMetaData.notesLastEdited,
-      notesNumEdited: notesMetaData.notesNumEdited + 1
+      ...notesObj
     }
   };
 
   try {
-    const res = await API.post('prod', `/notes/${bookId}`, {
+    const res = await API.put('prod', `/books/notes/${bookId}`, {
       body: APIBody
     });
 
