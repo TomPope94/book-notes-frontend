@@ -1,13 +1,14 @@
-// Import React dependencies.
-import React, { useEffect, useMemo, useState } from 'react';
-// Import the Slate editor factory.
-import { createEditor } from 'slate';
-
-// Import the Slate components and React plugin.
+import React, { useEffect, useMemo, useCallback } from 'react';
+import { createEditor, Editor, Transforms } from 'slate';
 import { Slate, Editable, withReact } from 'slate-react';
+
+import Element from 'components/books/details/notes/Element';
+import Leaf from 'components/books/details/notes/Leaf';
 
 const MarkdownEditor = ({ value, changevalue }) => {
   const editor = useMemo(() => withReact(createEditor()), []);
+  const renderElement = useCallback(props => <Element {...props} />, []);
+  const renderLeaf = useCallback(props => <Leaf {...props} />, []);
 
   return (
     <Slate
@@ -17,7 +18,13 @@ const MarkdownEditor = ({ value, changevalue }) => {
         changevalue(value);
       }}
     >
-      <Editable />
+      <Editable
+        renderElement={renderElement}
+        renderLeaf={renderLeaf}
+        placeholder="Enter some rich text..."
+        spellCheck
+        autoFocus
+      />
     </Slate>
   );
 };

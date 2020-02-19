@@ -34,11 +34,15 @@ const BookDetailsNotes = ({ updateNotes, selectedBook }) => {
 
   const handleSave = async () => {
     const currentNotes = selectedBook.bookNotes
-      ? selectedBook.bookNotes
+      ? {
+          ...selectedBook.bookNotes,
+          notesLastEdited: moment().format('YYYYMMDD'),
+          notesNumEdited: selectedBook.bookNotes.notesNumEdited + 1
+        }
       : {
           notesCreated: moment().format('YYYYMMDD'),
           notesContent: value,
-          notesLastEdited: null,
+          notesLastEdited: moment().format('YYYYMMDD'),
           notesNumEdited: 0
         };
 
