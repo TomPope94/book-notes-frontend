@@ -16,12 +16,12 @@ const StoreIcon = ({ ...props }) => {
       })
       .add({
         targets: '.storeFilled',
-        fill: ['#fff', '#f38b66']
+        fill: ['#75b3b3', '#f38b66']
       })
       .add(
         {
           targets: '.storeStroked',
-          stroke: ['#fff', '#f38b66']
+          stroke: ['#75b3b3', '#f38b66']
         },
         0
       );
@@ -43,18 +43,18 @@ const StoreIcon = ({ ...props }) => {
       <g style={{ pointerEvents: 'none' }}>
         <path
           className="storeFilled"
-          fill="#fff"
+          fill="#75b3b3"
           d="M59 5A54 54 0 115 59 54.06 54.06 0 0159 5m0-3a57 57 0 1057 57A57 57 0 0059 2z"
         ></path>
         <path
           className="storeFilled"
-          fill="#fff"
+          fill="#75b3b3"
           d="M89.14 69H45.53L38 42.93h58a1.29 1.29 0 011.23 1.65l-6.85 23.49a1.29 1.29 0 01-1.24.93z"
         ></path>
         <path
           className="storeStroked"
           fill="none"
-          stroke="#fff"
+          stroke="#75b3b3"
           strokeMiterlimit="10"
           strokeWidth="2"
           d="M21 31h6.33a9 9 0 018.72 6.25l10.85 36.1a7 7 0 006.83 4.84h35.16"
@@ -65,7 +65,7 @@ const StoreIcon = ({ ...props }) => {
           cy="87.29"
           r="4.85"
           fill="none"
-          stroke="#fff"
+          stroke="#75b3b3"
           strokeMiterlimit="10"
           strokeWidth="2"
         ></circle>
@@ -75,7 +75,7 @@ const StoreIcon = ({ ...props }) => {
           cy="87.29"
           r="4.85"
           fill="none"
-          stroke="#fff"
+          stroke="#75b3b3"
           strokeMiterlimit="10"
           strokeWidth="2"
         ></circle>

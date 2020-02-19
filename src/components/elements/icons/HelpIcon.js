@@ -20,8 +20,8 @@ const HelpIcon = ({ ...props }) => {
       duration: 100,
       easing: 'linear',
       direction: animateDirection,
-      fill: ['#fff', '#f38b66'],
-      stroke: ['#fff', '#f38b66']
+      fill: ['#75b3b3', '#f38b66'],
+      stroke: ['#75b3b3', '#f38b66']
     });
   };
 

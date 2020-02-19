@@ -15,7 +15,7 @@ import {
   USER_HOME,
   PRODUCT_HOME
 } from 'constants/routes';
-import LogoOrange from 'components/elements/images/LogoOrange';
+import LogoWhite from 'components/elements/images/LogoWhite';
 import HelpIcon from 'components/elements/icons/HelpIcon';
 import UserIcon from 'components/elements/icons/UserIcon';
 import StoreIcon from 'components/elements/icons/StoreIcon';
@@ -24,12 +24,13 @@ const styles = {
   navBar: {
     height: '100vh',
     width: 100,
-    background: '#F6A88C',
+    background: '#fff',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
     position: 'fixed',
-    zIndex: 10
+    zIndex: 10,
+    boxShadow: '0 1px 50px rgba(0,0,0,0.1)'
   },
   navLinks: {
     display: 'flex',
@@ -56,9 +57,9 @@ const styles = {
   },
   linkBackground: {
     position: 'absolute',
-    top: 0,
+    bottom: 0,
     left: 0,
-    height: '100%',
+    height: '5%',
     width: '100%',
     background: 'rgba(243, 139, 102, 1)',
     transform: 'scaleX(0)',
@@ -86,15 +87,16 @@ const styles = {
     zIndex: 2
   },
   linkStyling: {
-    fontSize: '1.25rem',
+    // fontSize: '1.25rem',
     textDecoration: 'none',
-    color: '#fff',
+    color: '#75b3b3',
     pointerEvents: 'none'
   },
   navRightContainer: {
     display: 'flex',
     flexDirection: 'column',
-    height: 150,
+    height: 75,
+    paddingBottom: 10,
     alignItems: 'center'
   },
   logoContainer: {
@@ -109,13 +111,12 @@ const styles = {
     marginBottom: 20
   },
   linkRibbon: {
-    width: 115,
+    width: '100%',
     height: '100%',
     position: 'absolute',
     top: 0,
     left: 0,
-    background: '#75b3b3',
-    boxShadow: 'rgb(1,1,1,0.5) -3px 3px 5px',
+    background: 'rgba(243, 139, 102, 0.2)',
     zIndex: -1
   },
   linkRibbonOverhang: {
@@ -177,7 +178,7 @@ const UserNav = ({ isAuthenticated, logout }) => {
       {isAuthenticated ? (
         <div style={styles.navBar}>
           <div style={styles.navLinks}>
-            <LogoOrange
+            <LogoWhite
               style={styles.logoContainer}
               onClick={() => history.push(USER_DASHBOARD.route)}
             />
@@ -194,7 +195,6 @@ const UserNav = ({ isAuthenticated, logout }) => {
                 {baseLocation === BOOKS_HOME.route ? (
                   <Fragment>
                     <div style={styles.linkRibbon} />
-                    <div style={styles.linkRibbonOverhang} />
                   </Fragment>
                 ) : null}
                 <p style={styles.linkStyling}>Library</p>
@@ -210,7 +210,6 @@ const UserNav = ({ isAuthenticated, logout }) => {
                 {baseLocation === PLANNING.route ? (
                   <Fragment>
                     <div style={styles.linkRibbon} />
-                    <div style={styles.linkRibbonOverhang} />
                   </Fragment>
                 ) : null}
                 <p style={styles.linkStyling}>Plan</p>
@@ -226,7 +225,6 @@ const UserNav = ({ isAuthenticated, logout }) => {
                 {baseLocation === TRACKING.route ? (
                   <Fragment>
                     <div style={styles.linkRibbon} />
-                    <div style={styles.linkRibbonOverhang} />
                   </Fragment>
                 ) : null}
                 <p style={styles.linkStyling}>Track</p>
@@ -242,7 +240,6 @@ const UserNav = ({ isAuthenticated, logout }) => {
                 {baseLocation === RECALL.route ? (
                   <Fragment>
                     <div style={styles.linkRibbon} />
-                    <div style={styles.linkRibbonOverhang} />
                   </Fragment>
                 ) : null}
                 <p style={styles.linkStyling}>Recall</p>
@@ -267,9 +264,9 @@ const UserNav = ({ isAuthenticated, logout }) => {
                 style={{ width: '30%', cursor: 'pointer' }}
                 strokeWidth={2}
                 fill={'#fff'}
-                stroke={'#fff'}
-                textfill={'#fff'}
-                textstroke={'#fff'}
+                stroke={'#75b3b3'}
+                textfill={'#75b3b3'}
+                textstroke={'#75b3b3'}
               />
             </div>
             <UserIcon onClick={() => history.push(USER_HOME.route)} />

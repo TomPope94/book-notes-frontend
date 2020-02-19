@@ -32,7 +32,7 @@ const styles = {
   groupUnderline: {
     width: '100%',
     height: 1,
-    background: 'linear-gradient(to right, #222641, transparent)',
+    background: 'linear-gradient(to right, #216e82, transparent)',
     position: 'absolute'
   },
   libraryHeaderLeft: {
@@ -49,7 +49,8 @@ const styles = {
     color: '#ff8c56'
   },
   subHeading: {
-    fontWeight: 200
+    fontWeight: 200,
+    color: '#216e82'
   },
   bookCounter: {
     marginLeft: 25

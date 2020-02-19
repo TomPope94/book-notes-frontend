@@ -3,7 +3,6 @@ import anime from 'animejs';
 
 const styles = {
   icon: {
-    margin: '0px 10px 30px 10px',
     transform: 'translateY(0)',
     cursor: 'pointer'
   }
@@ -20,7 +19,7 @@ const UserIcon = ({ ...props }) => {
       duration: 100,
       easing: 'linear',
       direction: animateDirection,
-      stroke: ['#fff', '#f38b66']
+      stroke: ['#75b3b3', '#f38b66']
     });
   };
 
@@ -35,7 +34,7 @@ const UserIcon = ({ ...props }) => {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 117 117"
       strokeWidth={2}
-      stroke="#fff"
+      stroke="#75b3b3"
       className="userIcon"
       onMouseOver={() => handleHover()}
       onMouseOut={() => handleHover()}
