@@ -14,12 +14,8 @@ const styles = {
 };
 const initialValue = [
   {
-    children: [
-      {
-        text: 'This is editable plain text!',
-        marks: []
-      }
-    ]
+    type: 'paragraph',
+    children: [{ text: 'A line of text in a paragraph.' }]
   }
 ];
 
