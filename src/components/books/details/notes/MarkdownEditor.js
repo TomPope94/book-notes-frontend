@@ -1,6 +1,7 @@
 import React, { useMemo, useCallback } from 'react';
 import { Editor, Transforms, createEditor, Text } from 'slate';
-import { Slate, Editable, withReact } from 'slate-react';
+import { Slate, Editable, withReact, useSlate } from 'slate-react';
+import { withHistory } from 'slate-history';
 
 import Element from 'components/books/details/notes/Element';
 import Leaf from 'components/books/details/notes/Leaf';
@@ -54,7 +55,7 @@ const CustomEditor = {
 };
 
 const MarkdownEditor = ({ value, changevalue }) => {
-  const editor = useMemo(() => withReact(createEditor()), []);
+  const editor = useMemo(() => withHistory(withReact(createEditor())), []);
 
   const renderElement = useCallback(props => <Element {...props} />, []);
   const renderLeaf = useCallback(props => <Leaf {...props} />, []);
@@ -101,25 +102,54 @@ const MarkdownEditor = ({ value, changevalue }) => {
     }
   };
 
+  const MarkButton = ({ format, label }) => {
+    const editor = useSlate();
+
+    return (
+      <button
+        onMouseDown={event => {
+          event.preventDefault();
+          toggleMark(editor, format);
+        }}
+      >
+        {label}
+      </button>
+    );
+  };
+
+  const BlockButton = ({ format, label }) => {
+    const editor = useSlate();
+
+    return (
+      <button
+        onMouseDown={event => {
+          event.preventDefault();
+          toggleBlock(editor, format);
+        }}
+      >
+        {label}
+      </button>
+    );
+  };
+
   return (
     <Slate editor={editor} value={value} onChange={value => changevalue(value)}>
       <div>
-        <button
-          onMouseDown={event => {
-            event.preventDefault();
-            toggleMark(editor, 'bold');
-          }}
-        >
-          Bold
-        </button>
-        <button
-          onMouseDown={event => {
-            event.preventDefault();
-            toggleBlock(editor, 'code');
-          }}
-        >
-          Code
-        </button>
+        <MarkButton format="bold" label="Bold" />
+        <MarkButton format="italic" label="Italic" />
+        <MarkButton format="underline" label="Underline" />
+        <MarkButton format="code" label="Code Inline" />
+        <BlockButton format="code" label="Code" />
+        <BlockButton format="block-quote" label="Quote" />
+        <BlockButton format="bulleted-list" label="List" />
+        <BlockButton format="numbered-list" label="Num" />
+        <BlockButton format="heading-one" label="H1" />
+        <BlockButton format="heading-two" label="H2" />
+        <BlockButton format="heading-three" label="H3" />
+        <BlockButton format="heading-four" label="H4" />
+        <BlockButton format="heading-five" label="H5" />
+        <BlockButton format="heading-six" label="H6" />
+        <BlockButton format="list-item" label="Item" />
       </div>
       <Editable
         renderElement={renderElement}
