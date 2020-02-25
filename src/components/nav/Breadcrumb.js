@@ -1,18 +1,21 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import BreadcrumbItem from "components/nav/BreadcrumbItem";
-import BreadcrumbSeparator from "components/nav/BreadcrumbSeparator";
+import BreadcrumbItem from 'components/nav/BreadcrumbItem';
+import BreadcrumbSeparator from 'components/nav/BreadcrumbSeparator';
 
 const styles = {
   crumbList: {
-    listStyle: "none",
-    display: "flex",
-    alignItems: "center"
+    listStyle: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    background: '#fce8df',
+    padding: 15,
+    borderRadius: 10
   }
 };
 
-const Breadcrumb = ({ separator = "/", routes }) => {
+const Breadcrumb = ({ separator = '/', routes }) => {
   const routeKeys = Object.keys(routes);
   const items = [];
 

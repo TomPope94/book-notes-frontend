@@ -6,6 +6,18 @@ import { withHistory } from 'slate-history';
 import Element from 'components/books/details/notes/Element';
 import Leaf from 'components/books/details/notes/Leaf';
 
+const styles = {
+  editorContainer: {
+    padding: 20,
+    boxShadow: '0 1px 10px rgba(0,0,0,0.2)',
+    borderRadius: 10
+  },
+  buttonsContainer: {
+    borderBottom: '2px solid #fce8df',
+    paddingBottom: 10
+  }
+};
+
 const LIST_TYPES = ['numbered-list', 'bulleted-list'];
 
 const CustomEditor = {
@@ -133,47 +145,53 @@ const MarkdownEditor = ({ value, changevalue }) => {
   };
 
   return (
-    <Slate editor={editor} value={value} onChange={value => changevalue(value)}>
-      <div>
-        <MarkButton format="bold" label="Bold" />
-        <MarkButton format="italic" label="Italic" />
-        <MarkButton format="underline" label="Underline" />
-        <MarkButton format="code" label="Code Inline" />
-        <BlockButton format="code" label="Code" />
-        <BlockButton format="block-quote" label="Quote" />
-        <BlockButton format="bulleted-list" label="List" />
-        <BlockButton format="numbered-list" label="Num" />
-        <BlockButton format="heading-one" label="H1" />
-        <BlockButton format="heading-two" label="H2" />
-        <BlockButton format="heading-three" label="H3" />
-        <BlockButton format="heading-four" label="H4" />
-        <BlockButton format="heading-five" label="H5" />
-        <BlockButton format="heading-six" label="H6" />
-        <BlockButton format="list-item" label="Item" />
-      </div>
-      <Editable
-        renderElement={renderElement}
-        renderLeaf={renderLeaf}
-        onKeyDown={event => {
-          if (!event.ctrlKey) {
-            return;
-          }
+    <div style={styles.editorContainer}>
+      <Slate
+        editor={editor}
+        value={value}
+        onChange={value => changevalue(value)}
+      >
+        <div style={styles.buttonsContainer}>
+          <MarkButton format="bold" label="Bold" />
+          <MarkButton format="italic" label="Italic" />
+          <MarkButton format="underline" label="Underline" />
+          <MarkButton format="code" label="Code Inline" />
+          <BlockButton format="code" label="Code" />
+          <BlockButton format="block-quote" label="Quote" />
+          <BlockButton format="bulleted-list" label="List" />
+          <BlockButton format="numbered-list" label="Num" />
+          <BlockButton format="heading-one" label="H1" />
+          <BlockButton format="heading-two" label="H2" />
+          <BlockButton format="heading-three" label="H3" />
+          <BlockButton format="heading-four" label="H4" />
+          <BlockButton format="heading-five" label="H5" />
+          <BlockButton format="heading-six" label="H6" />
+          <BlockButton format="list-item" label="Item" />
+        </div>
+        <Editable
+          renderElement={renderElement}
+          renderLeaf={renderLeaf}
+          onKeyDown={event => {
+            if (!event.ctrlKey) {
+              return;
+            }
 
-          switch (event.key) {
-            case '`': {
-              event.preventDefault();
-              CustomEditor.toggleCodeBlock(editor);
-              break;
+            switch (event.key) {
+              case '`': {
+                event.preventDefault();
+                CustomEditor.toggleCodeBlock(editor);
+                break;
+              }
+              case 'b': {
+                event.preventDefault();
+                toggleMark(editor, 'bold');
+                break;
+              }
             }
-            case 'b': {
-              event.preventDefault();
-              toggleMark(editor, 'bold');
-              break;
-            }
-          }
-        }}
-      />
-    </Slate>
+          }}
+        />
+      </Slate>
+    </div>
   );
 };
 
