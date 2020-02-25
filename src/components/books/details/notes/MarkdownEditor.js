@@ -1,24 +1,33 @@
-import React, { useMemo, useCallback } from 'react';
-import { Editor, Transforms, createEditor, Text } from 'slate';
-import { Slate, Editable, withReact, useSlate } from 'slate-react';
-import { withHistory } from 'slate-history';
+import React, { useMemo, useCallback } from "react";
+import { Editor, Transforms, createEditor, Text } from "slate";
+import { Slate, Editable, withReact, useSlate } from "slate-react";
+import { withHistory } from "slate-history";
 
-import Element from 'components/books/details/notes/Element';
-import Leaf from 'components/books/details/notes/Leaf';
+import Element from "components/books/details/notes/Element";
+import Leaf from "components/books/details/notes/Leaf";
 
 const styles = {
   editorContainer: {
     padding: 20,
-    boxShadow: '0 1px 10px rgba(0,0,0,0.2)',
+    boxShadow: "0 1px 10px rgba(0,0,0,0.2)",
     borderRadius: 10
   },
   buttonsContainer: {
-    borderBottom: '2px solid #fce8df',
-    paddingBottom: 10
+    borderBottom: "2px solid #fce8df",
+    paddingBottom: 10,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-evenly"
+  },
+  writingContainer: {
+    padding: 10,
+    background: "rgba(252, 232, 223, 0.15)",
+    borderRadius: "0 0 5px 5px",
+    boxShadow: "0 0 5px rgba(0,0,0,0.2) inset"
   }
 };
 
-const LIST_TYPES = ['numbered-list', 'bulleted-list'];
+const LIST_TYPES = ["numbered-list", "bulleted-list"];
 
 const CustomEditor = {
   isBoldMarkActive(editor) {
@@ -32,7 +41,7 @@ const CustomEditor = {
 
   isCodeBlockActive(editor) {
     const [match] = Editor.nodes(editor, {
-      match: n => n.type === 'code'
+      match: n => n.type === "code"
     });
 
     return !!match;
@@ -57,7 +66,7 @@ const CustomEditor = {
     Transforms.setNodes(
       editor,
       {
-        type: isActive ? null : 'code'
+        type: isActive ? null : "code"
       },
       {
         match: n => Editor.isBlock(editor, n)
@@ -105,7 +114,7 @@ const MarkdownEditor = ({ value, changevalue }) => {
     });
 
     Transforms.setNodes(editor, {
-      type: isActive ? 'paragraph' : isList ? 'list-item' : format
+      type: isActive ? "paragraph" : isList ? "list-item" : format
     });
 
     if (!isActive && isList) {
@@ -169,6 +178,7 @@ const MarkdownEditor = ({ value, changevalue }) => {
           <BlockButton format="list-item" label="Item" />
         </div>
         <Editable
+          style={styles.writingContainer}
           renderElement={renderElement}
           renderLeaf={renderLeaf}
           onKeyDown={event => {
@@ -177,14 +187,14 @@ const MarkdownEditor = ({ value, changevalue }) => {
             }
 
             switch (event.key) {
-              case '`': {
+              case "`": {
                 event.preventDefault();
                 CustomEditor.toggleCodeBlock(editor);
                 break;
               }
-              case 'b': {
+              case "b": {
                 event.preventDefault();
-                toggleMark(editor, 'bold');
+                toggleMark(editor, "bold");
                 break;
               }
             }
