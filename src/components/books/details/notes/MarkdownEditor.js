@@ -1,33 +1,42 @@
-import React, { useMemo, useCallback } from "react";
-import { Editor, Transforms, createEditor, Text } from "slate";
-import { Slate, Editable, withReact, useSlate } from "slate-react";
-import { withHistory } from "slate-history";
+import React, { useMemo, useCallback, useState } from 'react';
+import { Editor, Transforms, createEditor, Text } from 'slate';
+import { Slate, Editable, withReact, useSlate } from 'slate-react';
+import { withHistory } from 'slate-history';
+import uuid from 'uuid';
 
-import Element from "components/books/details/notes/Element";
-import Leaf from "components/books/details/notes/Leaf";
+import Element from 'components/books/details/notes/Element';
+import Leaf from 'components/books/details/notes/Leaf';
+
+import IconButton from 'components/elements/textEditor/IconButton';
+
+// Next Steps:
+// 3. Work out logic for full screen ability
+// 4. Create full screen
 
 const styles = {
   editorContainer: {
     padding: 20,
-    boxShadow: "0 1px 10px rgba(0,0,0,0.2)",
+    boxShadow: '0 1px 10px rgba(0,0,0,0.2)',
     borderRadius: 10
   },
   buttonsContainer: {
-    borderBottom: "2px solid #fce8df",
+    borderBottom: '2px solid #fce8df',
     paddingBottom: 10,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-evenly"
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-evenly'
   },
   writingContainer: {
     padding: 10,
-    background: "rgba(252, 232, 223, 0.15)",
-    borderRadius: "0 0 5px 5px",
-    boxShadow: "0 0 5px rgba(0,0,0,0.2) inset"
+    background: 'rgba(252, 232, 223, 0.15)',
+    borderRadius: '0 0 5px 5px',
+    boxShadow: '0 0 5px rgba(0,0,0,0.2) inset',
+    maxHeight: 450,
+    overflowY: 'auto'
   }
 };
 
-const LIST_TYPES = ["numbered-list", "bulleted-list"];
+const LIST_TYPES = ['numbered-list', 'bulleted-list'];
 
 const CustomEditor = {
   isBoldMarkActive(editor) {
@@ -41,7 +50,7 @@ const CustomEditor = {
 
   isCodeBlockActive(editor) {
     const [match] = Editor.nodes(editor, {
-      match: n => n.type === "code"
+      match: n => n.type === 'code'
     });
 
     return !!match;
@@ -66,7 +75,7 @@ const CustomEditor = {
     Transforms.setNodes(
       editor,
       {
-        type: isActive ? null : "code"
+        type: isActive ? null : 'code'
       },
       {
         match: n => Editor.isBlock(editor, n)
@@ -80,6 +89,11 @@ const MarkdownEditor = ({ value, changevalue }) => {
 
   const renderElement = useCallback(props => <Element {...props} />, []);
   const renderLeaf = useCallback(props => <Leaf {...props} />, []);
+
+  const [listState, setListState] = useState({
+    format: 'bulleted-list',
+    label: 'list'
+  });
 
   const isMarkActive = (editor, format) => {
     const marks = Editor.marks(editor);
@@ -114,7 +128,7 @@ const MarkdownEditor = ({ value, changevalue }) => {
     });
 
     Transforms.setNodes(editor, {
-      type: isActive ? "paragraph" : isList ? "list-item" : format
+      type: isActive ? 'paragraph' : isList ? 'list-item' : format
     });
 
     if (!isActive && isList) {
@@ -127,14 +141,15 @@ const MarkdownEditor = ({ value, changevalue }) => {
     const editor = useSlate();
 
     return (
-      <button
+      <IconButton
+        active={isMarkActive(editor, format)}
         onMouseDown={event => {
           event.preventDefault();
           toggleMark(editor, format);
         }}
       >
-        {label}
-      </button>
+        <div>{label}</div>
+      </IconButton>
     );
   };
 
@@ -142,14 +157,43 @@ const MarkdownEditor = ({ value, changevalue }) => {
     const editor = useSlate();
 
     return (
-      <button
-        onMouseDown={event => {
+      <IconButton
+        active={isBlockActive(editor, format)}
+        onClick={event => {
           event.preventDefault();
           toggleBlock(editor, format);
         }}
       >
         {label}
-      </button>
+      </IconButton>
+    );
+  };
+
+  const BlockSelect = ({ options }) => {
+    const editor = useSlate();
+
+    const toRender = [];
+    options.forEach(option => {
+      toRender.push(
+        <option value={option.format} name={option.label} key={uuid.v4()}>
+          {option.label}
+        </option>
+      );
+    });
+
+    return (
+      <select
+        value={listState.format}
+        onChange={e => {
+          setListState({
+            label: e.currentTarget.name,
+            format: e.currentTarget.value
+          });
+          toggleBlock(editor, e.currentTarget.value);
+        }}
+      >
+        {toRender}
+      </select>
     );
   };
 
@@ -175,7 +219,7 @@ const MarkdownEditor = ({ value, changevalue }) => {
           <BlockButton format="heading-four" label="H4" />
           <BlockButton format="heading-five" label="H5" />
           <BlockButton format="heading-six" label="H6" />
-          <BlockButton format="list-item" label="Item" />
+          <button>[]</button>
         </div>
         <Editable
           style={styles.writingContainer}
@@ -187,14 +231,14 @@ const MarkdownEditor = ({ value, changevalue }) => {
             }
 
             switch (event.key) {
-              case "`": {
+              case '`': {
                 event.preventDefault();
                 CustomEditor.toggleCodeBlock(editor);
                 break;
               }
-              case "b": {
+              case 'b': {
                 event.preventDefault();
-                toggleMark(editor, "bold");
+                toggleMark(editor, 'bold');
                 break;
               }
             }
