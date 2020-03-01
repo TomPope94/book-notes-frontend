@@ -10,31 +10,9 @@ import Leaf from 'components/books/details/notes/Leaf';
 import IconButton from 'components/elements/textEditor/IconButton';
 
 // Next Steps:
-// 3. Work out logic for full screen ability
-// 4. Create full screen
-
-const styles = {
-  editorContainer: {
-    padding: 20,
-    boxShadow: '0 1px 10px rgba(0,0,0,0.2)',
-    borderRadius: 10
-  },
-  buttonsContainer: {
-    borderBottom: '2px solid #fce8df',
-    paddingBottom: 10,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-evenly'
-  },
-  writingContainer: {
-    padding: 10,
-    background: 'rgba(252, 232, 223, 0.15)',
-    borderRadius: '0 0 5px 5px',
-    boxShadow: '0 0 5px rgba(0,0,0,0.2) inset',
-    maxHeight: 450,
-    overflowY: 'auto'
-  }
-};
+// 1. add markdown shortcuts
+// 2. Ctrl+s is save
+// 3. Extra indents
 
 const LIST_TYPES = ['numbered-list', 'bulleted-list'];
 
@@ -94,6 +72,47 @@ const MarkdownEditor = ({ value, changevalue }) => {
     format: 'bulleted-list',
     label: 'list'
   });
+
+  const [fullscreenState, setFullscreenState] = useState(false);
+
+  const styles = {
+    editorContainer: {
+      padding: '20px 10px 10px',
+      boxShadow: '0 1px 2px rgba(0,0,0,0.5)',
+      borderRadius: 10,
+      borderTop: '3px solid rgba(243, 139, 102, 1)'
+    },
+    buttonsContainer: {
+      borderBottom: '2px solid #fce8df',
+      paddingBottom: 10,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-evenly'
+    },
+    writingContainer: {
+      padding: 20,
+      borderRadius: '0 0 5px 5px',
+      boxShadow: '0 0 5px rgba(0,0,0,0.5) inset',
+      maxHeight: fullscreenState ? '100%' : 450,
+      width: fullscreenState ? '90%' : 'auto',
+      overflowY: 'auto'
+    },
+    fullscreenEditor: {
+      padding: '20px 0 0 0',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      boxShadow: '0 1px 10px rgba(0,0,0,0.2)',
+      borderRadius: 10,
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100vw',
+      height: '100vh',
+      zIndex: 10,
+      background: '#fff'
+    }
+  };
 
   const isMarkActive = (editor, format) => {
     const marks = Editor.marks(editor);
@@ -198,7 +217,9 @@ const MarkdownEditor = ({ value, changevalue }) => {
   };
 
   return (
-    <div style={styles.editorContainer}>
+    <div
+      style={fullscreenState ? styles.fullscreenEditor : styles.editorContainer}
+    >
       <Slate
         editor={editor}
         value={value}
@@ -219,9 +240,12 @@ const MarkdownEditor = ({ value, changevalue }) => {
           <BlockButton format="heading-four" label="H4" />
           <BlockButton format="heading-five" label="H5" />
           <BlockButton format="heading-six" label="H6" />
-          <button>[]</button>
+          <button onMouseDown={() => setFullscreenState(!fullscreenState)}>
+            []
+          </button>
         </div>
         <Editable
+          autoFocus
           style={styles.writingContainer}
           renderElement={renderElement}
           renderLeaf={renderLeaf}

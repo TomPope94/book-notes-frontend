@@ -8,8 +8,14 @@ import MarkdownEditor from 'components/books/details/notes/MarkdownEditor';
 
 const styles = {
   title: {
-    color: 'rgba(34, 38, 65, 0.75)',
-    fontWeight: 200
+    color: '#216e82',
+    fontWeight: 200,
+    marginRight: 50
+  },
+  titleContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center'
   }
 };
 const initialValue = [
@@ -52,9 +58,11 @@ const BookDetailsNotes = ({ updateNotes, selectedBook }) => {
 
   return (
     <Fragment>
-      <h1 style={styles.title}>Make your notes:</h1>
+      <div style={styles.titleContainer}>
+        <h1 style={styles.title}>Make your notes:</h1>
+        <button onClick={handleSave}>Save</button>
+      </div>
       <MarkdownEditor value={value} changevalue={setValue} />
-      <button onClick={handleSave}>Save</button>
     </Fragment>
   );
 };

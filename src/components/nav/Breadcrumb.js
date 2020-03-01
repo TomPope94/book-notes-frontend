@@ -9,7 +9,8 @@ const styles = {
     listStyle: 'none',
     display: 'flex',
     alignItems: 'center',
-    background: '#fce8df',
+    background: 'rgba(252, 232, 223, 0.5)',
+    boxShadow: '0 1px 2px rgba(1,1,1,0.25)',
     padding: 15,
     borderRadius: 10
   }

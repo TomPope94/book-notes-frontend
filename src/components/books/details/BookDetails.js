@@ -1,45 +1,45 @@
-import React, { useState, Fragment, useEffect } from "react";
-import { connect } from "react-redux";
-import { useParams } from "react-router-dom";
-import anime from "animejs";
+import React, { useState, Fragment, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import anime from 'animejs';
 
-import { editBook, getBook, resetBook } from "actions/books/books";
+import { editBook, getBook, resetBook } from 'actions/books/books';
 
-import { BOOKS_HOME, BOOKS_DETAILS } from "constants/routes";
+import { BOOKS_HOME, BOOKS_DETAILS } from 'constants/routes';
 
-import Breadcrumb from "components/nav/Breadcrumb";
-import BookReading from "components/books/details/BookReading";
-import BookCreated from "components/books/details/BookCreated";
-import BookPlanned from "components/books/details/BookPlanned";
-import FormInput from "components/elements/FormInput";
-import Loader from "components/elements/Loader";
-import BookEditDropdown from "components/books/details/BookEditDropdown";
+import Breadcrumb from 'components/nav/Breadcrumb';
+import BookReading from 'components/books/details/BookReading';
+import BookCreated from 'components/books/details/BookCreated';
+import BookPlanned from 'components/books/details/BookPlanned';
+import FormInput from 'components/elements/FormInput';
+import Loader from 'components/elements/Loader';
+import BookEditDropdown from 'components/books/details/BookEditDropdown';
 
 const styles = {
   contentContainer: {
-    width: "100%",
-    pointerEvents: "all",
-    display: "flex",
-    flexDirection: "column"
+    width: '100%',
+    pointerEvents: 'all',
+    display: 'flex',
+    flexDirection: 'column'
   },
   topLineContainer: {
-    display: "flex",
-    width: "100%",
-    justifyContent: "space-between"
+    display: 'flex',
+    width: '100%',
+    justifyContent: 'space-between'
   },
   titleContainer: {
-    width: "50%"
+    width: '50%'
   },
   dropDownWholeContainer: {
-    position: "relative"
+    position: 'relative'
   },
   dotsContainer: {
-    display: "flex",
-    flexDirection: "column",
+    display: 'flex',
+    flexDirection: 'column',
     marginRight: 10,
     marginTop: 10,
-    cursor: "pointer",
-    position: "absolute",
+    cursor: 'pointer',
+    position: 'absolute',
     top: 0,
     right: 0,
     zIndex: 10
@@ -48,35 +48,35 @@ const styles = {
     width: 5,
     height: 5,
     margin: 2,
-    borderRadius: "50%",
-    background: "#004757",
-    border: "1px solid #004757"
+    borderRadius: '50%',
+    background: '#004757',
+    border: '1px solid #004757'
   },
   byRow: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center"
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   editDropdown: {
     width: 150,
     height: 150,
-    transform: "scaleX(0)",
-    transformOrigin: "right",
-    position: "absolute",
-    pointerEvents: "none",
+    transform: 'scaleX(0)',
+    transformOrigin: 'right',
+    position: 'absolute',
+    pointerEvents: 'none',
     top: 0,
     right: 0,
     zIndex: 3
   },
   hiddenClick: {
-    position: "absolute",
+    position: 'absolute',
     top: 0,
     left: 0,
-    background: "rgba(1,1,1,0.1)",
+    background: 'rgba(1,1,1,0.1)',
     zIndex: 2,
-    height: "100vh",
-    width: "100vw"
+    height: '100vh',
+    width: '100vw'
   }
 };
 
@@ -88,13 +88,13 @@ const BookDetails = ({
   resetBook
 }) => {
   const [bookData, setBookData] = useState({
-    bookTitle: "",
-    bookAuthor: "",
-    numPages: "",
-    categories: "",
-    bookLanguage: "",
-    coverArt: "",
-    bookState: ""
+    bookTitle: '',
+    bookAuthor: '',
+    numPages: '',
+    categories: '',
+    bookLanguage: '',
+    coverArt: '',
+    bookState: ''
   });
   const { bookTitle, bookAuthor } = bookData;
   const { id } = useParams();
@@ -124,22 +124,22 @@ const BookDetails = ({
   const [dropdown, setDropdown] = useState(false);
 
   const animateDropDown = direction => {
-    const animateDirection = direction ? "reverse" : "normal";
+    const animateDirection = direction ? 'reverse' : 'normal';
 
     anime
       .timeline({
         direction: animateDirection
       })
       .add({
-        targets: ".editDropdown",
+        targets: '.editDropdown',
         scaleX: [0, 1],
         duration: 500
       })
       .add(
         {
-          targets: ".editDot",
-          easing: "linear",
-          background: ["rgb(0,71,87)", "#fff"],
+          targets: '.editDot',
+          easing: 'linear',
+          background: ['rgb(0,71,87)', '#fff'],
           duration: 250
         },
         [0]
@@ -175,19 +175,19 @@ const BookDetails = ({
   let bookStateRender;
   if (!selectedBook || loading) {
     bookStateRender = null;
-  } else if (selectedBook.bookState === "Created") {
+  } else if (selectedBook.bookState === 'Created') {
     bookStateRender = <BookCreated />;
-  } else if (selectedBook.bookState === "Planned") {
+  } else if (selectedBook.bookState === 'Planned') {
     bookStateRender = <BookPlanned />;
-  } else if (selectedBook.bookState === "Reading") {
+  } else if (selectedBook.bookState === 'Reading') {
     bookStateRender = <BookReading />;
-  } else if (selectedBook.bookState === "Completed") {
+  } else if (selectedBook.bookState === 'Completed') {
     bookStateRender = (
       <Fragment>
         <h1>Read but needs notes</h1>
       </Fragment>
     );
-  } else if (selectedBook.bookState === "Notated") {
+  } else if (selectedBook.bookState === 'Notated') {
     bookStateRender = (
       <Fragment>
         <h1>All finished</h1>
@@ -216,20 +216,21 @@ const BookDetails = ({
               onChange={e => handleChange(e)}
               onBlur={() => handleBlur()}
               styling={{
-                width: "100%",
-                marginTop: "0.5rem",
-                marginBottom: "0.5rem",
-                borderBottom: "none",
-                fontSize: "2.5rem",
-                color: "rgba(34,38,65,0.75)"
+                width: '100%',
+                marginTop: '0.5rem',
+                marginBottom: '0.5rem',
+                borderBottom: 'none',
+                fontSize: '2.5rem',
+                color: '#216e82',
+                fontWeight: 200
               }}
             />
             <div style={styles.byRow}>
               <h2
                 style={{
-                  fontSize: "1.5rem",
-                  margin: "0px 1rem 0px 100px",
-                  color: "rgba(34,38,65,0.75)"
+                  fontSize: '1.5rem',
+                  margin: '0px 1rem 0px 100px',
+                  color: '#216e82'
                 }}
               >
                 By:
@@ -237,19 +238,19 @@ const BookDetails = ({
               <FormInput
                 type="text"
                 value={
-                  typeof bookAuthor === "string"
+                  typeof bookAuthor === 'string'
                     ? bookAuthor
-                    : bookAuthor.join(", ")
+                    : bookAuthor.join(', ')
                 }
                 name="bookAuthor"
                 onChange={e => handleChange(e)}
                 onBlur={() => handleBlur()}
                 styling={{
-                  width: "90%",
+                  width: '90%',
                   margin: 0,
-                  borderBottom: "none",
-                  fontSize: "1.5rem",
-                  color: "rgba(34,38,65,0.75)"
+                  borderBottom: 'none',
+                  fontSize: '1.5rem',
+                  color: '#216e82'
                 }}
               />
             </div>

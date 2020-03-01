@@ -118,15 +118,6 @@ const styles = {
     left: 0,
     background: 'rgba(243, 139, 102, 0.2)',
     zIndex: -1
-  },
-  linkRibbonOverhang: {
-    width: 0,
-    height: 0,
-    borderTop: '15px solid #0e3f4a',
-    borderRight: '15px solid transparent',
-    position: 'absolute',
-    right: -15,
-    bottom: -15
   }
 };
 
