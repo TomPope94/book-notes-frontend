@@ -1,5 +1,6 @@
 import { API } from 'aws-amplify';
 import { UPDATE_NOTES } from 'actions/types';
+import { setAlert } from 'actions/alert';
 
 export const updateNotes = (notesObj, bookId) => async dispatch => {
   const APIBody = {
@@ -13,7 +14,7 @@ export const updateNotes = (notesObj, bookId) => async dispatch => {
       body: APIBody
     });
 
-    debugger;
+    dispatch(setAlert('Save Successful', 'positive'));
   } catch (err) {
     console.error(err);
   }

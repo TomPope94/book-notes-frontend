@@ -35,6 +35,7 @@ import Product from 'components/guest/Product';
 import Pricing from 'components/guest/Pricing';
 import Blog from 'components/guest/Blog';
 import Support from 'components/guest/Support';
+import Alert from 'components/elements/Alert';
 
 import routes from 'constants/routes';
 
@@ -60,6 +61,7 @@ const App = () => {
             height: '95vh'
           }}
         >
+          <Alert />
           <Switch>
             <Route exact path={routes.AUTH.route} component={AuthBroker} />
             <Route exact path={routes.SPLASH.route} component={Splash} />

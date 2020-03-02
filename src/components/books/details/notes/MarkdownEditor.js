@@ -10,9 +10,9 @@ import Leaf from 'components/books/details/notes/Leaf';
 import IconButton from 'components/elements/textEditor/IconButton';
 
 // Next Steps:
-// 1. add markdown shortcuts
-// 2. Ctrl+s is save
-// 3. Extra indents
+// 1. add markdown shortcuts    [ ]
+// 2. Ctrl+s is save            [x]
+// 3. Extra indents             [ ]
 
 const LIST_TYPES = ['numbered-list', 'bulleted-list'];
 
@@ -62,7 +62,7 @@ const CustomEditor = {
   }
 };
 
-const MarkdownEditor = ({ value, changevalue }) => {
+const MarkdownEditor = ({ value, changevalue, handlesave }) => {
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
 
   const renderElement = useCallback(props => <Element {...props} />, []);
@@ -263,6 +263,11 @@ const MarkdownEditor = ({ value, changevalue }) => {
               case 'b': {
                 event.preventDefault();
                 toggleMark(editor, 'bold');
+                break;
+              }
+              case 's': {
+                event.preventDefault();
+                handlesave();
                 break;
               }
             }

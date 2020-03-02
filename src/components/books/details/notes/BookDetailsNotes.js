@@ -62,7 +62,11 @@ const BookDetailsNotes = ({ updateNotes, selectedBook }) => {
         <h1 style={styles.title}>Make your notes:</h1>
         <button onClick={handleSave}>Save</button>
       </div>
-      <MarkdownEditor value={value} changevalue={setValue} />
+      <MarkdownEditor
+        value={value}
+        changevalue={setValue}
+        handlesave={handleSave}
+      />
     </Fragment>
   );
 };
