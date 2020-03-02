@@ -53,6 +53,7 @@ const App = () => {
       <Router history={history}>
         <GuestNav />
         <UserNav />
+        <Alert />
         <div
           style={{
             paddingLeft: 150,
@@ -61,7 +62,6 @@ const App = () => {
             height: '95vh'
           }}
         >
-          <Alert />
           <Switch>
             <Route exact path={routes.AUTH.route} component={AuthBroker} />
             <Route exact path={routes.SPLASH.route} component={Splash} />

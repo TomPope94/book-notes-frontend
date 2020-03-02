@@ -80,10 +80,9 @@ const MarkdownEditor = ({ value, changevalue, handlesave }) => {
       padding: '20px 10px 10px',
       boxShadow: '0 1px 2px rgba(0,0,0,0.5)',
       borderRadius: 10,
-      borderTop: '3px solid rgba(243, 139, 102, 1)'
+      borderTop: '3px solid rgba(243, 139, 102, 0.2)'
     },
     buttonsContainer: {
-      borderBottom: '2px solid #fce8df',
       paddingBottom: 10,
       display: 'flex',
       alignItems: 'center',

@@ -1,4 +1,4 @@
-import { API } from "aws-amplify";
+import { API } from 'aws-amplify';
 import {
   SEARCH_SUCCESS,
   GET_ALL_BOOKS,
@@ -8,7 +8,8 @@ import {
   EDIT_PLANNED_DATE,
   CHANGE_FILTER,
   RESET_BOOKS
-} from "actions/types";
+} from 'actions/types';
+import { setAlert } from 'actions/alert';
 
 export const addBook = formData => async dispatch => {
   const APIBody = {
@@ -18,21 +19,21 @@ export const addBook = formData => async dispatch => {
     coverArt: formData.cover,
     categories: formData.categories,
     bookLanguage: formData.language,
-    bookState: "Created"
+    bookState: 'Created'
   };
 
   try {
-    await API.post("prod", "/books", {
+    await API.post('prod', '/books', {
       body: APIBody
     });
   } catch (err) {
-    console.error(err);
+    dispatch(setAlert('Unable to add book... please try again', 'negative'));
   }
 };
 
 export const getBook = bookId => async dispatch => {
   try {
-    const res = await API.get("prod", `/books/${bookId}`);
+    const res = await API.get('prod', `/books/${bookId}`);
     dispatch({
       type: GET_BOOK,
       payload: res
@@ -43,8 +44,8 @@ export const getBook = bookId => async dispatch => {
 };
 
 export const searchBooks = (title, author) => async dispatch => {
-  const titleFormat = title.split(" ").join("+");
-  const authorFormat = author.split(" ").join("+");
+  const titleFormat = title.split(' ').join('+');
+  const authorFormat = author.split(' ').join('+');
 
   const searchBody = {
     bookTitle: titleFormat,
@@ -52,7 +53,7 @@ export const searchBooks = (title, author) => async dispatch => {
   };
 
   try {
-    const res = await API.post("prod", "/books/search", {
+    const res = await API.post('prod', '/books/search', {
       body: searchBody
     });
 
@@ -67,22 +68,22 @@ export const searchBooks = (title, author) => async dispatch => {
 
 export const listBooks = filter => async dispatch => {
   try {
-    const res = await API.get("prod", "/books");
+    const res = await API.get('prod', '/books');
 
     const booksArr = [];
     // find how many groups there will be
     let allBooksByFilter = res.map(book => {
       if (Array.isArray(book[filter])) {
-        return book[filter].join(", ");
+        return book[filter].join(', ');
       } else {
         return book[filter];
       }
     });
-    if (filter === "bookAuthor" || filter === "categories") {
+    if (filter === 'bookAuthor' || filter === 'categories') {
       // find if one of the elements has a comma
       for (let i = 0; i < allBooksByFilter.length; i++) {
-        if (allBooksByFilter[i].indexOf(", ") >= 0) {
-          const subArr = allBooksByFilter[i].split(", ");
+        if (allBooksByFilter[i].indexOf(', ') >= 0) {
+          const subArr = allBooksByFilter[i].split(', ');
           allBooksByFilter.splice(i, 1, subArr);
         }
       }
@@ -132,7 +133,7 @@ export const resetBooks = () => async dispatch => {
 
 export const deleteBook = bookId => async dispatch => {
   try {
-    await API.del("prod", `/books/${bookId}`);
+    await API.del('prod', `/books/${bookId}`);
   } catch (err) {
     console.error(err);
   }
@@ -140,7 +141,7 @@ export const deleteBook = bookId => async dispatch => {
 
 export const editBook = (bookId, newData) => async dispatch => {
   try {
-    await API.put("prod", `/books/${bookId}`, {
+    await API.put('prod', `/books/${bookId}`, {
       body: newData
     });
     dispatch({
@@ -164,7 +165,7 @@ export const resetBook = () => async dispatch => {
 
 export const updatePlannedDate = (bookId, newDate) => async dispatch => {
   try {
-    await API.put("prod", `/books/planned-date/${bookId}`, {
+    await API.put('prod', `/books/planned-date/${bookId}`, {
       body: {
         datePlanned: newDate
       }

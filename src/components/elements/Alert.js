@@ -8,12 +8,21 @@ const styles = {
     width: '100vw',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
+    zIndex: 9999
   },
-  positive: {
-    background: 'green',
+  alertBox: {
     padding: 10,
     opacity: 0.75
+  },
+  positive: {
+    background: 'green'
+  },
+  negative: {
+    background: 'red'
+  },
+  neutral: {
+    background: 'yellow'
   }
 };
 
@@ -23,7 +32,10 @@ const Alert = ({ alerts }) => {
       {alerts !== null &&
         alerts.length > 0 &&
         alerts.map(alert => (
-          <div key={alert.id} style={styles[alert.alertType]}>
+          <div
+            key={alert.id}
+            style={{ ...styles.alertBox, ...styles[alert.alertType] }}
+          >
             {alert.msg}
           </div>
         ))}

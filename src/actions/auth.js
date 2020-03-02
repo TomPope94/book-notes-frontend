@@ -5,9 +5,10 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT
-} from "actions/types";
-import { getUser, createUser } from "actions/user";
-import { Auth, API } from "aws-amplify";
+} from 'actions/types';
+import { getUser, createUser } from 'actions/user';
+import { Auth, API } from 'aws-amplify';
+import { setAlert } from 'actions/alert';
 
 export const loadUser = () => async dispatch => {
   try {
@@ -29,10 +30,10 @@ export const registerUser = (email, password) => async dispatch => {
       username: email,
       password: password,
       attributes: {
-        "custom:firstLogin": "true",
-        "custom:onboard": "false",
-        "custom:bookLimit": "3",
-        name: "NA"
+        'custom:firstLogin': 'true',
+        'custom:onboard': 'false',
+        'custom:bookLimit': '3',
+        name: 'NA'
       }
     });
 
@@ -60,13 +61,15 @@ export const verifyEmail = (email, code, password) => async dispatch => {
 // Login User
 export const login = (email, password) => async dispatch => {
   try {
+    dispatch(setAlert('Checking details', 'neutral'));
     await Auth.signIn(email, password);
     await dispatch(loadUser());
     dispatch({
       type: LOGIN_SUCCESS
     });
+    dispatch(setAlert('Logged in successfully', 'positive'));
   } catch (e) {
-    console.error(e);
+    dispatch(setAlert('Login failed...', 'negative')); // needs to be more descriptive to better inform the user...
 
     dispatch({
       type: LOGIN_FAIL
