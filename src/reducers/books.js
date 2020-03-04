@@ -1,22 +1,24 @@
 import {
   GET_ALL_BOOKS,
   GET_BOOK,
+  ADD_BOOK,
   EDIT_BOOK,
   RESET_BOOK,
+  DELETE_BOOK,
   GET_DAILY_TRACKING,
   ADD_DAILY_TRACKING,
   EDIT_PLANNED_DATE,
   CHANGE_FILTER,
   RESET_BOOKS,
   SEARCH_SUCCESS
-} from "actions/types";
+} from 'actions/types';
 
 const initialState = {
   rawBooks: [],
   books: [],
   selectedBook: null,
   loading: true,
-  filter: "bookState",
+  filter: 'bookState',
   searchResults: [],
   error: {}
 };
@@ -28,6 +30,12 @@ export default function(state = initialState, action) {
         ...state,
         books: payload.filteredBooks,
         rawBooks: payload.rawBooks,
+        loading: false
+      };
+    case ADD_BOOK:
+      return {
+        ...state,
+        rawBooks: [...state.rawBooks, payload],
         loading: false
       };
     case GET_BOOK:
@@ -43,6 +51,13 @@ export default function(state = initialState, action) {
         ...state,
         selectedBook: null,
         loading: true
+      };
+    case DELETE_BOOK:
+      return {
+        ...state,
+        rawBooks: state.rawBooks.filter(book => book.bookId !== payload.bookId),
+        books: [],
+        loading: false
       };
     case GET_DAILY_TRACKING:
       return {

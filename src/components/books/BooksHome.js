@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import uuid from 'uuid';
 
-import { listBooks, resetBooks } from 'actions/books/books';
+import { listBooks, resetBooks, filterBooks } from 'actions/books/books';
 
 import { BOOKS_ADD, PRODUCT_HOME } from 'constants/routes';
 
@@ -57,14 +57,20 @@ const styles = {
   }
 };
 
-const BooksHome = ({ listBooks, resetBooks, books, user }) => {
+const BooksHome = ({ filterBooks, listBooks, resetBooks, books, user }) => {
   useEffect(() => {
-    listBooks(books.filter);
+    if (books.books.length <= 0) {
+      if (books.rawBooks.length > 0) {
+        filterBooks(books.rawBooks, books.filter);
+      } else {
+        listBooks(books.filter);
+      }
+    }
 
     return () => {
       resetBooks();
     };
-  }, [listBooks, books.filter, resetBooks]);
+  }, [filterBooks, listBooks, books.filter, resetBooks]);
 
   const bookCount = books.rawBooks.length;
 
@@ -144,4 +150,6 @@ const mapStateToProps = state => ({
   user: state.user
 });
 
-export default connect(mapStateToProps, { listBooks, resetBooks })(BooksHome);
+export default connect(mapStateToProps, { listBooks, resetBooks, filterBooks })(
+  BooksHome
+);

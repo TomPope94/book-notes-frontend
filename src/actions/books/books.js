@@ -2,8 +2,10 @@ import { API } from 'aws-amplify';
 import {
   SEARCH_SUCCESS,
   GET_ALL_BOOKS,
+  ADD_BOOK,
   GET_BOOK,
   EDIT_BOOK,
+  DELETE_BOOK,
   RESET_BOOK,
   EDIT_PLANNED_DATE,
   CHANGE_FILTER,
@@ -23,8 +25,13 @@ export const addBook = formData => async dispatch => {
   };
 
   try {
-    await API.post('prod', '/books', {
+    const res = await API.post('prod', '/books', {
       body: APIBody
+    });
+
+    dispatch({
+      type: ADD_BOOK,
+      payload: res
     });
   } catch (err) {
     dispatch(setAlert('Unable to add book... please try again', 'negative'));
@@ -66,13 +73,11 @@ export const searchBooks = (title, author) => async dispatch => {
   }
 };
 
-export const listBooks = filter => async dispatch => {
+export const filterBooks = (books, filter) => async dispatch => {
   try {
-    const res = await API.get('prod', '/books');
-
     const booksArr = [];
     // find how many groups there will be
-    let allBooksByFilter = res.map(book => {
+    let allBooksByFilter = books.map(book => {
       if (Array.isArray(book[filter])) {
         return book[filter].join(', ');
       } else {
@@ -98,7 +103,7 @@ export const listBooks = filter => async dispatch => {
     // loop through each one and allocate to the groups
     for (let i = 0; i < uniqueGroups.length; i++) {
       // cater for book[filter] being an array
-      const groupBooks = res.filter(book => {
+      const groupBooks = books.filter(book => {
         if (Array.isArray(book[filter])) {
           return book[filter].indexOf(uniqueGroups[i]) >= 0;
         } else {
@@ -113,9 +118,20 @@ export const listBooks = filter => async dispatch => {
       type: GET_ALL_BOOKS,
       payload: {
         filteredBooks: booksArr,
-        rawBooks: res
+        rawBooks: books
       }
     });
+  } catch (err) {
+    console.error('Something went wrong when filtering books');
+    console.error(err);
+  }
+};
+
+export const listBooks = filter => async dispatch => {
+  try {
+    const res = await API.get('prod', '/books');
+
+    await dispatch(filterBooks(res, filter));
   } catch (err) {
     console.error(err);
   }
@@ -134,6 +150,13 @@ export const resetBooks = () => async dispatch => {
 export const deleteBook = bookId => async dispatch => {
   try {
     await API.del('prod', `/books/${bookId}`);
+
+    dispatch({
+      type: DELETE_BOOK,
+      payload: {
+        bookId: bookId
+      }
+    });
   } catch (err) {
     console.error(err);
   }

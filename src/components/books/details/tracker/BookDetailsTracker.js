@@ -49,6 +49,7 @@ const BookDetailsTracker = ({ getDailyTracking, selectedBook }) => {
     <Fragment>
       <div style={styles.titleRow}>
         <h1 style={styles.title}>Track your reading:</h1>
+        <h3>{selectedBook.numPages}</h3>
         <TrackerContext.Consumer>
           {({ changeState, state }) =>
             state.showForm ? null : (

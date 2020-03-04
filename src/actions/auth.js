@@ -9,6 +9,7 @@ import {
 import { getUser, createUser } from 'actions/user';
 import { Auth, API } from 'aws-amplify';
 import { setAlert } from 'actions/alert';
+import { listBooks } from 'actions/books/books';
 
 export const loadUser = () => async dispatch => {
   try {
@@ -17,6 +18,7 @@ export const loadUser = () => async dispatch => {
     dispatch({
       type: USER_LOADED
     });
+    // await dispatch(listBooks());
   } catch (err) {
     dispatch({
       type: AUTH_ERROR
