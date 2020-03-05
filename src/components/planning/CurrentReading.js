@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
+
 import ReadingModal from 'components/planning/ReadingModal';
+import ReadingProgressViz from 'components/planning/ReadingProgressViz';
 
 const styles = {
   readingTotalContainer: {
     display: 'flex',
     justifyContent: 'center',
     width: '100%'
-  },
-  totalPages: {
-    cursor: 'pointer'
   }
 };
 
@@ -32,10 +31,11 @@ const CurrentReading = ({ books }) => {
     const pagesTotal = pagesArr.reduce((total, num) => total + num);
     toRender = (
       <div style={styles.readingTotalContainer}>
-        <h3
+        <ReadingProgressViz
           onMouseDown={() => setReadingModal(!readingModal)}
-          style={styles.totalPages}
-        >{`Currently read x/${pagesTotal} pages`}</h3>
+          totalPages={pagesTotal}
+          pagesRead={100} // THIS NEEDS TO BE DYNAMIC
+        />
       </div>
     );
   } else {

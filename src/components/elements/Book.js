@@ -1,11 +1,21 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { BOOKS_ADD, BOOKS_DETAILS } from 'constants/routes';
 import { getBook } from 'actions/books/books';
 import anime from 'animejs';
 
-const Book = ({ id, bookTitle, image, addBook, getBook }) => {
+const Book = ({
+  id,
+  bookTitle,
+  image,
+  addBook,
+  getBook,
+  styling,
+  hoverEffect = true
+}) => {
+  const [hoverState, setHoverState] = useState(false);
+
   const bgStyling =
     image === ' '
       ? { background: '#f38b66' }
@@ -28,7 +38,10 @@ const Book = ({ id, bookTitle, image, addBook, getBook }) => {
       justifyContent: 'center',
       alignItems: 'center',
       padding: 10,
-      textAlign: 'center'
+      textAlign: 'center',
+      transform: hoverState && hoverEffect ? 'scale(1.1)' : 'scale(1)',
+      transition: '0.3s',
+      ...styling
     },
     addBook: {
       border: '1px solid #f38b66',
@@ -71,10 +84,10 @@ const Book = ({ id, bookTitle, image, addBook, getBook }) => {
     // <Link to={BOOKS_DETAILS}>
     <div
       style={{ ...styles.book, ...styles.existingBook }}
-      onClick={() => openBook()}
+      onMouseDown={() => openBook()}
       className="book"
-      onMouseOver={e => enlargeBook(true, e)}
-      onMouseOut={e => enlargeBook(false, e)}
+      onMouseOver={() => setHoverState(true)}
+      onMouseOut={() => setHoverState(false)}
     >
       {image ? null : bookTitle}
     </div>

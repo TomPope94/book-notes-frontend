@@ -7,6 +7,18 @@ import { filterBooks, resetBooks, listBooks } from 'actions/books/books';
 
 import CurrentReading from 'components/planning/CurrentReading';
 
+const styles = {
+  pageTitle: {
+    fontSize: '3rem',
+    fontWeight: 200,
+    color: '#216e82',
+    marginRight: 50
+  },
+  orangeSpan: {
+    color: '#ff8c56'
+  }
+};
+
 const PlanHome = ({ listBooks, filterBooks, resetBooks, books }) => {
   useEffect(() => {
     if (books.books.length <= 0) {
@@ -19,9 +31,10 @@ const PlanHome = ({ listBooks, filterBooks, resetBooks, books }) => {
 
   return (
     <Fragment>
-      <h1>Plan Homepage</h1>
+      <h1 style={styles.pageTitle}>
+        My Plans<span style={styles.orangeSpan}>.</span>
+      </h1>
       <CurrentReading books={books} />
-      <Link to={SEARCH.route}>Search</Link>
     </Fragment>
   );
 };
