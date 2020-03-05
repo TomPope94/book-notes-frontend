@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReadingModal from 'components/planning/ReadingModal';
 
 const styles = {
   readingTotalContainer: {
@@ -34,7 +35,7 @@ const CurrentReading = ({ books }) => {
         <h3
           onMouseDown={() => setReadingModal(!readingModal)}
           style={styles.totalPages}
-        >{`Currently read x/${pagesTotal}`}</h3>
+        >{`Currently read x/${pagesTotal} pages`}</h3>
       </div>
     );
   } else {
@@ -44,7 +45,9 @@ const CurrentReading = ({ books }) => {
   return (
     <div>
       {toRender}
-      <h1>{readingModal ? 'Open' : 'Close'}</h1>
+      {readingModal ? (
+        <ReadingModal books={readingBooks} changestate={setReadingModal} />
+      ) : null}
     </div>
   );
 };
