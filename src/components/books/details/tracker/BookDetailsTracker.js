@@ -10,16 +10,37 @@ import BookProgression from 'components/books/details/tracker/BookProgression';
 import DateProgression from './DateProgression';
 
 const styles = {
+  trackerContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    height: '100%'
+  },
+  titleRow: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    flexGrow: 1
+  },
   title: {
     color: '#216e82',
     fontWeight: 200,
     marginBottom: 0
   },
-  titleRow: {
-    paddingLeft: 25,
+  orangeSpan: {
+    color: '#ff8c56'
+  },
+  lineChartContainer: {
+    minHeight: 210,
+    marginTop: 20,
+    flexGrow: 2
+  },
+  detailVisualisations: {
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start'
+    width: '100%',
+    flexGrow: 10,
+    justifyContent: 'space-around',
+    alignItems: 'center'
   }
 };
 
@@ -39,10 +60,13 @@ const BookDetailsTracker = ({ getDailyTracking, selectedBook }) => {
   }, []);
 
   return (
-    <Fragment>
+    <div style={styles.trackerContainer}>
       <div style={styles.titleRow}>
-        <h1 style={styles.title}>Track your reading:</h1>
-        {/* <TrackerContext.Consumer>
+        <h1 style={styles.title}>
+          Track your reading
+          <span style={styles.orangeSpan}>:</span>
+        </h1>
+        <TrackerContext.Consumer>
           {({ changeState, state }) =>
             state.showForm ? null : (
               <button
@@ -59,9 +83,9 @@ const BookDetailsTracker = ({ getDailyTracking, selectedBook }) => {
               </button>
             )
           }
-        </TrackerContext.Consumer> */}
+        </TrackerContext.Consumer>
       </div>
-      <div style={{ minHeight: 210, marginTop: 20 }}>
+      <div style={styles.lineChartContainer}>
         <TrackerContext.Consumer>
           {({ state }) =>
             !state.showForm ? (
@@ -77,9 +101,11 @@ const BookDetailsTracker = ({ getDailyTracking, selectedBook }) => {
           }
         </TrackerContext.Consumer>
       </div>
-      <BookProgression selectedbook={selectedBook} />
-      <DateProgression selectedbook={selectedBook} />
-    </Fragment>
+      <div style={styles.detailVisualisations}>
+        <BookProgression selectedbook={selectedBook} />
+        <DateProgression selectedbook={selectedBook} />
+      </div>
+    </div>
   );
 };
 

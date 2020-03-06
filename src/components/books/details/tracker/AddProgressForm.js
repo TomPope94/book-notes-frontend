@@ -53,7 +53,7 @@ const AddProgressForm = ({ addTracking, selectedBook }) => {
   };
   const handleSubmit = async e => {
     e.preventDefault();
-    await addTracking(selectedBook.bookId, state, 22);
+    await addTracking(selectedBook.bookId, state);
     changeState({ ...state, showForm: false });
   };
   const handleClose = async () => {
