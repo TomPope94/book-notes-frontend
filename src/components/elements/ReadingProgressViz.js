@@ -1,6 +1,11 @@
 import React, { useState, Fragment } from 'react';
 
-const ReadingProgressViz = ({ totalPages, pagesRead, ...props }) => {
+const ReadingProgressViz = ({
+  totalPages,
+  pagesRead,
+  title = true,
+  ...props
+}) => {
   const propRead = (pagesRead / totalPages) * 100;
   const [pagesLeftHover, setPagesLeftHover] = useState(false);
   const [pagesReadHover, setPagesReadHover] = useState(false);
@@ -88,7 +93,7 @@ const ReadingProgressViz = ({ totalPages, pagesRead, ...props }) => {
 
   return (
     <div style={styles.totalContainer}>
-      <h2 style={styles.title}>Current reading progress</h2>
+      {title ? <h2 style={styles.title}>Current reading progress</h2> : null}
       <div style={styles.vizParentContainer}>
         <div style={{ ...styles.infoBox, ...styles.infoBoxLeft }}>
           <p>{`Completed: ${pagesRead}`}</p>

@@ -6,18 +6,15 @@ import { TrackerContext } from 'components/books/details/tracker/tracker-context
 
 const styles = {
   sectionsContainer: {
-    width: '100%',
     display: 'flex',
     flexDirection: 'row'
   },
   leftContainer: {
     width: '30%',
-    height: '100%',
     paddingTop: 25
   },
   rightContainer: {
     width: '70%',
-    height: '100%',
     paddingTop: 25
   }
 };

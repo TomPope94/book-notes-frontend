@@ -17,14 +17,12 @@ import BookEditDropdown from 'components/books/details/BookEditDropdown';
 
 const styles = {
   contentContainer: {
-    width: '100%',
     pointerEvents: 'all',
     display: 'flex',
     flexDirection: 'column'
   },
   topLineContainer: {
     display: 'flex',
-    width: '100%',
     justifyContent: 'space-between'
   },
   titleContainer: {

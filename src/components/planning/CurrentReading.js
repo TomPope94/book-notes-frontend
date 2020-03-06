@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import ReadingModal from 'components/planning/ReadingModal';
-import ReadingProgressViz from 'components/planning/ReadingProgressViz';
+import ReadingProgressViz from 'components/elements/ReadingProgressViz';
 
 const styles = {
   readingTotalContainer: {

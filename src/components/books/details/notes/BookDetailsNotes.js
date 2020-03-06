@@ -16,6 +16,9 @@ const styles = {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center'
+  },
+  orangeSpan: {
+    color: '#ff8c56'
   }
 };
 const initialValue = [
@@ -59,7 +62,9 @@ const BookDetailsNotes = ({ updateNotes, selectedBook }) => {
   return (
     <Fragment>
       <div style={styles.titleContainer}>
-        <h1 style={styles.title}>Make your notes:</h1>
+        <h1 style={styles.title}>
+          Make your notes<span style={styles.orangeSpan}>:</span>
+        </h1>
         <button onClick={handleSave}>Save</button>
       </div>
       <MarkdownEditor
