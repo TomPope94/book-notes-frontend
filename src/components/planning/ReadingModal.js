@@ -49,7 +49,8 @@ const ReadingModal = ({ books, changestate }) => {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      borderRadius: 5
+      borderRadius: 5,
+      pointerEvents: 'none'
     },
     progressText: {
       color: '#fff',

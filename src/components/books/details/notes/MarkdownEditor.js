@@ -93,6 +93,7 @@ const MarkdownEditor = ({ value, changevalue, handlesave }) => {
       borderRadius: '0 0 5px 5px',
       boxShadow: '0 0 5px rgba(0,0,0,0.5) inset',
       maxHeight: fullscreenState ? '100%' : 450,
+      minHeight: fullscreenState ? '100%' : 450,
       width: fullscreenState ? '90%' : 'auto',
       overflowY: 'auto'
     },
