@@ -6,16 +6,20 @@ import { TrackerContext } from 'components/books/details/tracker/tracker-context
 
 import AddProgressForm from 'components/books/details/tracker/AddProgressForm';
 import BookTrackerReport from 'components/books/details/tracker/BookTrackerReport';
+import BookProgression from 'components/books/details/tracker/BookProgression';
+import DateProgression from './DateProgression';
 
 const styles = {
   title: {
     color: '#216e82',
     fontWeight: 200,
-    paddingLeft: 25
+    marginBottom: 0
   },
   titleRow: {
+    paddingLeft: 25,
     display: 'flex',
-    alignItems: 'center'
+    flexDirection: 'column',
+    alignItems: 'flex-start'
   }
 };
 
@@ -34,23 +38,11 @@ const BookDetailsTracker = ({ getDailyTracking, selectedBook }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  let toRender;
-  if (selectedBook.tracking) {
-    toRender = (
-      <Fragment>
-        <BookTrackerReport />
-      </Fragment>
-    );
-  } else {
-    toRender = null;
-  }
-
   return (
     <Fragment>
       <div style={styles.titleRow}>
         <h1 style={styles.title}>Track your reading:</h1>
-        <h3>{selectedBook.numPages}</h3>
-        <TrackerContext.Consumer>
+        {/* <TrackerContext.Consumer>
           {({ changeState, state }) =>
             state.showForm ? null : (
               <button
@@ -62,23 +54,31 @@ const BookDetailsTracker = ({ getDailyTracking, selectedBook }) => {
                     numPages: 0
                   })
                 }
-                style={{ marginLeft: 20 }}
               >
                 +
               </button>
             )
           }
+        </TrackerContext.Consumer> */}
+      </div>
+      <div style={{ minHeight: 210, marginTop: 20 }}>
+        <TrackerContext.Consumer>
+          {({ state }) =>
+            !state.showForm ? (
+              <Fragment>
+                <BookTrackerReport />
+              </Fragment>
+            ) : (
+              <AddProgressForm
+                dateSelected={dateSelected}
+                numPages={numPages}
+              />
+            )
+          }
         </TrackerContext.Consumer>
       </div>
-      <TrackerContext.Consumer>
-        {({ state }) =>
-          !state.showForm ? (
-            toRender
-          ) : (
-            <AddProgressForm dateSelected={dateSelected} numPages={numPages} />
-          )
-        }
-      </TrackerContext.Consumer>
+      <BookProgression selectedbook={selectedBook} />
+      <DateProgression selectedbook={selectedBook} />
     </Fragment>
   );
 };

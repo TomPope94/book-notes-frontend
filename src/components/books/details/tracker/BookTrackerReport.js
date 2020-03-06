@@ -1,17 +1,17 @@
-import React, { useRef, useEffect, useState } from "react";
-import Viz from "components/books/details/tracker/Viz";
+import React, { useRef, useEffect, useState } from 'react';
+import Viz from 'components/books/details/tracker/Viz';
 
 const styles = {
   container: {
-    height: "50%",
-    width: "80%"
+    height: '50%',
+    width: '80%'
   }
 };
 
 const BookTrackerReport = () => {
   const [lineDimensions, setLineDimensions] = useState({
     width: 0,
-    height: 0
+    height: 100
   });
   const { width, height } = lineDimensions;
   const ref = useRef(null);
@@ -19,10 +19,9 @@ const BookTrackerReport = () => {
     const handleResize = () => {
       resetRefDimension();
     };
-
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
     return _ => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', handleResize);
     };
   });
   useEffect(() => {
@@ -31,11 +30,12 @@ const BookTrackerReport = () => {
 
   const resetRefDimension = () => {
     const width = ref.current ? ref.current.clientWidth : 0;
-    const height = ref.current ? ref.current.clientHeight : 0;
+    // const height = ref.current ? ref.current.clientHeight : 0;
 
     setLineDimensions({
-      width: width,
-      height: height
+      ...lineDimensions,
+      width: width
+      // height: height
     });
   };
 
