@@ -18,14 +18,28 @@ const ReadingModal = ({ books, changestate }) => {
     },
     modalContainer: {
       width: '60%',
-      height: '60%',
       background: '#fff',
       borderRadius: 10,
       boxShadow: '0 2px 3px rgba(1,1,1,0.2)',
+      padding: 25
+    },
+    title: {
+      fontSize: '2rem',
+      fontWeight: 200,
+      color: '#216e82',
+      margin: 0,
+      marginLeft: 20
+    },
+    orangeSpan: {
+      color: '#ff8c56'
+    },
+    booksContainer: {
       display: 'flex',
       flexWrap: 'wrap',
       justifyContent: 'center',
-      alignItems: 'center'
+      alignItems: 'center',
+      overflowX: 'overlay',
+      overflowY: 'hidden'
     },
     progressOverlay: {
       position: 'absolute',
@@ -46,40 +60,46 @@ const ReadingModal = ({ books, changestate }) => {
   return (
     <div onMouseDown={() => changestate(false)} style={styles.contentContainer}>
       <div style={styles.modalContainer}>
-        {books.books.length > 0
-          ? books.books.map(book => {
-              const prop = 100 / book.numPages;
-              return (
-                <div style={{ position: 'relative', margin: 25 }}>
-                  <Book
-                    addBook={false}
-                    id={book.bookId}
-                    bookTitle={book.bookTitle}
-                    image={book.coverArt}
-                    key={uuid.v4()}
-                    hoverEffect={false}
-                    styling={{ margin: 0 }}
-                  />
-                  <div
-                    style={{
-                      ...styles.progressOverlay,
-                      height: `${Math.round(prop * 100)}%`
-                    }}
-                  >
-                    <p
+        <h2 style={styles.title}>
+          Progress by book<span style={styles.orangeSpan}>.</span>
+        </h2>
+        <div style={styles.booksContainer}>
+          {books.books.length > 0
+            ? books.books.map(book => {
+                const pagesRead = book.pagesRead ? book.pagesRead : 0;
+                const prop = pagesRead / book.numPages;
+                return (
+                  <div style={{ position: 'relative', margin: 25 }}>
+                    <Book
+                      addBook={false}
+                      id={book.bookId}
+                      bookTitle={book.bookTitle}
+                      image={book.coverArt}
+                      key={uuid.v4()}
+                      hoverEffect={false}
+                      styling={{ margin: 0 }}
+                    />
+                    <div
                       style={{
-                        color: prop > 0.2 ? '#fff' : '#216e82',
-                        fontSize: '2rem',
-                        position: prop > 0.2 ? 'relative' : 'absolute'
+                        ...styles.progressOverlay,
+                        height: `${Math.round(prop * 100)}%`
                       }}
                     >
-                      {`${Math.round(prop * 100)}%`}
-                    </p>
+                      <p
+                        style={{
+                          color: prop > 0.2 ? '#fff' : '#216e82',
+                          fontSize: '2rem',
+                          position: prop > 0.2 ? 'relative' : 'absolute'
+                        }}
+                      >
+                        {`${Math.round(prop * 100)}%`}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              );
-            })
-          : null}
+                );
+              })
+            : null}
+        </div>
       </div>
     </div>
   );

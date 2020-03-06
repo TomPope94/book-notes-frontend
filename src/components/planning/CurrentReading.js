@@ -24,17 +24,23 @@ const CurrentReading = ({ books }) => {
   let toRender;
   if (readingBooks) {
     const pagesArr = [];
+    const readArr = [];
     readingBooks.books.map(book => {
       pagesArr.push(book.numPages);
+      if (book.pagesRead) {
+        readArr.push(book.pagesRead);
+      } else {
+        readArr.push(0);
+      }
     });
-
     const pagesTotal = pagesArr.reduce((total, num) => total + num);
+    const readTotal = readArr.reduce((total, num) => total + num);
     toRender = (
       <div style={styles.readingTotalContainer}>
         <ReadingProgressViz
           onMouseDown={() => setReadingModal(!readingModal)}
           totalPages={pagesTotal}
-          pagesRead={100} // THIS NEEDS TO BE DYNAMIC
+          pagesRead={readTotal}
         />
       </div>
     );

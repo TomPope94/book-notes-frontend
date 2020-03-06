@@ -15,8 +15,7 @@ const ReadingProgressViz = ({
       width: '100%',
       display: 'flex',
       flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center'
+      justifyContent: 'center'
     },
     title: {
       fontSize: '2rem',
