@@ -130,7 +130,6 @@ export const filterBooks = (books, filter) => async dispatch => {
 export const listBooks = filter => async dispatch => {
   try {
     const res = await API.get('prod', '/books');
-
     await dispatch(filterBooks(res, filter));
   } catch (err) {
     console.error(err);

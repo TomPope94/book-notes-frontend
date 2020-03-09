@@ -9,6 +9,7 @@ const ReadingModal = ({ books, changestate }) => {
       position: 'absolute',
       left: 0,
       top: 0,
+      zIndex: 999,
       height: '100vh',
       width: '100vw',
       background: 'rgba(1,1,1,0.1)',
