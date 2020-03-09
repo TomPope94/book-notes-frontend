@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { filterBooks, resetBooks, listBooks } from 'actions/books/books';
 
 import CurrentReading from 'components/planning/CurrentReading';
+import CurrentPlanned from 'components/planning/CurrentPlanned';
 
 const styles = {
   pageTitle: {
@@ -35,6 +36,7 @@ const PlanHome = ({ listBooks, filterBooks, resetBooks, books }) => {
         My Plans<span style={styles.orangeSpan}>.</span>
       </h1>
       <CurrentReading books={books} />
+      <CurrentPlanned books={books} />
     </Fragment>
   );
 };
