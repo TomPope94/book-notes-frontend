@@ -5,7 +5,7 @@ import uuid from 'uuid';
 
 import { listBooks, resetBooks, filterBooks } from 'actions/books/books';
 
-import { BOOKS_ADD, PRODUCT_HOME } from 'constants/routes';
+import { BOOKS_ADD } from 'constants/routes';
 
 import Book from 'components/elements/Book';
 import Loader from 'components/elements/Loader';
@@ -72,7 +72,10 @@ const BooksHome = ({ filterBooks, listBooks, resetBooks, books, user }) => {
     };
   }, [filterBooks, listBooks, books.filter, resetBooks]);
 
-  const bookCount = books.rawBooks.length;
+  const readingBooks = books.rawBooks.filter(
+    book => book.bookState === 'Reading'
+  );
+  const bookCount = readingBooks.length;
 
   const history = useHistory();
   // loop through array to create a row for each element
@@ -115,14 +118,6 @@ const BooksHome = ({ filterBooks, listBooks, resetBooks, books, user }) => {
   const renderGroups =
     books.books.length > 0 ? generateGroups(books.books) : null;
 
-  const handleAdd = () => {
-    if (bookCount >= user.attributes.bookLimit) {
-      history.push(PRODUCT_HOME.route);
-    } else {
-      history.push(BOOKS_ADD.route);
-    }
-  };
-
   return books.loading ? (
     <Loader />
   ) : (
@@ -133,9 +128,12 @@ const BooksHome = ({ filterBooks, listBooks, resetBooks, books, user }) => {
             <h1 style={styles.libraryTitle}>
               My Library<span style={styles.orangeSpan}>.</span>
             </h1>
-            <AddBookIcon height="75" onClick={() => handleAdd()} />
+            <AddBookIcon
+              height="75"
+              onClick={() => history.push(BOOKS_ADD.route)}
+            />
             <h3 style={styles.bookCounter}>
-              {bookCount}/{user.attributes.bookLimit} books created
+              {bookCount}/{user.attributes.bookLimit} active books
             </h3>
           </div>
           <LibraryFilter />

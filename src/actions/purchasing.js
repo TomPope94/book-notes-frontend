@@ -10,7 +10,8 @@ import { API } from 'aws-amplify';
 export const countBooks = () => async dispatch => {
   try {
     const res = await API.get('prod', '/books');
-    const bookCount = res.length;
+    const readingBooks = res.filter(book => book.bookState === 'Reading');
+    const bookCount = readingBooks.length;
 
     dispatch({
       type: GET_SLOTS_COUNT,

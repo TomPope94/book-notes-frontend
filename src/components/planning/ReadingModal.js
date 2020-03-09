@@ -35,7 +35,6 @@ const ReadingModal = ({ books, changestate }) => {
     },
     booksContainer: {
       display: 'flex',
-      flexWrap: 'wrap',
       justifyContent: 'center',
       alignItems: 'center',
       overflowX: 'overlay',
