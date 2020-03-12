@@ -7,6 +7,7 @@ import AddBookIcon from 'components/elements/icons/AddBookIcon';
 
 import { BOOKS_ADD } from 'constants/routes';
 import BookRoundel from 'components/elements/BookRoundel';
+import Calendar from 'components/elements/calendar/Calendar';
 
 const styles = {
   booksContainer: {
@@ -20,7 +21,7 @@ const styles = {
     fontSize: '2rem',
     fontWeight: 200,
     color: '#216e82',
-    margin: 0
+    marginRight: 30
   },
   bookContainer: {
     position: 'relative'
@@ -51,7 +52,12 @@ const CurrentPlanned = ({ books }) => {
               bookTitle={book.bookTitle}
               image={book.coverArt}
               key={uuid.v4()}
-              hoverEffect={true}
+              hoverEffect={false}
+              onMouseOver={
+
+                  // Change the context
+
+              }
               styling={{
                 height: 100,
                 minWidth: 70,
@@ -64,6 +70,7 @@ const CurrentPlanned = ({ books }) => {
           </div>
         ))}
       </div>
+      <Calendar numMonths={3} />
     </div>
   );
 };
