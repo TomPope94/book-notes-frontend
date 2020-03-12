@@ -166,6 +166,7 @@ export const editBook = (bookId, newData) => async dispatch => {
     await API.put('prod', `/books/${bookId}`, {
       body: newData
     });
+    // debugger;
     dispatch({
       type: EDIT_BOOK,
       payload: newData

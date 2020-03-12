@@ -39,12 +39,20 @@ export default function(state = initialState, action) {
         loading: false
       };
     case GET_BOOK:
-    case EDIT_BOOK:
     case EDIT_PLANNED_DATE:
       return {
         ...state,
         selectedBook: { ...state.selectedBook, ...payload },
         loading: false
+      };
+    case EDIT_BOOK:
+      return {
+        ...state,
+        rawBooks: [
+          ...state.rawBooks.filter(book => book.bookId !== payload.bookId),
+          payload
+        ],
+        selectedBook: { ...state.selectedBook, ...payload }
       };
     case RESET_BOOK:
       return {

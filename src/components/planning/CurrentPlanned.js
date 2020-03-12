@@ -52,12 +52,12 @@ const CurrentPlanned = ({ books }) => {
               bookTitle={book.bookTitle}
               image={book.coverArt}
               key={uuid.v4()}
-              hoverEffect={false}
-              onMouseOver={
+              hoverEffect={true}
+              // onMouseOver={
 
-                  // Change the context
+              // Change the context
 
-              }
+              // }
               styling={{
                 height: 100,
                 minWidth: 70,
