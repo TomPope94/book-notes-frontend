@@ -14,12 +14,12 @@ import AddBookIcon from 'components/elements/icons/AddBookIcon';
 
 const styles = {
   library: {
-    color: 'rgba(34, 38, 65, 0.75)'
+    color: 'rgba(34, 38, 65, 0.75)',
   },
   libraryHeader: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   catalog: {
     display: 'flex',
@@ -27,34 +27,34 @@ const styles = {
     overflowX: 'overlay',
     overflowY: 'hidden',
     marginTop: 50,
-    marginBottom: 50
+    marginBottom: 50,
   },
   groupUnderline: {
     width: '100%',
     height: 1,
     background: 'linear-gradient(to right, #216e82, transparent)',
-    position: 'absolute'
+    position: 'absolute',
   },
   libraryHeaderLeft: {
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   libraryTitle: {
     fontSize: '3rem',
     fontWeight: 200,
     color: '#216e82',
-    marginRight: 50
+    marginRight: 50,
   },
   orangeSpan: {
-    color: '#ff8c56'
+    color: '#ff8c56',
   },
   subHeading: {
     fontWeight: 200,
-    color: '#216e82'
+    color: '#216e82',
   },
   bookCounter: {
-    marginLeft: 25
-  }
+    marginLeft: 25,
+  },
 };
 
 const BooksHome = ({ filterBooks, listBooks, resetBooks, books, user }) => {
@@ -73,14 +73,14 @@ const BooksHome = ({ filterBooks, listBooks, resetBooks, books, user }) => {
   }, [filterBooks, listBooks, books.filter, resetBooks]);
 
   const readingBooks = books.rawBooks.filter(
-    book => book.bookState === 'Reading'
+    (book) => book.bookState === 'Reading' || book.bookState === 'Completed'
   );
   const bookCount = readingBooks.length;
 
   const history = useHistory();
   // loop through array to create a row for each element
   // loop through each element to create books for each row
-  const generateGroups = booksData => {
+  const generateGroups = (booksData) => {
     const groupArr = [];
     for (let i = 0; i < booksData.length; i++) {
       const books = generateBooks(booksData[i]);
@@ -98,7 +98,7 @@ const BooksHome = ({ filterBooks, listBooks, resetBooks, books, user }) => {
     return groupArr;
   };
 
-  const generateBooks = group => {
+  const generateBooks = (group) => {
     const booksArr = [];
     for (let i = 0; i < group.books.length; i++) {
       const book = (
@@ -143,9 +143,9 @@ const BooksHome = ({ filterBooks, listBooks, resetBooks, books, user }) => {
     </div>
   );
 };
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   books: state.books,
-  user: state.user
+  user: state.user,
 });
 
 export default connect(mapStateToProps, { listBooks, resetBooks, filterBooks })(

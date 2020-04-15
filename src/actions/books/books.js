@@ -9,11 +9,11 @@ import {
   RESET_BOOK,
   EDIT_PLANNED_DATE,
   CHANGE_FILTER,
-  RESET_BOOKS
+  RESET_BOOKS,
 } from 'actions/types';
 import { setAlert } from 'actions/alert';
 
-export const addBook = formData => async dispatch => {
+export const addBook = (formData) => async (dispatch) => {
   const APIBody = {
     title: formData.title,
     author: formData.author,
@@ -21,63 +21,63 @@ export const addBook = formData => async dispatch => {
     coverArt: formData.cover,
     categories: formData.categories,
     bookLanguage: formData.language,
-    bookState: 'Created'
+    bookState: 'Created',
   };
 
   try {
     const res = await API.post('prod', '/books', {
-      body: APIBody
+      body: APIBody,
     });
 
     dispatch({
       type: ADD_BOOK,
-      payload: res
+      payload: res,
     });
   } catch (err) {
     dispatch(setAlert('Unable to add book... please try again', 'negative'));
   }
 };
 
-export const getBook = bookId => async dispatch => {
+export const getBook = (bookId) => async (dispatch) => {
   try {
     const res = await API.get('prod', `/books/${bookId}`);
     dispatch({
       type: GET_BOOK,
-      payload: res
+      payload: res,
     });
   } catch (err) {
     console.error(err);
   }
 };
 
-export const searchBooks = (title, author) => async dispatch => {
+export const searchBooks = (title, author) => async (dispatch) => {
   const titleFormat = title.split(' ').join('+');
   const authorFormat = author.split(' ').join('+');
 
   const searchBody = {
     bookTitle: titleFormat,
-    bookAuthor: authorFormat
+    bookAuthor: authorFormat,
   };
 
   try {
     const res = await API.post('prod', '/books/search', {
-      body: searchBody
+      body: searchBody,
     });
 
     dispatch({
       type: SEARCH_SUCCESS,
-      payload: res
+      payload: res,
     });
   } catch (err) {
     console.error(err);
   }
 };
 
-export const filterBooks = (books, filter) => async dispatch => {
+export const filterBooks = (books, filter) => async (dispatch) => {
   try {
     const booksArr = [];
     // find how many groups there will be
-    let allBooksByFilter = books.map(book => {
+    let allBooksByFilter = books.map((book) => {
       if (Array.isArray(book[filter])) {
         return book[filter].join(', ');
       } else {
@@ -103,7 +103,7 @@ export const filterBooks = (books, filter) => async dispatch => {
     // loop through each one and allocate to the groups
     for (let i = 0; i < uniqueGroups.length; i++) {
       // cater for book[filter] being an array
-      const groupBooks = books.filter(book => {
+      const groupBooks = books.filter((book) => {
         if (Array.isArray(book[filter])) {
           return book[filter].indexOf(uniqueGroups[i]) >= 0;
         } else {
@@ -118,8 +118,8 @@ export const filterBooks = (books, filter) => async dispatch => {
       type: GET_ALL_BOOKS,
       payload: {
         filteredBooks: booksArr,
-        rawBooks: books
-      }
+        rawBooks: books,
+      },
     });
   } catch (err) {
     console.error('Something went wrong when filtering books');
@@ -127,7 +127,7 @@ export const filterBooks = (books, filter) => async dispatch => {
   }
 };
 
-export const listBooks = filter => async dispatch => {
+export const listBooks = (filter) => async (dispatch) => {
   try {
     const res = await API.get('prod', '/books');
     await dispatch(filterBooks(res, filter));
@@ -136,80 +136,80 @@ export const listBooks = filter => async dispatch => {
   }
 };
 
-export const resetBooks = () => async dispatch => {
+export const resetBooks = () => async (dispatch) => {
   try {
     dispatch({
-      type: RESET_BOOKS
+      type: RESET_BOOKS,
     });
   } catch (err) {
     console.error(err);
   }
 };
 
-export const deleteBook = bookId => async dispatch => {
+export const deleteBook = (bookId) => async (dispatch) => {
   try {
     await API.del('prod', `/books/${bookId}`);
 
     dispatch({
       type: DELETE_BOOK,
       payload: {
-        bookId: bookId
-      }
+        bookId: bookId,
+      },
     });
   } catch (err) {
     console.error(err);
   }
 };
 
-export const editBook = (bookId, newData) => async dispatch => {
+export const editBook = (bookId, newData) => async (dispatch) => {
   try {
     await API.put('prod', `/books/${bookId}`, {
-      body: newData
+      body: newData,
     });
-    // debugger;
+
     dispatch({
       type: EDIT_BOOK,
-      payload: newData
+      payload: newData,
     });
   } catch (err) {
     console.error(err);
   }
 };
 
-export const resetBook = () => async dispatch => {
+export const resetBook = () => async (dispatch) => {
   try {
     dispatch({
-      type: RESET_BOOK
+      type: RESET_BOOK,
     });
   } catch (err) {
     console.error(err);
   }
 };
 
-export const updatePlannedDate = (bookId, newDate) => async dispatch => {
+export const updatePlannedDate = (bookId, newDate) => async (dispatch) => {
   try {
     await API.put('prod', `/books/planned-date/${bookId}`, {
       body: {
-        datePlanned: newDate
-      }
+        datePlanned: newDate,
+      },
     });
 
     dispatch({
       type: EDIT_PLANNED_DATE,
       payload: {
-        datePlanned: newDate
-      }
+        datePlanned: newDate,
+      },
     });
   } catch (err) {
     console.error(err);
   }
 };
 
-export const changeFilter = newFilter => async dispatch => {
+export const changeFilter = (newFilter) => async (dispatch) => {
   try {
     dispatch({
       type: CHANGE_FILTER,
-      payload: newFilter
+      payload: newFilter,
     });
   } catch (err) {
     console.error(err);
