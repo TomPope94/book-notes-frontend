@@ -31,7 +31,9 @@ import PlanHome from 'components/planning/PlanHome';
 import PageNotFound from 'components/other/PageNotFound';
 import Help from 'components/other/Help';
 import Recall from 'components/recall/Recall';
-import Product from 'components/guest/Product';
+import Plan from 'components/guest/product/Plan';
+import Remember from 'components/guest/product/Remember';
+import Track from 'components/guest/product/Track';
 import Pricing from 'components/guest/Pricing';
 import Blog from 'components/guest/Blog';
 import Support from 'components/guest/Support';
@@ -59,16 +61,18 @@ const App = () => {
             paddingLeft: 150,
             paddingTop: 25,
             paddingRight: 25,
-            height: '95vh'
+            height: '95vh',
           }}
         >
           <Switch>
             <Route exact path={routes.AUTH.route} component={AuthBroker} />
             <Route exact path={routes.SPLASH.route} component={Splash} />
+            <Route exact path={routes.GUEST_PLAN.route} component={Plan} />
+            <Route exact path={routes.GUEST_TRACK.route} component={Track} />
             <Route
               exact
-              path={routes.GUEST_PRODUCT.route}
-              component={Product}
+              path={routes.GUEST_REMEMBER.route}
+              component={Remember}
             />
             <Route
               exact
@@ -81,7 +85,6 @@ const App = () => {
               path={routes.GUEST_SUPPORT.route}
               component={Support}
             />
-            <Route exact path={routes.SALES.route} component={SalesPage} />
             <Route exact path={routes.HELP.route} component={Help} />
             <Route
               exact

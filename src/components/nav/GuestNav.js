@@ -1,51 +1,53 @@
-import React, { Fragment } from "react";
-import { connect } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
 
 import {
   AUTH,
   SPLASH,
-  GUEST_PRODUCT,
+  GUEST_PLAN,
+  GUEST_TRACK,
+  GUEST_REMEMBER,
   GUEST_PRICING,
   GUEST_BLOG,
-  GUEST_SUPPORT
-} from "constants/routes";
+  GUEST_SUPPORT,
+} from 'constants/routes';
 
-import LogoOrange from "components/elements/images/LogoOrange";
+import LogoOrange from 'components/elements/images/LogoOrange';
 
 const styles = {
   navContainer: {
-    display: "flex",
-    justifyContent: "space-between",
+    display: 'flex',
+    justifyContent: 'space-between',
     height: 50,
     paddingRight: 50,
     zIndex: 2,
-    position: "relative",
+    position: 'relative',
     left: 0,
-    top: 0
+    top: 0,
   },
   navLeft: {
-    display: "flex",
-    alignItems: "flex-end",
-    height: "100%"
+    display: 'flex',
+    alignItems: 'flex-end',
+    height: '100%',
   },
   navRight: {
-    display: "flex",
-    alignItems: "flex-end",
-    height: "100%"
+    display: 'flex',
+    alignItems: 'flex-end',
+    height: '100%',
   },
   logoContainer: {
-    height: "80%",
-    cursor: "pointer"
+    height: '80%',
+    cursor: 'pointer',
   },
   linkStyle: {
     marginLeft: 20,
     marginRight: 20,
     marginBottom: 3,
-    fontSize: "0.85rem",
-    cursor: "pointer",
-    color: "#fff"
-  }
+    fontSize: '0.85rem',
+    cursor: 'pointer',
+    color: '#fff',
+  },
 };
 
 const GuestNav = ({ isAuthenticated }) => {
@@ -61,7 +63,7 @@ const GuestNav = ({ isAuthenticated }) => {
               onClick={() => history.push(SPLASH.route)}
             />
             <p
-              onClick={() => history.push(GUEST_PRODUCT.route)}
+              onClick={() => history.push(GUEST_PLAN.route)}
               style={styles.linkStyle}
             >
               Product
@@ -99,8 +101,8 @@ const GuestNav = ({ isAuthenticated }) => {
   );
 };
 
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
 export default connect(mapStateToProps)(GuestNav);

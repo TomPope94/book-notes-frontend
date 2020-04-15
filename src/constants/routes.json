@@ -3,8 +3,16 @@
     "route": "/",
     "label": "Homepage"
   },
-  "SALES": {
-    "route": "/product",
+  "GUEST_PLAN": {
+    "route": "/product/plan",
+    "label": "Store"
+  },
+  "GUEST_TRACK": {
+    "route": "/product/track",
+    "label": "Store"
+  },
+  "GUEST_REMEMBER": {
+    "route": "/product/remember",
     "label": "Store"
   },
   "AUTH": {
@@ -106,10 +114,6 @@
   "GUEST_PRICING": {
     "route": "/pricing",
     "label": "Pricing"
-  },
-  "GUEST_PRODUCT": {
-    "route": "/product",
-    "label": "Product"
   },
   "GUEST_SUPPORT": {
     "route": "/support",
