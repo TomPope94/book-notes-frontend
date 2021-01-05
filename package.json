@@ -5,7 +5,7 @@
   "dependencies": {
     "animejs": "^3.1.0",
     "aws-amplify": "^1.2.4",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "d3": "^5.14.2",
     "emotion": "^10.0.23",
     "moment": "^2.24.0",
